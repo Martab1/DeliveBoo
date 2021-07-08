@@ -1,4 +1,3 @@
+require("./bootstrap");
 
-require('./bootstrap');
-
-
+console.log("ciao");
