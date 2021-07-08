@@ -27,6 +27,7 @@ class UpdateRestaurantsTable extends Migration
     public function down()
     {
         Schema::table('restaurants', function (Blueprint $table) {
+            $table->dropForeign('restaurants_user_id_foreign');
             $table->dropColumn("user_id");
         });
     }
