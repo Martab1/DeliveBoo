@@ -10942,3 +10942,7 @@ a.text-dark:focus {
   }
 }
 
+.w-33 {
+  flex-basis: calc(100% / 3);
+}
+

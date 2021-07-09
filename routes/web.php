@@ -24,8 +24,10 @@ Route::prefix('admin')
        ->middleware('auth')
        ->name('admin.')
        ->group( function(){
-           //rotte home admin
-           Route::get('/', 'HomeController@index')->name('home');
+            //rotte home admin
+            Route::get('/', 'HomeController@index')->name('home');
+            //    controller restaurant
+            Route::resource('/restaurant', "RestaurantController");
        });
 
 

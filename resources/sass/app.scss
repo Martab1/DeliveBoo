@@ -6,3 +6,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.w-33{
+    flex-basis: calc(100% / 3);
+}
