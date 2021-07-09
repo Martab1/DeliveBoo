@@ -4,20 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Order extends Model
 {
     protected $fillable = [
-        "name", "image", "description", "price", "visibility",
+        "payer_name", "payer_email", "payer_address", "total"
     ];
 
     public function restaurant(){
         return $this->belongsTo("App\Restaurant");
     }
 
-        public function orders(){
-        return $this->belongsToMany("App\Order");
+    public function products(){
+        return $this->belongsToMany("App\Product");
     }
 
 }
-
-

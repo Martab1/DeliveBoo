@@ -21,4 +21,8 @@ class Restaurant extends Model
     public function tipologies(){
         return $this->belongsToMany("App\Tipology");
     }
+
+    public function orders(){
+        return $this->hasMany("App\Order");
+    }
 }
