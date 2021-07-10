@@ -10,17 +10,32 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-        $auth_id = Auth::id();
+        $user_auth = Auth::user();
         $restaurants_db = Restaurant::all()->pluck("user_id"); 
         $my_restaurant = null; 
 
         foreach ($restaurants_db as $user_restaurant){
-            if($auth_id === $user_restaurant){
+            if($user_auth->id === $user_restaurant){
                 $logged = true;
-                $my_restaurant = Restaurant::where("user_id",$auth_id)->get()->first();
+                $my_restaurant = Restaurant::where("user_id",$user_auth->id)->get()->first();
             }
         }
 
-        return view('admin.home', compact('auth_id', 'restaurants_db', 'my_restaurant'));
+
+        // POPOLAZIONE TABELLA PIVOT 
+        // $array1 = [1,5,2,4,8];
+        // $array2 = [2,4,2,5,8];
+
+        // $restaurant_2 = Restaurant::find(2);
+        // $restaurant_3 = Restaurant::find(3);
+        // $restaurant_2->tipologies()->attach($array1);
+        // $restaurant_3->tipologies()->attach($array2);
+
+        
+        return view('admin.home', compact('my_restaurant', 'user_auth'));
     }
 }
+
+
+// CANCELLARE SEEDER FITTIZIO RESTAURANT
+// CANCELLARE POPOLAZIONE TABELLA PIVOT 
