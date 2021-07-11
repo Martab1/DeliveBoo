@@ -9,6 +9,7 @@
             <h1 class="my-5">{{$my_restaurant->name}}</h1>
 
             <div class="d-flex">
+
                 {{-- INFORMATIONS --}}
                 <div class="informations w-50 d-flex flex-column justify-content-center">
                     <h3>proprietario: {{$user_auth->name}} {{$user_auth->surname}}</h3>
@@ -16,15 +17,20 @@
                     <hr>
                     <h3>address: {{$my_restaurant->address}}</h3>
                     <h3>phone number: {{$my_restaurant->phone_number}}</h3>
+                        {{-- TIPOLOGIES --}}
+                    <div class="tipologies my-4">
+                        @foreach ($my_tipologies as $my_tipology)
+                        <span class="badge badge-info text-white p-2 mb-1">{{$my_tipology->name}}</span>
+                        @endforeach
+                    </div>
                 </div>
+
                 {{-- IMAGE --}}
                 <div class="w-50"><img class="img-fluid" src="{{$my_restaurant->image}}" alt="{{$my_restaurant->name}}"></div>
             </div>
-            {{-- TIPOLOGIES --}}
 
-            {{-- PRODUCTS --}}
+            {{-- BUTTONS --}}
             <a class="btn btn-success m-4"href="">guarda i prodotti</a>
-            {{-- EDIT --}}
             <a class="btn btn-warning m-4"href="">Modifica locale</a>
         </div>
 

@@ -12,6 +12,7 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
+        // DA CANCELLARE!!!!!
         $restaurants = [
             [   
                 "user_id" => 1,
