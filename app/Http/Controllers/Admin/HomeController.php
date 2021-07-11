@@ -19,10 +19,9 @@ class HomeController extends Controller
             if($user_auth->id === $user_restaurant){
                 $logged = true;
                 $my_restaurant = Restaurant::where("user_id",$user_auth->id)->get()->first();
-                $my_tipologies = $my_restaurant->tipologies; 
+                $my_tipologies = $my_restaurant->tipologies;
             }
         }
-
 
         // POPOLAZIONE TABELLA PIVOT 
         // $array1 = [1,5,2,4,8];
@@ -32,8 +31,6 @@ class HomeController extends Controller
         // $restaurant_3 = Restaurant::find(3);
         // $restaurant_2->tipologies()->attach($array1);
         // $restaurant_3->tipologies()->attach($array2);
-
-        
         return view('admin.home', compact('my_restaurant', 'user_auth', 'my_tipologies'));
     }
 }

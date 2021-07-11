@@ -26,7 +26,7 @@ Route::prefix('admin')
        ->group( function(){
             //rotte home admin
             Route::get('/', 'HomeController@index')->name('home');
-            //    controller restaurant
+            //controller restaurant
             Route::resource('/restaurant', "RestaurantController");
        });
 
