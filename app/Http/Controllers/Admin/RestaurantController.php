@@ -97,9 +97,11 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Restaurant $restaurant)
     {
-        //
+        $tipologies = Tipology::all();
+
+        return view('admin.restaurant.edit', compact('restaurant', 'tipologies'));
     }
 
     /**
@@ -109,9 +111,33 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        /* 
+            VALIDATION
+        */
+        $request->validate([
+            'name' => 'required',
+            'address' =>'required',
+            'phone_number' => 'required',
+            'tipologies' => 'nullable|exists:tipologies,id',
+        ]);// customizzare gli errori
+
+        $data = $request->all();
+        $data['slug'] = Str::slug($data['name'], '-');
+        $restaurant->update( $data );
+
+        /* 
+            UPDATING TIPOLOGIES TABLE TOO
+        */
+        if( array_key_exists( 'tipologies', $data ) ){
+            $restaurant->tipologies()->sync($data['tipologies']);
+        }else{
+            $restaurant->tipologies()->detach();
+        }
+        
+
+        return view('admin.home');
     }
 
     /**
