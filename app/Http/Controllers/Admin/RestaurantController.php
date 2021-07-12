@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Restaurant;
 use App\Tipology;
+use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
@@ -98,7 +99,7 @@ class RestaurantController extends Controller
             $restaurant->tipologies()->detach();
         }
         
-        
+
         return view('admin.home');
     }
 
