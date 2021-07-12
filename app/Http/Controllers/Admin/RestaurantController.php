@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\Tipology;
-use illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
