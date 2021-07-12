@@ -98,6 +98,7 @@ class RestaurantController extends Controller
             $restaurant->tipologies()->detach();
         }
         
+        
         return view('admin.home');
     }
 
