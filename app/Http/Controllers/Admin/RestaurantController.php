@@ -43,18 +43,16 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-
          $request->validate([
-            'name'=> 'required|max:50', 
-            'address' => 'required|max:255',
-            'phone_number' => 'required|min:10|max:15',
-            'tipologies' => 'required|exists:tipologies,id',
-            'image' => 'nullable|mimes:jpg,jpeg,png,bmp',
+            'name'=> 'required|min:2|max:50', 
+            'address' => "required|min:8|max:255|regex:/[a-zA-Z']/",
+            'phone_number' => 'required|digits_between:7,15|numeric',
+            'tipologies' => 'exists:tipologies,id|required_without_all',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp|size:10|',   
         ], [
-            'required'=> 'The :attribute is required!',
-            'unique'=> 'The :attribute is already is use for another post',
-            'max'=> 'Max :max characters allowed for the :attribute',
-
+            'required'=> 'Questo campo è obbligatorio',
+            'max'=> 'Massimo :max caratteri concessi',
+            'min'=> 'Minimo :min caratteri richiesti',
         ]);
 
 
@@ -128,6 +126,7 @@ class RestaurantController extends Controller
             'address' =>'required',
             'phone_number' => 'required',
             'tipologies' => 'nullable|exists:tipologies,id',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp|max:10240|'
         ]);// customizzare gli errori
 
         $data = $request->all();
