@@ -588,7 +588,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("ciao")])
+  return _c("h1", [_vm._v("Vue single page application")])
 }
 var staticRenderFns = []
 render._withStripped = true

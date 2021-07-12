@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Restaurant extends Model
 {
     protected $fillable = [
-        "name", "slug", "address", "phone_number", "image"
+        "name", "slug", "address", "phone_number", "image", "user_id",
     ];
 
     public function user(){
