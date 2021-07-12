@@ -8,6 +8,7 @@ use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\support\Str;
 
 class RestaurantController extends Controller
@@ -48,7 +49,7 @@ class RestaurantController extends Controller
             'address' => 'required|max:255',
             'phone_number' => 'required|min:10|max:15',
             'tipologies' => 'required|exists:tipologies,id',
-            'image' => 'nullable|max:1000|mimes:jpg,jpeg,png,bmp',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp',
         ], [
             'required'=> 'The :attribute is required!',
             'unique'=> 'The :attribute is already is use for another post',
@@ -59,6 +60,12 @@ class RestaurantController extends Controller
 
          $data = $request->all();
 
+        //  image
+        if(array_key_exists('image', $data)){
+            $image = Storage::put('restaurant-image', $data['image']);
+            $data['image'] = $image;
+        }
+        
          //generate slug
          $data['slug'] = Str::slug($data['name'], '-');
 
@@ -74,7 +81,7 @@ class RestaurantController extends Controller
             $new_restaurant->tipologies()->attach($data['tipologies']); // aggiunge i nuovi records in table pivot
         }
 
-        return view('admin.home');
+        return redirect()->route('admin.home');
 
 
     }
@@ -137,7 +144,7 @@ class RestaurantController extends Controller
         }
         
 
-        return view('admin.home');
+        return redirect()->route('admin.home');
     }
 
     /**

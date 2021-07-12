@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="phone_number">numero di telefono</label>
-                <input type="tel" class="form-control" id="phone_number" name="phone_number"  min='10'  max='15' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="ex: +39 123-456-7890" required>
+                <input type="tel" class="form-control" id="phone_number" name="phone_number"  min='10'  max='15' required>
             </div>
 
             <div class="form-group mx-2 d-flex flex-wrap">
@@ -36,7 +36,7 @@
             </div>
             
             <div class="form-group mx-2">
-                <input role="button" type="submit" class="btn btn-primary">
+                <input role="button" type="submit" class="btn btn-primary" value="salva">
             </div>
 
         </form>

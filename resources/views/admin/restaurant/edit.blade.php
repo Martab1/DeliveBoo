@@ -54,7 +54,7 @@
             </div>
             
             <div class="form-group mx-2">
-                <input role="button" type="submit" class="btn btn-primary">
+                <input role="button" type="submit" class="btn btn-primary" value="aggiorna">
             </div>
 
         </form>

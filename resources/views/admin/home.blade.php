@@ -26,12 +26,12 @@
                 </div>
 
                 {{-- IMAGE --}}
-                <div class="w-50"><img class="img-fluid" src="{{$my_restaurant->image}}" alt="{{$my_restaurant->name}}"></div>
+                <div class="w-50"><img class="img-fluid" src="{{asset('storage/' . $my_restaurant->image)}}" alt="{{$my_restaurant->name}}"></div>
             </div>
 
             {{-- BUTTONS --}}
             <a class="btn btn-success m-4"href="">guarda i prodotti</a>
-            <a class="btn btn-warning m-4"href="">Modifica locale</a>
+            <a class="btn btn-warning m-4"href="{{route("admin.restaurant.edit", $my_restaurant->id)}}">Modifica locale</a>
         </div>
 
     {{-- IF USER DOESN'T HAVE A RESTAURANT --}}
