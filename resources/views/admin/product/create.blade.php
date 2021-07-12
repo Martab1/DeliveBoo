@@ -72,4 +72,6 @@
 
                 </form>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
