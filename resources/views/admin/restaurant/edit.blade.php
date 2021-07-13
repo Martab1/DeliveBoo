@@ -8,7 +8,13 @@
         @method("PATCH")
             <div class="form-group">
                 <label for="name">nome</label>
-                <input type="text" class="form-control" id="name" name="name" required
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name" name="name"
+                    required
+                    maxlength="50" 
+                    minlength="2"
                     value="{{ old('name', $restaurant->name) }}">
             </div>
             @error('name')
@@ -17,7 +23,14 @@
 
             <div class="form-group">
                 <label for="address">indirizzo</label>
-                <input type="text" class="form-control" id="address" name="address" required
+                <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    name="address"
+                    required
+                    minlength="8"
+                    maxlength='255'
                     value="{{ old('address', $restaurant->address) }}">
             </div>
             @error('address')
@@ -26,7 +39,14 @@
 
             <div class="form-group">
                 <label for="phone_number">numero di telefono</label>
-                <input type="tel" class="form-control" id="phone_number" name="phone_number" required
+                <input
+                    type="tel"
+                    class="form-control"
+                    id="phone_number"
+                    name="phone_number"
+                    required
+                    minlength='7' 
+                    maxlength='15'
                     value="{{old('phone_number', $restaurant->phone_number)}}">
             </div>
             @error('phone_number')
@@ -52,6 +72,12 @@
                 <label for="image"></label>
                 <input role="button" type="file" id="image" name="image">
             </div>
+            
+            @if($restaurant->image)
+            <div class="w-25 my-5">
+                <img class="img-fluid" src="{{ asset('storage/'.$restaurant->image) }}" alt="{{$restaurant->name}}">
+            </div>
+            @endif
             
             <div class="form-group mx-2">
                 <input role="button" type="submit" class="btn btn-primary" value="aggiorna">

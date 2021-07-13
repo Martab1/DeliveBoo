@@ -43,18 +43,22 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-
-         $request->validate([
-            'name'=> 'required|max:50', 
-            'address' => 'required|max:255',
-            'phone_number' => 'required|min:10|max:15',
-            'tipologies' => 'required|exists:tipologies,id',
-            'image' => 'nullable|mimes:jpg,jpeg,png,bmp',
-        ], [
-            'required'=> 'The :attribute is required!',
-            'unique'=> 'The :attribute is already is use for another post',
-            'max'=> 'Max :max characters allowed for the :attribute',
-
+        $request->validate([
+            'name'=> 'required|min:2|max:50', 
+            'address' => "required|min:2|max:255",
+            'phone_number' => 'required|digits_between:7,15|numeric',
+            'tipologies' => 'exists:tipologies,id|required_without_all',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',   
+        ],[
+            'required'=> 'Questo campo è obbligatorio',
+            'name.max'=> 'Massimo :max caratteri concessi',
+            'min'=> 'Minimo :min caratteri richiesti',
+            'digits_between' => 'Inserisci un numero di telefono valido',
+            'numeric' => 'Inserisci solo numeri',
+            'exists' => 'valore non valido',
+            'required_without_all' => 'Seleziona almeno una casella',
+            'mimes' => 'I formati supportati sono: jpg,jpeg,png,bmp,svg',
+            'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )'
         ]);
 
 
@@ -124,25 +128,44 @@ class RestaurantController extends Controller
             VALIDATION
         */
         $request->validate([
-            'name' => 'required',
-            'address' =>'required',
-            'phone_number' => 'required',
-            'tipologies' => 'nullable|exists:tipologies,id',
-        ]);// customizzare gli errori
+            'name'=> 'required|min:2|max:50', 
+            'address' => "required|min:2|max:255",
+            'phone_number' => 'required|digits_between:7,15|numeric',
+            'tipologies' => 'exists:tipologies,id|required_without_all',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',   
+        ],[
+            'required'=> 'Questo campo è obbligatorio',
+            'max'=> 'Massimo :max caratteri concessi',
+            'min'=> 'Minimo :min caratteri richiesti',
+            'digits_between' => 'Inserisci un numero di telefono valido',
+            'numeric' => 'Inserisci solo numeri',
+            'exists' => 'valore non valido',
+            'required_without_all' => 'Seleziona almeno una casella',
+            'mimes' => 'I formati supportati sono: jpg,jpeg,png,bmp,svg',
+            'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb)'
+        ]);
 
+        
         $data = $request->all();
         $data['slug'] = Str::slug($data['name'], '-');
-        $restaurant->update( $data );
-
-        /* 
-            UPDATING TIPOLOGIES TABLE TOO
-        */
+        
+        /* IMAGE */        
+        if(array_key_exists('image', $data)){
+            if($restaurant->image){
+                Storage::delete($restaurant->image);
+            }
+            $image = Storage::put('restaurant-image', $data['image']);
+            $data['image'] = $image;
+        }
+        
+        /*UPDATING TIPOLOGIES TABLE TOO*/
         if( array_key_exists( 'tipologies', $data ) ){
             $restaurant->tipologies()->sync($data['tipologies']);
         }else{
             $restaurant->tipologies()->detach();
         }
         
+        $restaurant->update( $data );
 
         return redirect()->route('admin.home');
     }
