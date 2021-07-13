@@ -44,11 +44,11 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=> 'required|min:2|max:50', 
+            'name'=> 'required|string|min:2|max:50',
             'address' => "required|min:2|max:255",
             'phone_number' => 'required|digits_between:7,15|numeric|unique:restaurants',
             'tipologies' => 'exists:tipologies,id|required_without_all',
-            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',   
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',
         ],[
             'required'=> 'Questo campo è obbligatorio',
             'name.max'=> 'Massimo :max caratteri concessi',
@@ -70,13 +70,13 @@ class RestaurantController extends Controller
             $image = Storage::put('restaurant-image', $data['image']);
             $data['image'] = $image;
         }
-        
+
          //generate slug
          $data['slug'] = Str::slug($data['name'], '-');
 
          // user
          $data['user_id'] = Auth::user()->id;
-        
+
         $new_restaurant = new Restaurant();
         $new_restaurant->fill($data);
         $new_restaurant->save();
@@ -102,7 +102,7 @@ class RestaurantController extends Controller
     {
     }
 
-   
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -125,11 +125,11 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        /* 
+        /*
             VALIDATION
         */
         $request->validate([
-            'name'=> 'required|min:2|max:50', 
+            'name'=> 'required|min:2|max:50',
             'address' => "required|min:2|max:255",
             'phone_number' => [
                 'required',
@@ -138,7 +138,7 @@ class RestaurantController extends Controller
                  Rule::unique('restaurants')->ignore($restaurant)
             ],
             'tipologies' => 'exists:tipologies,id|required_without_all',
-            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',   
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',
         ],[
             'required'=> 'Questo campo è obbligatorio',
             'max'=> 'Massimo :max caratteri concessi',
@@ -152,11 +152,11 @@ class RestaurantController extends Controller
             'phone_number.unique'=> 'il numero inserito è già esistente'
         ]);
 
-        
+
         $data = $request->all();
         $data['slug'] = Str::slug($data['name'], '-');
-        
-        /* IMAGE */        
+
+        /* IMAGE */
         if(array_key_exists('image', $data)){
             if($restaurant->image){
                 Storage::delete($restaurant->image);
@@ -164,14 +164,14 @@ class RestaurantController extends Controller
             $image = Storage::put('restaurant-image', $data['image']);
             $data['image'] = $image;
         }
-        
+
         /*UPDATING TIPOLOGIES TABLE TOO*/
         if( array_key_exists( 'tipologies', $data ) ){
             $restaurant->tipologies()->sync($data['tipologies']);
         }else{
             $restaurant->tipologies()->detach();
         }
-        
+
         $restaurant->update( $data );
 
         return redirect()->route('admin.home');

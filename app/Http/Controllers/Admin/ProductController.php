@@ -51,24 +51,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     { {
-            $request->validate([
+            $request->validate(
                 [
                     'name' => 'required|string|min:3|max:50',
-                    'description' => 'nullable|min:10|max:255',
-                    'price' => 'required|numeric',
+                    'description' => 'nullable|max:255',
+                    'price' => 'required|numeric|max:999.99',
                     'visibility' => 'required|boolean',
-                    'image' => 'nullable|mimes:jpg,png,jpeg,bmp,svg|size:5000',
+                    'image' => 'nullable|mimes:jpg,png,jpeg,bmp,svg|max:5000',
                 ],
                 [
                     'required' => 'Campo obbligatorio',
-                    'name.min' => 'Il nome deve essere di almeno 3 caratteri',
-                    'name.max' => 'Il nome deve avere massimo 50 caratteri',
-                    'description.min' => 'La descrizione deve essere di almeno 10 caratteri',
-                    'description.max' => 'La descrizione deve essere massimo 255 caratteri',
+                    'name.min' => 'Il nome deve essere di almeno :min caratteri',
+                    'name.max' => 'Il nome deve avere massimo :max caratteri',
+                    'description.max' => 'La descrizione deve essere massimo :max caratteri',
                     'price.numeric' => 'Sono ammessi esclusivamente caratteri numerici',
+                    'price.max' => 'Il valore massimo consentito è :max',
                     'image.mimes' => 'I formati supportati sono: jpg, png, jpeg, bmp, svg',
-                ],
-            ]);
+                    'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )',
+                    'visibility.boolean' => 'Il valore inserito non è corretto',
+                ]
+            );
 
             $data = $request->all();
 
@@ -148,20 +150,21 @@ class ProductController extends Controller
         $request->validate([
             [
                 'name' => 'required|string|min:3|max:50',
-                'description' => 'nullable|min:10|max:255',
+                'description' => 'nullable|max:255',
                 'price' => 'required|numeric',
                 'visibility' => 'required|boolean',
-                'image' => 'nullable|mimes:jpg,png,jpeg,bmp',
+                'image' => 'nullable|mimes:jpg,png,jpeg,bmp,svg|max:5000',
             ],
             [
                 'required' => 'Campo obbligatorio',
                 'name.min' => 'Il nome deve essere di almeno 3 caratteri',
                 'name.max' => 'Il nome deve avere massimo 50 caratteri',
-                'description.min' => 'La descrizione deve essere di almeno 10 caratteri',
                 'description.max' => 'La descrizione deve essere massimo 255 caratteri',
                 'price.numeric' => 'Sono ammessi esclusivamente caratteri numerici',
                 'image.mimes' => 'I formati supportati sono: jpg, png, jpeg, bmp, svg',
-            ],
+                'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )',
+                'visibility.boolean' => 'Il valore inserito non è corretto',
+            ]
         ]);
 
 

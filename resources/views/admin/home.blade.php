@@ -15,8 +15,8 @@
                     <h3>proprietario: {{$user_auth->name}} {{$user_auth->surname}}</h3>
                     <h3>p.iva: {{$user_auth->vat_number}}</h3>
                     <hr>
-                    <h3>address: {{$my_restaurant->address}}</h3>
-                    <h3>phone number: {{$my_restaurant->phone_number}}</h3>
+                    <h3>città: {{$my_restaurant->address}}</h3>
+                    <h3>numero di telefono: {{$my_restaurant->phone_number}}</h3>
                         {{-- TIPOLOGIES --}}
                     <div class="tipologies my-4">
                         @foreach ($my_tipologies as $my_tipology)
