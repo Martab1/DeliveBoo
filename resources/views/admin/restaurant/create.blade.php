@@ -17,6 +17,7 @@
                     required
                     maxlength="50" 
                     minlength="2"
+                    value="{{ old('name') }}"
                 >
                 @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -31,9 +32,9 @@
                     id="address"
                     name="address"
                     required
-                    {{-- minlength="8"
+                    minlength="8"
                     maxlength='255'
-                    pattern="[a-zA-Z\s]+" --}}
+                    value="{{ old('address') }}"
                     >
                 @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -49,7 +50,8 @@
                 name="phone_number"
                 minlength='7' 
                 maxlength='15'
-                required>
+                required
+                value="{{ old('phone_number') }}">
             @error('phone_number')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -58,7 +60,10 @@
             <div class="form-group mx-2 d-flex flex-wrap">
                 @foreach ($tipologies as $tipology)
                     <div class="w-33">
-                        <input role="button" type="checkbox" value="{{$tipology->id}}" id="{{$tipology->id}}" name="tipologies[]">
+                        <input role="button" type="checkbox" value="{{$tipology->id}}" id="{{$tipology->id}}" name="tipologies[]"
+                        @if ( in_array( $tipology->id, old('tipologies', [])))
+                            checked
+                        @endif>
                         <label role="button" for="{{$tipology->id}}">{{$tipology->name}}</label>
                     </div>
                 @endforeach
