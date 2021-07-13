@@ -187,6 +187,10 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::find($id);
 
+        if($restaurant->image){
+            Storage::delete($restaurant->image);
+        }
+
         $restaurant->tipologies()->detach();
         $restaurant->delete();
 
