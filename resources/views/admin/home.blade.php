@@ -30,7 +30,7 @@
             </div>
 
             {{-- BUTTONS --}}
-            <a class="btn btn-success m-4"href="">guarda i prodotti</a>
+            <a class="btn btn-success m-4"href="{{route("admin.product.index")}}">guarda i prodotti</a>
             <a class="btn btn-warning m-4"href="{{route("admin.restaurant.edit", $my_restaurant->id)}}">Modifica locale</a>
             <form action=" {{ route('admin.restaurant.destroy', $my_restaurant->id)}}" method="POST">
                 @csrf
