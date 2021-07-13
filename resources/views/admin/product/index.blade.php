@@ -11,52 +11,35 @@
     </div>
     <div class="container">
         <h1>Prodotti</h1>
-        <a class="btn btn-primary" href="{{ route('admin.product.create') }}">Aggiungi un nuovo prodotto</a>
+        <a class="btn btn-primary mb-4" href="{{ route('admin.product.create') }}">Aggiungi un nuovo prodotto</a>
 
-        <table class="table mt-5">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Prezzo</th>
-                    <th>Descrizione</th>
-                    <th>Disponibile</th>
-                    <th>Immagine</th>
-                    <th colspan="3">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($my_products as $product)
-                    <tr>
-                        <td>{{ $product->name }}</td>
+        <div class="d-flex flex-wrap">
+            @foreach ($my_products as $product)
+                <div class="card m-3" style="width: 15rem;">
+                    <div style="height: 12rem">
+                        <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top img-fluid"
+                            alt="{{ $product->name }}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="">{{ $product->name }}</h5>
+                        <p class="card-text">{{ $product->description }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ $product->price }}</li>
+                        <li class="list-group-item">Disponibile: {{ $product->visibility ?"si":"no" }}</li>
+                    </ul>
+                    <div class="card-body d-flex d-flex justify-content-between">
+                        <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-warning">Modifica</a>
+                        <form class="delete-post-form card-link"
+                            action="{{ route('admin.product.destroy', $product->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
 
-                        <td>{{ $product->price }}</td>
-
-                        <td>{{ $product->description }}</td>
-
-                        <td>{{ $product->visibility }}</td>
-
-                        <td>{{ $product->image }}</td>
-
-                        <td>
-                            <div>{{ $product->created_at->format('d/m/y') }}</div>
-                        </td>
-
-                        <td>
-                            <a class="btn btn-primary" href="{{ route('admin.product.edit', $product->id) }}">
-                                Modifica
-                            </a>
-                        </td>
-                        <td>
-                            <form class="delete-post-form" action="{{ route('admin.product.destroy', $product->id) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <input type="submit" class="btn btn-danger" value="Elimina">
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                            <input type="submit" class="btn btn-danger" value="Elimina">
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection
