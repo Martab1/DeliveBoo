@@ -32,7 +32,7 @@
                     id="address"
                     name="address"
                     required
-                    minlength="8"
+                    minlength="2"
                     maxlength='255'
                     value="{{ old('address') }}"
                     >

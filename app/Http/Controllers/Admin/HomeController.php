@@ -22,6 +22,6 @@ class HomeController extends Controller
             }
         }
 
-        return view('admin.home', compact('my_restaurant', 'user_auth', 'my_tipologies'));
+        return view('admin.home',  compact('my_restaurant', 'user_auth', 'my_tipologies'));
     }
 }

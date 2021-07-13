@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Tipology;
 use App\Restaurant;
-use App\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -46,7 +46,7 @@ class RestaurantController extends Controller
         $request->validate([
             'name'=> 'required|min:2|max:50', 
             'address' => "required|min:2|max:255",
-            'phone_number' => 'required|digits_between:7,15|numeric',
+            'phone_number' => 'required|digits_between:7,15|numeric|unique:restaurants',
             'tipologies' => 'exists:tipologies,id|required_without_all',
             'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',   
         ],[
@@ -58,7 +58,8 @@ class RestaurantController extends Controller
             'exists' => 'valore non valido',
             'required_without_all' => 'Seleziona almeno una casella',
             'mimes' => 'I formati supportati sono: jpg,jpeg,png,bmp,svg',
-            'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )'
+            'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )',
+            'phone_number.unique'=> 'il numero inserito è già esistente'
         ]);
 
 
@@ -130,7 +131,12 @@ class RestaurantController extends Controller
         $request->validate([
             'name'=> 'required|min:2|max:50', 
             'address' => "required|min:2|max:255",
-            'phone_number' => 'required|digits_between:7,15|numeric',
+            'phone_number' => [
+                'required',
+                'digits_between:7,15',
+                'numeric',
+                 Rule::unique('restaurants')->ignore($restaurant)
+            ],
             'tipologies' => 'exists:tipologies,id|required_without_all',
             'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',   
         ],[
@@ -142,7 +148,8 @@ class RestaurantController extends Controller
             'exists' => 'valore non valido',
             'required_without_all' => 'Seleziona almeno una casella',
             'mimes' => 'I formati supportati sono: jpg,jpeg,png,bmp,svg',
-            'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb)'
+            'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb)',
+            'phone_number.unique'=> 'il numero inserito è già esistente'
         ]);
 
         
@@ -178,6 +185,11 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+
+        $restaurant->tipologies()->detach();
+        $restaurant->delete();
+
+        return redirect()->route('admin.home');
     }
 }
