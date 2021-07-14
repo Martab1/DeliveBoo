@@ -26,8 +26,12 @@ Route::prefix('admin')
             Route::get('/', 'HomeController@index')->name('home');
             //controller restaurant
             Route::resource('/restaurant', "RestaurantController");
+            // home products
+            Route::get('products/{id}', ['as' => 'product.index', 'uses' => 'ProductController@index']);
+            Route::get('products/create/{id}', ['as' => 'product.create', 'uses' => 'ProductController@create']);
+            // Route::get('products/store/{id}', ['as' => 'product.store', 'uses' => 'ProductController@store']);
             // controller product
-            Route::resource('/product', "ProductController");
+            Route::resource('/product', "ProductController", ['except' => ['index', 'create']]);
        });
 
 

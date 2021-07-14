@@ -7,7 +7,7 @@
         <div class="d-flex">
 
             {{-- INFORMATIONS --}}
-            <div class="informations w-50 d-flex flex-column justify-content-center border">
+            <div class="informations w-50 d-flex flex-column justify-content-center">
                 <h3>proprietario: {{ $user_auth->name }} {{ $user_auth->surname }}</h3>
                 <h3>p.iva: {{ $user_auth->vat_number }}</h3>
                 <hr>
@@ -22,7 +22,7 @@
             </div>
 
             {{-- IMAGE --}}
-            <div class="w-50"><img class="img-fluid border" 
+            <div class="w-50"><img class="img-fluid" 
                 @if ($my_restaurant->image)
                 src="{{ asset('storage/' . $my_restaurant->image) }}"
                 @else
@@ -34,7 +34,7 @@
 
             {{-- BUTTONS --}}
         </div>
-        <a class="btn btn-success m-4" href="{{ route('admin.product.index') }}">guarda i prodotti</a>
+        <a class="btn btn-success m-4" href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
         <a class="btn btn-warning m-4" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
             locale</a>
         <form action=" {{ route('admin.restaurant.destroy', $my_restaurant->id) }}" method="POST">

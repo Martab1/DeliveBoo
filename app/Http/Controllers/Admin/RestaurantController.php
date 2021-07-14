@@ -195,6 +195,7 @@ class RestaurantController extends Controller
         }
 
         $restaurant->tipologies()->detach();
+        $restaurant->products()->delete();
         $restaurant->delete();
 
         return redirect()->route('admin.home')->with('deleted', $restaurant->name);

@@ -58,6 +58,7 @@
                         @error('visibility')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        <input name="restaurant_id" type="hidden" value="{{$restaurant_id}}">
                     </div>
 
                     <label for="description" class="control-label">Descrizione del prodotto</label>

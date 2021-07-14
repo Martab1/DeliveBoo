@@ -11,7 +11,7 @@
     </div>
     <div class="container">
         <h1>Prodotti</h1>
-        <a class="btn btn-primary mb-4" href="{{ route('admin.product.create') }}">Aggiungi un nuovo prodotto</a>
+        <a class="btn btn-primary mb-4" href="{{ route('admin.product.create', $restaurant_id) }}">Aggiungi un nuovo prodotto</a>
 
         <div class="d-flex flex-wrap">
             @foreach ($my_products as $product)

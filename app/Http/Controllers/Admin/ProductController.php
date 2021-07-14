@@ -18,19 +18,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $user_auth = Auth::user();
-        $restaurants_db = Restaurant::all()->pluck("user_id");
+    public function index($id)
+    {   
+        $restaurant_id = $id;
+        $my_products = Restaurant::find($id)->products;
 
-        foreach ($restaurants_db as $user_restaurant) {
-            if ($user_auth->id === $user_restaurant) {
-                $my_restaurant = Restaurant::where("user_id", $user_auth->id)->get()->first();
-            }
-        }
-
-        $my_products = Product::all()->where("restaurant_id", $my_restaurant->id);
-        return view('admin.product.index', compact('my_products'));
+        return view('admin.product.index', compact('my_products', 'restaurant_id'));
     }
 
     /**
@@ -38,9 +31,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('admin.product.create');
+        $restaurant_id = $id;
+        return view('admin.product.create', compact('restaurant_id'));
     }
 
     /**
@@ -82,23 +76,12 @@ class ProductController extends Controller
                 $data['image'] = $image;
             }
 
-            $user_auth = Auth::user();
-            $restaurants_db = Restaurant::all()->pluck("user_id");
-
-            foreach ($restaurants_db as $user_restaurant) {
-                if ($user_auth->id === $user_restaurant) {
-                    $my_restaurant = Restaurant::where("user_id", $user_auth->id)->get()->first();
-                }
-            }
-
-            $data["restaurant_id"] = $my_restaurant->id;
-
             // create and save record on db
             $new_product = new Product();
-            $new_product->fill($data);
+            $new_product->fill($data); 
             $new_product->save();
         }
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index', $new_product->restaurant->id);
     }
 
     /**
@@ -174,7 +157,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('admin.product.index', $product->id);
+        return redirect()->route('admin.product.index', $product['restaurant_id']);
     }
 
     /**
@@ -196,4 +179,5 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('admin.product.index')->with('deleted', $product->name);
     }
+
 }
