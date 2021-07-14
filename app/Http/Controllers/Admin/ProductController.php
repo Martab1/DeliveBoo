@@ -51,6 +51,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     { {
+
             $request->validate(
                 [
                     'name' => 'required|string|min:3|max:50',
@@ -73,7 +74,6 @@ class ProductController extends Controller
             );
 
             $data = $request->all();
-
             //Add image
             if (array_key_exists('image', $data)) {
                 $image = Storage::put('product-image', $data['image']);

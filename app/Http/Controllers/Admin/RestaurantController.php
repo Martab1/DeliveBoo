@@ -63,7 +63,7 @@ class RestaurantController extends Controller
         ]);
 
 
-         $data = $request->all();
+        $data = $request->all();
 
         //  image
         if(array_key_exists('image', $data)){
