@@ -118,20 +118,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $user_auth = Auth::user();
-        $restaurants_db = Restaurant::all()->pluck("user_id");
-
-        foreach ($restaurants_db as $user_restaurant) {
-            if ($user_auth->id === $user_restaurant) {
-                $my_restaurant = Restaurant::where("user_id", $user_auth->id)->get()->first();
-            }
-        }
-        $products = Product::find($id);
-
-        if ($products) {
-            return view('admin.product.edit');
+            if ($product) {
+            return view('admin.product.edit', compact('product'));
         }
 
         abort(404);
@@ -147,7 +137,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         // Validation
-        $request->validate([
+        $request->validate(
             [
                 'name' => 'required|string|min:3|max:50',
                 'description' => 'nullable|max:255',
@@ -164,7 +154,6 @@ class ProductController extends Controller
                 'image.mimes' => 'I formati supportati sono: jpg, png, jpeg, bmp, svg',
                 'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )',
                 'visibility.boolean' => 'Il valore inserito non è corretto',
-            ]
         ]);
 
 
