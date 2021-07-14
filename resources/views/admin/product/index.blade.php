@@ -11,14 +11,19 @@
     </div>
     <div class="container">
         <h1>Prodotti</h1>
-        <a class="btn btn-primary mb-4" href="{{ route('admin.product.create') }}">Aggiungi un nuovo prodotto</a>
+        <a class="btn btn-primary mb-4" href="{{ route('admin.product.create', $restaurant_id) }}">Aggiungi un nuovo prodotto</a>
 
         <div class="d-flex flex-wrap">
             @foreach ($my_products as $product)
                 <div class="card m-3" style="width: 15rem;">
                     <div style="height: 12rem">
-                        <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top img-fluid"
-                            alt="{{ $product->name }}">
+                        <img class="card-img-top img-fluid"
+                        @if ($product->image)
+                        src="{{ asset('storage/' . $product->image) }}"
+                        @else
+                        src="{{asset('no_covers/no_cover_product.png')}}"
+                        @endif
+                        alt="{{ $product->name }}">
                     </div>
                     <div class="card-body">
                         <h5 class="">{{ $product->name }}</h5>

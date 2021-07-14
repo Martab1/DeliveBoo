@@ -12886,8 +12886,8 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\giuse\Desktop\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\giuse\Desktop\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Teo e Robi\Documents\Boolean Careers\Progetto Finale\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Teo e Robi\Documents\Boolean Careers\Progetto Finale\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

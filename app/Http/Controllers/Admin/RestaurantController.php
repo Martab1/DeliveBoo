@@ -63,7 +63,7 @@ class RestaurantController extends Controller
         ]);
 
 
-         $data = $request->all();
+        $data = $request->all();
 
         //  image
         if(array_key_exists('image', $data)){
@@ -195,6 +195,7 @@ class RestaurantController extends Controller
         }
 
         $restaurant->tipologies()->detach();
+        $restaurant->products()->delete();
         $restaurant->delete();
 
         return redirect()->route('admin.home')->with('deleted', $restaurant->name);

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center">
+    <div class="text-center container">
         <h1 class="my-5">{{ $my_restaurant->name }}</h1>
 
         <div class="d-flex">
@@ -22,13 +22,19 @@
             </div>
 
             {{-- IMAGE --}}
-            <div class="w-50"><img class="img-fluid" src="{{ asset('storage/' . $my_restaurant->image) }}"
+            <div class="w-50"><img class="img-fluid" 
+                @if ($my_restaurant->image)
+                src="{{ asset('storage/' . $my_restaurant->image) }}"
+                @else
+                {{-- src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/600px-No_immagine_disponibile.svg.png" --}}
+                src="{{asset('no_covers/no_cover_restaurant.png')}}"
+                @endif
                     alt="{{ $my_restaurant->name }}">
             </div>
 
             {{-- BUTTONS --}}
         </div>
-        <a class="btn btn-success m-4" href="{{ route('admin.product.index') }}">guarda i prodotti</a>
+        <a class="btn btn-success m-4" href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
         <a class="btn btn-warning m-4" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
             locale</a>
         <form action=" {{ route('admin.restaurant.destroy', $my_restaurant->id) }}" method="POST">
