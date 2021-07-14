@@ -100,6 +100,9 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
 
     {
+        $my_restaurant = $restaurant;
+        $user_auth = Auth::user();
+        return view('admin.restaurant.show', compact('my_restaurant', 'user_auth'));
     }
 
 
@@ -194,6 +197,6 @@ class RestaurantController extends Controller
         $restaurant->tipologies()->detach();
         $restaurant->delete();
 
-        return redirect()->route('admin.home');
+        return redirect()->route('admin.home')->with('deleted', $restaurant->name);
     }
 }
