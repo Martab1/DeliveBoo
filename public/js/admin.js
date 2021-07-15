@@ -37344,8 +37344,22 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/**
+ * delete post confirm
+ */
 
-console.log("ciao");
+
+var delform = document.querySelectorAll('.delete-post-form');
+delform.forEach(function (form) {
+  // conferma del delete
+  form.addEventListener('submit', function (e) {
+    var resp = confirm('Sicuro di voler cancellare definitivamente?'); // se annullo il delete no submit
+
+    if (!resp) {
+      e.preventDefault();
+    }
+  });
+});
 
 /***/ }),
 
