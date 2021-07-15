@@ -17,7 +17,7 @@
             @foreach ($my_products as $product)
                 <div class="card m-3" style="width: 15rem;">
                     <div style="height: 12rem">
-                        <img class="card-img-top img-fluid"
+                        <img class="my-img"
                         @if ($product->image)
                         src="{{ asset('storage/' . $product->image) }}"
                         @else
@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="">{{ $product->name }}</h5>
-                        <p class="card-text">{{ $product->description }}</p>
+                        <p class="card-text my-description">{{ $product->description }}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{ $product->price }}</li>

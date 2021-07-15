@@ -177,7 +177,7 @@ class ProductController extends Controller
 
         // remove
         $product->delete();
-        return redirect()->route('admin.product.index')->with('deleted', $product->name);
+        return redirect()->route('admin.product.index', $product->restaurant->id)->with('deleted', $product->name);
     }
 
 }
