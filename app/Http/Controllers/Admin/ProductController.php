@@ -21,11 +21,13 @@ class ProductController extends Controller
      */
     public function index($id)
     {   
-        if(Auth::user()->id == Restaurant::find($id)->user->id){
+        if(!Restaurant::find($id)){
+        abort(404);
+        }
+        elseif(Auth::user()->id == Restaurant::find($id)->user->id){
             $restaurant_id = $id;
             $my_products = Restaurant::find($id)->products;
             return view('admin.product.index', compact('my_products', 'restaurant_id'));
-
         }else{
             abort(404);
         }
@@ -118,12 +120,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        
-        if ($product) {
-        return view('admin.product.edit', compact('product', 'categories'));
+        foreach(Auth::user()->restaurants as $restaurant){
+            if($product->restaurant_id == $restaurant->id) {
+                $categories = Category::all();
+                return view('admin.product.edit', compact('product', 'categories'));  
+            }else{
+                abort(404);
+            }
         }
-        abort(404);
     }
 
     /**
@@ -133,47 +137,51 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        // Validation
-        $request->validate(
-            [
-                'name' => 'required|string|min:3|max:50',
-                'description' => 'nullable|max:255',
-                'price' => 'required|numeric',
-                'visibility' => 'required|boolean',
-                'image' => 'nullable|mimes:jpg,png,jpeg,bmp,svg|max:5000',
-            ],
-            [
-                'required' => 'Campo obbligatorio',
-                'name.min' => 'Il nome deve essere di almeno 3 caratteri',
-                'name.max' => 'Il nome deve avere massimo 50 caratteri',
-                'description.max' => 'La descrizione deve essere massimo 255 caratteri',
-                'price.numeric' => 'Sono ammessi esclusivamente caratteri numerici',
-                'image.mimes' => 'I formati supportati sono: jpg, png, jpeg, bmp, svg',
-                'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )',
-                'visibility.boolean' => 'Il valore inserito non è corretto',
-        ]);
+        foreach(Auth::user()->restaurants as $restaurant){
+            if($product->restaurant_id == $restaurant->id) {
+                // Validation
+                $request->validate(
+                    [
+                        'name' => 'required|string|min:3|max:50',
+                        'description' => 'nullable|max:255',
+                        'price' => 'required|numeric',
+                        'visibility' => 'required|boolean',
+                        'image' => 'nullable|mimes:jpg,png,jpeg,bmp,svg|max:5000',
+                    ],
+                    [
+                        'required' => 'Campo obbligatorio',
+                        'name.min' => 'Il nome deve essere di almeno 3 caratteri',
+                        'name.max' => 'Il nome deve avere massimo 50 caratteri',
+                        'description.max' => 'La descrizione deve essere massimo 255 caratteri',
+                        'price.numeric' => 'Sono ammessi esclusivamente caratteri numerici',
+                        'image.mimes' => 'I formati supportati sono: jpg, png, jpeg, bmp, svg',
+                        'image.max' => 'Il file inserito eccede le misure massime consentite(5000kb )',
+                        'visibility.boolean' => 'Il valore inserito non è corretto',
+                ]);
 
 
-        $data = $request->all();
+                $data = $request->all();
 
-        $product = Product::find($id);
+                // Image update
+                if (array_key_exists('image', $data)) {
+                    // delete previous one
+                    if ($product->image) {
+                        Storage::delete($product->image);
+                    }
 
-        // Image update
-        if (array_key_exists('image', $data)) {
-            // delete previous one
-            if ($product->image) {
-                Storage::delete($product->image);
+                    // set new one
+                    $data['image'] = Storage::put('product-image', $data['image']);
+                }
+
+                $product->update($data);
+
+                return redirect()->route('admin.product.index', $product['restaurant_id']);
+            }else{
+                abort(404);
             }
-
-            // set new one
-            $data['image'] = Storage::put('product-image', $data['image']);
         }
-
-        $product->update($data);
-
-        return redirect()->route('admin.product.index', $product['restaurant_id']);
     }
 
     /**
@@ -182,18 +190,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = Product::find($id);
-
-        // remove images
-        if ($product->image) {
-            Storage::delete($product->image);
+        foreach(Auth::user()->restaurants as $restaurant){
+            if($product->restaurant_id == $restaurant->id) {
+                // remove images
+                if ($product->image) {
+                Storage::delete($product->image);
+                }
+                // remove
+                $product->delete();
+                return redirect()->route('admin.product.index', $product->restaurant->id)->with('deleted', $product->name);
+            }else{
+                abort(404);
+            }
         }
-
-        // remove
-        $product->delete();
-        return redirect()->route('admin.product.index', $product->restaurant->id)->with('deleted', $product->name);
+      
     }
 
 }
