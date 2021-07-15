@@ -21,10 +21,15 @@ class ProductController extends Controller
      */
     public function index($id)
     {   
-        $restaurant_id = $id;
-        $my_products = Restaurant::find($id)->products;
+        if(Auth::user()->id == Restaurant::find($id)->user->id){
+            $restaurant_id = $id;
+            $my_products = Restaurant::find($id)->products;
+            return view('admin.product.index', compact('my_products', 'restaurant_id'));
 
-        return view('admin.product.index', compact('my_products', 'restaurant_id'));
+        }else{
+            abort(404);
+        }
+
     }
 
     /**
@@ -34,9 +39,15 @@ class ProductController extends Controller
      */
     public function create($id)
     {
-        $categories = Category::all();
-        $restaurant_id = $id;
-        return view('admin.product.create', compact('restaurant_id', 'categories'));
+        if(!Restaurant::find($id)){
+            abort(404);
+        }elseif(Auth::user()->id == Restaurant::find($id)->user_id){
+            $categories = Category::all();
+            $restaurant_id = $id;
+            return view('admin.product.create', compact('restaurant_id', 'categories'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
