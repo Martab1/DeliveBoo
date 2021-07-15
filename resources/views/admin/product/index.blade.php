@@ -25,13 +25,14 @@
                         @endif
                         alt="{{ $product->name }}">
                     </div>
-                    <div class="card-body">
-                        <h5 class="">{{ $product->name }}</h5>
-                        <p class="card-text my-description">{{ $product->description }}</p>
-                    </div>
+                    <ul class="list-group-flush list-group">
+                        <h5 class=" py-2 my-description list-group-item">{{ $product->name }}</h5>
+                        <p class="list-group-item card-text my-description h-90 py-1">{{ $product->description }}</p>
+                    </ul>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ $product->price }}</li>
+                        <li class="list-group-item">{{ $product->price }} € </li>
                         <li class="list-group-item">Disponibile: {{ $product->visibility ?"si":"no" }}</li>
+                        <li class="list-group-item">Categoria: {{ $product->category->name}}</li>
                     </ul>
                     <div class="card-body d-flex d-flex justify-content-between">
                         <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-warning">Modifica</a>

@@ -66,6 +66,24 @@
                         @error('visibility')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+    
+                        <h5 class="my-3 d-block">Categoria</h5>
+                        <div class="form-group mx-2 d-flex flex-wrap">
+                        @foreach ($categories as $category)
+                            <div class="w-33">
+                                <input role="button" type="radio" value="{{$category->id}}" id="{{$category->id}}" name="category_id"
+                                @if ( $category->id == old('categories')))
+                                    checked
+                                @endif>
+                                <label role="button" for="{{$category->id}}">{{$category->name}}</label>
+                            </div>
+                        @endforeach
+                        @error('categories')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                        {{-- RESTAURANT ID HIDDEN --}}
                         <input name="restaurant_id" type="hidden" value="{{$restaurant_id}}">
                     </div>
 

@@ -34,7 +34,7 @@
                                 id="price"
                                 class="form-control @error('price') is-invalid @enderror"
                                 placeholder="Inserisci il prezzo"
-                                value="{{ old('price', $product->price) }} euro"
+                                value="{{ old('price', $product->price)}}"
                                 required
                                 min="0.00"
                                 max="999.99">
@@ -69,6 +69,22 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <h5 class="my-3 d-block">Categoria</h5>
+                    <div class="form-group mx-2 d-flex flex-wrap">
+                        @foreach ($categories as $category)
+                            <div class="w-33">
+                                <input role="button" type="radio" value="{{$category->id}}" id="{{$category->id}}" name="category_id"
+                                    @if ($category == old('category_id', $product->category))
+                                        checked
+                                    @endif>
+                                <label role="button" for="{{$category->id}}">{{$category->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    @error('categories')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @enderror
 
                     <label for="description" class="control-label">Descrizione del prodotto</label>
                     <textarea maxlength="255"  class="form-control @error('description') is-invalid @enderror"placeholder="Inserisci una descrizione" id="description" name="description" rows="3"> {{ old('description', $product->description) }}</textarea>
