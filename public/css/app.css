@@ -10947,7 +10947,7 @@ a.text-dark:focus {
 }
 
 .my-description {
-  height: 100px;
+  height: 50px;
   overflow-y: auto;
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;
@@ -10959,6 +10959,10 @@ a.text-dark:focus {
 
 .my-description::-webkit-scrollbar {
   display: none;
+}
+
+.h-90 {
+  height: 90px;
 }
 
 .my-img {

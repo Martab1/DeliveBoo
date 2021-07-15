@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -33,8 +34,9 @@ class ProductController extends Controller
      */
     public function create($id)
     {
+        $categories = Category::all();
         $restaurant_id = $id;
-        return view('admin.product.create', compact('restaurant_id'));
+        return view('admin.product.create', compact('restaurant_id', 'categories'));
     }
 
     /**
@@ -53,6 +55,8 @@ class ProductController extends Controller
                     'price' => 'required|numeric|max:999.99',
                     'visibility' => 'required|boolean',
                     'image' => 'nullable|mimes:jpg,png,jpeg,bmp,svg|max:5000',
+                    'category_id' => 'exists:categories,id|required',
+
                 ],
                 [
                     'required' => 'Campo obbligatorio',
@@ -103,10 +107,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-            if ($product) {
-            return view('admin.product.edit', compact('product'));
+        $categories = Category::all();
+        
+        if ($product) {
+        return view('admin.product.edit', compact('product', 'categories'));
         }
-
         abort(404);
     }
 

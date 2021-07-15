@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        "name", "image", "description", "price", "visibility", "restaurant_id"
+        "name", "image", "description", "price", "visibility", "restaurant_id", "category_id"
     ];
 
     public function restaurant(){
@@ -16,6 +16,10 @@ class Product extends Model
 
         public function orders(){
         return $this->belongsToMany("App\Order");
+    }
+
+    public function category(){
+        return $this->belongsTo("App\Category");
     }
 
 }
