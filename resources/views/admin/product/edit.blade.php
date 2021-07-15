@@ -82,8 +82,8 @@
                             </div>
                         @endforeach
                     </div>
-                    @error('categories')
-                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @error('category_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label for="description" class="control-label">Descrizione del prodotto</label>

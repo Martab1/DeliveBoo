@@ -67,7 +67,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
     
-                        <h5 class="my-3 d-block">Categoria</h5>
+                        <h class="my-3 d-block">Categoria</h>
                         <div class="form-group mx-2 d-flex flex-wrap">
                         @foreach ($categories as $category)
                             <div class="w-33">
@@ -78,8 +78,8 @@
                                 <label role="button" for="{{$category->id}}">{{$category->name}}</label>
                             </div>
                         @endforeach
-                        @error('categories')
-                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @error('category_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
