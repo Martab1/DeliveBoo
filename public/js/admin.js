@@ -37344,22 +37344,8 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/**
- * delete post confirm
- */
 
-
-var delform = document.querySelectorAll('.delete-post-form');
-delform.forEach(function (form) {
-  // conferma del delete
-  form.addEventListener('submit', function (e) {
-    var resp = confirm('Sicuro di voler cancellare definitivamente?'); // se annullo il delete no submit
-
-    if (!resp) {
-      e.preventDefault();
-    }
-  });
-});
+console.log("ciao");
 
 /***/ }),
 
@@ -37415,7 +37401,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Users\Teo e Robi\Documents\Boolean Careers\Progetto Finale\DeliveBoo\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })
