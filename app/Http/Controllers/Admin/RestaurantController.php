@@ -47,7 +47,7 @@ class RestaurantController extends Controller
             'name'=> 'required|string|min:2|max:50',
             'address' => "required|min:2|max:255",
             'phone_number' => 'required|digits_between:7,15|numeric|unique:restaurants',
-            'tipologies' => 'exists:tipologies,id|required_without_all',
+            'tipologies' => 'exists:tipologies,id|required',
             'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',
         ],[
             'required'=> 'Questo campo è obbligatorio',
@@ -62,7 +62,7 @@ class RestaurantController extends Controller
             'phone_number.unique'=> 'il numero inserito è già esistente'
         ]);
 
-
+        // _without_all
          $data = $request->all();
 
         //  image
@@ -195,6 +195,7 @@ class RestaurantController extends Controller
         }
 
         $restaurant->tipologies()->detach();
+        $restaurant->products()->delete();
         $restaurant->delete();
 
         return redirect()->route('admin.home')->with('deleted', $restaurant->name);

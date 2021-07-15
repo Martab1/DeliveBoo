@@ -11,7 +11,7 @@
                 <label for="name">Nome*</label>
                 <input 
                     type="text" 
-                    class="form-control" 
+                    class="form-control @error('name') is-invalid @enderror" 
                     id="name" 
                     name="name" 
                     required
@@ -20,7 +20,7 @@
                     value="{{ old('name') }}"
                 >
                 @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -28,55 +28,68 @@
                 <label for="address">Città*</label>
                 <input 
                     type="text"
-                    class="form-control"
+                    class="form-control @error('address') is-invalid @enderror"
                     id="address"
                     name="address"
                     required
                     minlength="2"
                     maxlength='255'
                     value="{{ old('address') }}"
-                    >
+                >
                 @error('address')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="phone_number">Numero di telefono*</label>
                 <input
-                type="tel"
-                class="form-control"
-                id="phone_number"
-                name="phone_number"
-                minlength='7' 
-                maxlength='15'
-                required
-                value="{{ old('phone_number') }}">
-            @error('phone_number')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+                    type="tel"
+                    class="form-control @error('phone_number') is-invalid @enderror"
+                    id="phone_number"
+                    name="phone_number"
+                    minlength='7' 
+                    maxlength='15'
+                    required
+                    value="{{ old('phone_number') }}"
+                >
+                @error('phone_number')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
+            <h5 class="mb-3">Tipologia attività*</h5>
             <div class="form-group mx-2 d-flex flex-wrap">
                 @foreach ($tipologies as $tipology)
                     <div class="w-33">
-                        <input role="button" type="checkbox" value="{{$tipology->id}}" id="{{$tipology->id}}" name="tipologies[]"
-                        @if ( in_array( $tipology->id, old('tipologies', [])))
-                            checked
-                        @endif>
+                        <input 
+                           role="button" 
+                           type="checkbox" 
+                           value="{{$tipology->id}}" 
+                           id="{{$tipology->id}}" 
+                           name="tipologies[]"
+                            @if ( in_array( $tipology->id, old('tipologies', [])))
+                                checked
+                            @endif
+                        >
                         <label role="button" for="{{$tipology->id}}">{{$tipology->name}}</label>
                     </div>
-                @endforeach
+                @endforeach 
                 @error('tipologies')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                   <div class="alert alert-danger">{{ $message }}</div>
+                @enderror  
             </div>
-            
+             
             <div class="form-group mx-2">
-                <label for="image"></label>
-                <input role="button" type="file" id="image" name="image">
+                    <label class="d-block" for="image">Immagine locale</label>
+                <input 
+                    role="button" 
+                    type="file" 
+                    id="image" 
+                    name="image"
+                >
                 @error('image')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class=" @error('image') is-invalid @enderror">{{ $message }}</div>
                 @enderror
             </div>
             
