@@ -15,26 +15,34 @@
 
                         <div class="form-group">
                             <label for="name">Nome*</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            <input 
+                                type="text" 
+                                name="name" 
+                                class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Inserisci il nome"
                                 value="{{ old('name') }}"
                                 required
                                 min="3"
-                                max="50">
+                                max="50"
+                            >
                             @error('name')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
 
-                            <label class="mt-3" for="price">Prezzo*</label>
-                            <input type="number"
+                            <label class="mt-3" for="price">Prezzo</label>
+                            <input 
+                                type="number"
                                 step="0.01"
                                 name="price"
                                 id="price"
-                                class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il prezzo"
+                                class="form-control @error('price') is-invalid @enderror" 
+                                placeholder="Inserisci il prezzo"
                                 value="{{ old('price') }}"
                                 required
                                 min="0.00"
-                                max="999.99">
+                                max="999.99"
+    
+                            > 
                             @error('price')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
@@ -62,22 +70,22 @@
                     </div>
 
                     <label for="description" class="control-label">Descrizione del prodotto</label>
-                    <textarea maxlength="255" class="form-control @error('description') is-invalid @enderror"
-                        placeholder="Inserisci una descrizione" id="description" name="description"
-                        rows="3">{{ old('description') }}</textarea>
+                    <textarea maxlength="255" class="form-control @error('description') is-invalid @enderror"placeholder="Inserisci una descrizione" id="description" name="description" rows="3">{{ old('description') }}</textarea>
                     @error('description')
                         <div class="feedback">{{ $message }}</div>
                     @enderror
 
                     <div class="mt-3">
                         <div>
-                            <label for="image" class="form-label">
-                                Post Image
-                            </label>
+                            <label for="image" class="form-label"> Immagine prodotto </label>
                         </div>
-                        <input type="file" name="image" id="image">
+                        <input 
+                           type="file" 
+                           name="image" 
+                           id="image"
+                        >
                         @error('image')
-                            <div>{{ $message }}</div>
+                           <div class=" @error('image') is-invalid @enderror">{{ $message }}</div>
                         @enderror
                     </div>
 

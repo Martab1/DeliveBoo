@@ -36,7 +36,7 @@
                             <td><a class="btn btn-primary" href="{{route('admin.restaurant.show', $restaurant->id)}}">Mostra</a></td>
                             <td><a class="btn btn-warning" href="{{route('admin.restaurant.edit', $restaurant->id)}}">Modifica</a></td>
                             <td>
-                                <form method="POST" action="{{route('admin.restaurant.destroy', $restaurant->id)}}">
+                                <form class="delete-post-form" method="POST" action="{{route('admin.restaurant.destroy', $restaurant->id)}}">
                                     @csrf
                                     @method('DELETE')
                                     <input class="btn btn-danger" value="Cancella" type="submit">
