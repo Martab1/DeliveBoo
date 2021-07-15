@@ -47,7 +47,7 @@ class RestaurantController extends Controller
             'name'=> 'required|string|min:2|max:50',
             'address' => "required|min:2|max:255",
             'phone_number' => 'required|digits_between:7,15|numeric|unique:restaurants',
-            'tipologies' => 'exists:tipologies,id|required',
+            'tipologies' => 'exists:tipologies,id|required_without_all',
             'image' => 'nullable|mimes:jpg,jpeg,png,bmp,svg|max:5000',
         ],[
             'required'=> 'Questo campo è obbligatorio',
@@ -62,8 +62,8 @@ class RestaurantController extends Controller
             'phone_number.unique'=> 'il numero inserito è già esistente'
         ]);
 
-        // _without_all
-         $data = $request->all();
+
+        $data = $request->all();
 
         //  image
         if(array_key_exists('image', $data)){
