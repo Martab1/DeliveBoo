@@ -1,67 +1,54 @@
 <template>
     <v-app class="app">
-        <template>
-            <v-card class="overflow-hidden">
-                <v-app-bar
-                    absolute
-                    color="#43a047"
-                    dark
-                    shrink-on-scroll
-                    prominent
-                    src="https://picsum.photos/1920/1080?random"
-                    fade-img-on-scroll
-                    scroll-target="#scrolling-techniques-5"
-                    scroll-threshold="500"
-                >
-                    <template v-slot:img="{ props }">
-                        <v-img
-                            v-bind="props"
-                            gradient="to top right, rgba(55,236,186,.7), rgba(25,32,72,.7)"
-                        ></v-img>
-                    </template>
-
-                    <v-app-bar-nav-icon
-                        ><img
-                            class="logo"
-                            src="https://cdn.iconscout.com/icon/free/png-256/deliveroo-3442893-2875354.png"
-                            alt=""
-                    /></v-app-bar-nav-icon>
-
-                    <v-app-bar-title>Title</v-app-bar-title>
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn icon>
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn>
-
-                    <v-btn icon>
-                        <v-icon>mdi-heart</v-icon>
-                    </v-btn>
-
-                    <v-btn icon>
-                        <v-icon>mdi-dots-vertical</v-icon>
-                    </v-btn>
-                </v-app-bar>
-                <v-sheet
-                    id="scrolling-techniques-5"
-                    class="overflow-y-auto"
-                    max-height="600"
-                >
-                    <v-container style="height: 1500px;"></v-container>
-                </v-sheet>
-            </v-card>
-        </template>
-        <!-- <div>
+        <div>
             <h1>Vue single page application</h1>
             <a href="http://127.0.0.1:8000/admin">ADMIN</a>
-        </div> -->
+            <input
+                type="search"
+                name="search"
+                v-model="search"
+                @keyup="searching"
+            />
+
+            <div v-for="restaurant in result.restaurants" :key="restaurant.id">
+                <div>{{ restaurant.name }}</div>
+                <!-- <div>{{ restaurant.address }}</div> -->
+            </div>
+        </div>
     </v-app>
 </template>
 
 <script>
 export default {
-    name: "App"
+    name: "App",
+    data() {
+        return {
+            search: "",
+            result: []
+        };
+    },
+    methods: {
+        searching() {
+            if (this.search == "") {
+                this.result = [];
+            }else{
+                axios
+                    .get(`http://127.0.0.1:8000/api/restaurants`,
+                    {
+                        params: {
+                            tipology:this.search,
+                        }
+                    })
+                    .then(res => {
+                        this.result = res.data;
+                        console.log(this.result);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
+        }
+    }
 };
 </script>
 

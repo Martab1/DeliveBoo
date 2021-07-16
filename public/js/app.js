@@ -1975,49 +1975,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "App"
+  name: "App",
+  data: function data() {
+    return {
+      search: "",
+      result: []
+    };
+  },
+  methods: {
+    searching: function searching() {
+      var _this = this;
+
+      if (this.search == "") {
+        this.result = [];
+      } else {
+        axios.get("http://127.0.0.1:8000/api/restaurants", {
+          params: {
+            tipology: this.search
+          }
+        }).then(function (res) {
+          _this.result = res.data;
+          console.log(_this.result);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -3139,111 +3124,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-app",
-    { staticClass: "app" },
-    [
+  return _c("v-app", { staticClass: "app" }, [
+    _c(
+      "div",
       [
-        _c(
-          "v-card",
-          { staticClass: "overflow-hidden" },
-          [
-            _c(
-              "v-app-bar",
-              {
-                attrs: {
-                  absolute: "",
-                  color: "#43a047",
-                  dark: "",
-                  "shrink-on-scroll": "",
-                  prominent: "",
-                  src: "https://picsum.photos/1920/1080?random",
-                  "fade-img-on-scroll": "",
-                  "scroll-target": "#scrolling-techniques-5",
-                  "scroll-threshold": "500"
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "img",
-                    fn: function(ref) {
-                      var props = ref.props
-                      return [
-                        _c(
-                          "v-img",
-                          _vm._b(
-                            {
-                              attrs: {
-                                gradient:
-                                  "to top right, rgba(55,236,186,.7), rgba(25,32,72,.7)"
-                              }
-                            },
-                            "v-img",
-                            props,
-                            false
-                          )
-                        )
-                      ]
-                    }
-                  }
-                ])
-              },
-              [
-                _vm._v(" "),
-                _c("v-app-bar-nav-icon", [
-                  _c("img", {
-                    staticClass: "logo",
-                    attrs: {
-                      src:
-                        "https://cdn.iconscout.com/icon/free/png-256/deliveroo-3442893-2875354.png",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("v-app-bar-title", [_vm._v("Title")]),
-                _vm._v(" "),
-                _c("v-spacer"),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  { attrs: { icon: "" } },
-                  [_c("v-icon", [_vm._v("mdi-magnify")])],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  { attrs: { icon: "" } },
-                  [_c("v-icon", [_vm._v("mdi-heart")])],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  { attrs: { icon: "" } },
-                  [_c("v-icon", [_vm._v("mdi-dots-vertical")])],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-sheet",
-              {
-                staticClass: "overflow-y-auto",
-                attrs: { id: "scrolling-techniques-5", "max-height": "600" }
-              },
-              [_c("v-container", { staticStyle: { height: "1500px" } })],
-              1
-            )
+        _c("h1", [_vm._v("Vue single page application")]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "http://127.0.0.1:8000/admin" } }, [
+          _vm._v("ADMIN")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
           ],
-          1
-        )
-      ]
-    ],
-    2
-  )
+          attrs: { type: "search", name: "search" },
+          domProps: { value: _vm.search },
+          on: {
+            keyup: _vm.searching,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.result.restaurants, function(restaurant) {
+          return _c("div", { key: restaurant.id }, [
+            _c("div", [_vm._v(_vm._s(restaurant.name))])
+          ])
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
