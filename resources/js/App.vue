@@ -6,13 +6,12 @@
             <input
                 type="search"
                 name="search"
-                v-model="search"
+                v-model.trim="search"
                 @keyup="searching"
             />
 
             <div v-for="restaurant in result.restaurants" :key="restaurant.id">
                 <div>{{ restaurant.name }}</div>
-                <!-- <div>{{ restaurant.address }}</div> -->
             </div>
         </div>
     </v-app>

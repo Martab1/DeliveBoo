@@ -1974,7 +1974,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   data: function data() {
@@ -3138,9 +3137,10 @@ var render = function() {
           directives: [
             {
               name: "model",
-              rawName: "v-model",
+              rawName: "v-model.trim",
               value: _vm.search,
-              expression: "search"
+              expression: "search",
+              modifiers: { trim: true }
             }
           ],
           attrs: { type: "search", name: "search" },
@@ -3151,7 +3151,10 @@ var render = function() {
               if ($event.target.composing) {
                 return
               }
-              _vm.search = $event.target.value
+              _vm.search = $event.target.value.trim()
+            },
+            blur: function($event) {
+              return _vm.$forceUpdate()
             }
           }
         }),

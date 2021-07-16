@@ -12,7 +12,7 @@ class RestaurantController extends Controller
     public function index(Request $request){
         $search = $request->query('tipology');
         
-        $tipology = Tipology::where("name", $search)->with(["restaurants"])->get()->first();
+        $tipology = Tipology::where("name", "like" , "%".$search."%")->with(["restaurants"])->get()->first();
         
         return response()->json($tipology);
     }
