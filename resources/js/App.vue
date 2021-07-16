@@ -1,20 +1,27 @@
 <template>
-    <v-app class="app">
+    <!-- <v-app class="app"> -->
         <div>
-            <h1>Vue single page application</h1>
-            <a href="http://127.0.0.1:8000/admin">ADMIN</a>
-            <input
-                type="search"
-                name="search"
-                v-model.trim="search"
-                @keyup="searching"
-            />
-
-            <div v-for="restaurant in result.restaurants" :key="restaurant.id">
-                <div>{{ restaurant.name }}</div>
-            </div>
+        <!-- HEADER -->
+        <h1>Vue single page application</h1>
+        <a href="http://127.0.0.1:8000/admin">ADMIN</a>
+        <input
+            style="border: 1px solid black"
+            type="text"
+            name="search"
+            v-model.trim="search"
+            @keyup.enter="searching"
+        />
+        <!-- PAGE RESULTS -->
+        <div v-for="restaurant in result.restaurants" :key="restaurant.id">
+            <router-link :to="{name:'restaurantShow', params:{slug: restaurant.slug}}"> {{ restaurant.name }} </router-link>
         </div>
-    </v-app>
+        <hr>
+        
+        <!-- MAIN -->
+        <router-view></router-view>
+
+    </div>
+    <!-- </v-app> -->
 </template>
 
 <script>
