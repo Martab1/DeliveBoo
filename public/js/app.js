@@ -2007,7 +2007,11 @@ __webpack_require__.r(__webpack_exports__);
           console.log(err);
         });
       }
-    }
+    } // storage(){
+    //     localStorage.setItem("nome dato", "valore dato");
+    //     console.log(localStorage.getItem("valore dato"));
+    // }
+
   }
 });
 

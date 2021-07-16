@@ -30,7 +30,7 @@ export default {
     data() {
         return {
             search: "",
-            result: []
+            result: [],
         };
     },
     methods: {
@@ -53,8 +53,12 @@ export default {
                         console.log(err);
                     });
             }
-        }
-    }
+        },
+        // storage(){
+        //     localStorage.setItem("nome dato", "valore dato");
+        //     console.log(localStorage.getItem("valore dato"));
+        // }
+    },
 };
 </script>
 
