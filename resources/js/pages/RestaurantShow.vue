@@ -12,6 +12,13 @@
                    <button  @click="add(product)" v-if="category == product.category.name">+</button>
                 </div>
             </div>
+            <hr>
+            <h2>Carrello</h2>
+            <div v-for="product in cart.products" :key="product.id">
+                <span>prodotto: {{product.name}} prezzo {{product.total}} Quantità: {{product.qty}}</span>
+                <button  @click="remove(product)">-</button>
+                <button  @click="add(product)">+</button>
+            </div>
       </div>
   </div>
 </template>
@@ -24,14 +31,14 @@ export default {
             my_restaurant : null,
             my_categories : [],
             cart : {
-                key: 'skvbjsdbnspbnfgpb',
-                products: [
-                ],
+                key: 'cart',
+                products: [],
             },
         }
     },
     created(){
        this.getRestaurant();
+       this.init();
     },
     methods:{
         getRestaurant(){
@@ -60,10 +67,11 @@ export default {
                     'id': product.id,
                     'price': product.price,
                     'qty': 1,
+                    'total' : product.price,
                 };
-                this.cart.products.push(obj)
+                this.cart.products.push(obj);
             }
-            console.log(this.cart.products)
+        this.sync();
         },
 
         //RIMUOVI PRODOTTI
@@ -71,12 +79,21 @@ export default {
             if(this.find(product.id)){
                 this.decrement(product.id)
             }
-            console.log(this.cart.products)
+        this.sync();
+        },
+
+        //SINCRONIZZAZIONE DATI LOCAL STORAGE
+        async sync(){
+            let content = JSON.stringify(this.cart.products)
+            await localStorage.setItem(this.cart.key, content);
+
+            console.log(localStorage.getItem(this.cart.key))
         },
 
         //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
         find(id){
             let check = undefined;
+            console.log(this.cart.products);
             this.cart.products.forEach(e=>{
                 if(e.id == id){
                     check = true;
@@ -90,6 +107,7 @@ export default {
             this.cart.products = this.cart.products.map(e=>{
                 if(e.id == id){
                     e.qty += 1;
+                    e.total = e.price * e.qty;
                     return e;
                 }else{
                     return e;
@@ -103,6 +121,7 @@ export default {
             this.cart.products.forEach(e=>{
                 if(e.id == id){
                     e.qty -= 1;
+                    e.total = e.price * e.qty;
                     if(e.qty == 0){
                         this.cart.products.forEach((e, index)=>{
                             if(e.id == id){
@@ -113,6 +132,13 @@ export default {
                 } 
             })
         },
+
+        init(){
+            let contents = localStorage.getItem(this.cart.key);
+            if(contents){
+                this.cart.products = JSON.parse(contents);
+            }
+        }
     },
 }
 </script>
