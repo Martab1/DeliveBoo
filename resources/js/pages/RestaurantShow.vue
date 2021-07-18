@@ -6,9 +6,10 @@
             <hr>
             <div v-for="category in my_categories" :key="category.id">
                 <h2>{{category}}</h2>
-                <div v-for="products in my_restaurant.products" :key="products.id">
-                   <span v-if="category == products.category.name">{{products.name}}</span> 
-                   <button v-if="category == products.category.name">add</button>
+                <div v-for="product in my_restaurant.products" :key="product.id">
+                   <span v-if="category == product.category.name">{{product.name}}</span> 
+                   <button  @click="remove(product)" v-if="category == product.category.name">-</button>
+                   <button  @click="add(product)" v-if="category == product.category.name">+</button>
                 </div>
             </div>
       </div>
@@ -22,6 +23,11 @@ export default {
       return{
             my_restaurant : null,
             my_categories : [],
+            cart : {
+                key: 'skvbjsdbnspbnfgpb',
+                products: [
+                ],
+            },
         }
     },
     created(){
@@ -42,7 +48,71 @@ export default {
             }).catch(err=>{
                 console.log(err);
             })
-        }
+        },
+
+        //AGGIUNTA PRODOTTI NELL'ARRAY CHE POPOLERA IL CART DAL LOCALSTORAGE
+        add(product){
+            if(this.find(product.id)){
+                this.increment(product.id)
+            }else{
+                let obj = {
+                    'name': product.name,
+                    'id': product.id,
+                    'price': product.price,
+                    'qty': 1,
+                };
+                this.cart.products.push(obj)
+            }
+            console.log(this.cart.products)
+        },
+
+        //RIMUOVI PRODOTTI
+        remove(product){
+            if(this.find(product.id)){
+                this.decrement(product.id)
+            }
+            console.log(this.cart.products)
+        },
+
+        //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
+        find(id){
+            let check = undefined;
+            this.cart.products.forEach(e=>{
+                if(e.id == id){
+                    check = true;
+                }
+            })
+            return check;
+        },
+
+        //INCREMENTO QTY
+        increment(id){
+            this.cart.products = this.cart.products.map(e=>{
+                if(e.id == id){
+                    e.qty += 1;
+                    return e;
+                }else{
+                    return e;
+                }
+
+            })
+        },
+
+        //DECREMENTO QTY
+        decrement(id){
+            this.cart.products.forEach(e=>{
+                if(e.id == id){
+                    e.qty -= 1;
+                    if(e.qty == 0){
+                        this.cart.products.forEach((e, index)=>{
+                            if(e.id == id){
+                                this.cart.products.splice(index, 1);
+                            }
+                        })
+                    }
+                } 
+            })
+        },
     },
 }
 </script>
