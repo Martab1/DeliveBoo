@@ -2,14 +2,14 @@
     <!-- <v-app class="app"> -->
         <div>
         <!-- HEADER -->
-        <h1>Vue single page application</h1>
+        <h1><a href="http://127.0.0.1:8000">Vue single page application</a></h1>
         <a href="http://127.0.0.1:8000/admin">ADMIN</a>
         <input
             style="border: 1px solid black"
             type="text"
             name="search"
             v-model.trim="search"
-            @keyup.enter="searching"
+            @keyup="searching"
         />
         <!-- PAGE RESULTS -->
         <div v-for="restaurant in result.restaurants" :key="restaurant.id">

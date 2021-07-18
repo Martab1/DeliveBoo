@@ -4104,7 +4104,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", [_vm._v("Vue single page application")]),
+      _vm._m(0),
       _vm._v(" "),
       _c("a", { attrs: { href: "http://127.0.0.1:8000/admin" } }, [
         _vm._v("ADMIN")
@@ -4124,15 +4124,7 @@ var render = function() {
         attrs: { type: "text", name: "search" },
         domProps: { value: _vm.search },
         on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.searching.apply(null, arguments)
-          },
+          keyup: _vm.searching,
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -4174,7 +4166,18 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", [
+      _c("a", { attrs: { href: "http://127.0.0.1:8000" } }, [
+        _vm._v("Vue single page application")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
