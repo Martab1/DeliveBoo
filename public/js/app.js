@@ -2081,12 +2081,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RestaurantShow",
   data: function data() {
     return {
       my_restaurant: null,
-      my_categories: []
+      my_categories: [],
+      cart: {
+        key: 'skvbjsdbnspbnfgpb',
+        products: []
+      }
     };
   },
   created: function created() {
@@ -2105,6 +2110,69 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (err) {
         console.log(err);
+      });
+    },
+    //AGGIUNTA PRODOTTI NELL'ARRAY CHE POPOLERA IL CART DAL LOCALSTORAGE
+    add: function add(product) {
+      if (this.find(product.id)) {
+        this.increment(product.id);
+      } else {
+        var obj = {
+          'name': product.name,
+          'id': product.id,
+          'price': product.price,
+          'qty': 1
+        };
+        this.cart.products.push(obj);
+      }
+
+      console.log(this.cart.products);
+    },
+    //RIMUOVI PRODOTTI
+    remove: function remove(product) {
+      if (this.find(product.id)) {
+        this.decrement(product.id);
+      }
+
+      console.log(this.cart.products);
+    },
+    //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
+    find: function find(id) {
+      var check = undefined;
+      this.cart.products.forEach(function (e) {
+        if (e.id == id) {
+          check = true;
+        }
+      });
+      return check;
+    },
+    //INCREMENTO QTY
+    increment: function increment(id) {
+      this.cart.products = this.cart.products.map(function (e) {
+        if (e.id == id) {
+          e.qty += 1;
+          return e;
+        } else {
+          return e;
+        }
+      });
+    },
+    //DECREMENTO QTY
+    decrement: function decrement(id) {
+      var _this2 = this;
+
+      this.cart.products.forEach(function (e) {
+        if (e.id == id) {
+          e.qty -= 1;
+
+          if (e.qty == 0) {
+            _this2.cart.products.forEach(function (e, index) {
+              if (e.id == id) {
+                _this2.cart.products.splice(index, 1);
+              }
+            });
+          }
+        }
       });
     }
   }
@@ -3371,14 +3439,38 @@ var render = function() {
                 [
                   _c("h2", [_vm._v(_vm._s(category))]),
                   _vm._v(" "),
-                  _vm._l(_vm.my_restaurant.products, function(products) {
-                    return _c("div", { key: products.id }, [
-                      category == products.category.name
-                        ? _c("span", [_vm._v(_vm._s(products.name))])
+                  _vm._l(_vm.my_restaurant.products, function(product) {
+                    return _c("div", { key: product.id }, [
+                      category == product.category.name
+                        ? _c("span", [_vm._v(_vm._s(product.name))])
                         : _vm._e(),
                       _vm._v(" "),
-                      category == products.category.name
-                        ? _c("button", [_vm._v("add")])
+                      category == product.category.name
+                        ? _c(
+                            "button",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.remove(product)
+                                }
+                              }
+                            },
+                            [_vm._v("-")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      category == product.category.name
+                        ? _c(
+                            "button",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.add(product)
+                                }
+                              }
+                            },
+                            [_vm._v("+")]
+                          )
                         : _vm._e()
                     ])
                   })
@@ -64453,7 +64545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _pages_NotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/NotFound */ "./resources/js/pages/NotFound.vue");
 /* harmony import */ var _pages_RestaurantShow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/RestaurantShow */ "./resources/js/pages/RestaurantShow.vue");
-/* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Home */ "./resources/js/pages/Home.vue");
+/* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Home */ "./resources/js/pages/Home.vue");
 
  // PAGES
 
@@ -64465,7 +64557,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   routes: [{
     path: "/",
-    component: _pages_Home__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _pages_Home__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: "home"
   }, {
     path: "/restaurant/:slug",
@@ -64509,9 +64601,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Teo e Robi\Documents\Boolean Careers\Progetto Finale\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Teo e Robi\Documents\Boolean Careers\Progetto Finale\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Teo e Robi\Documents\Boolean Careers\Progetto Finale\DeliveBoo\resources\sass\guest.scss */"./resources/sass/guest.scss");
+__webpack_require__(/*! C:\Users\Alex\Desktop\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Alex\Desktop\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Alex\Desktop\DeliveBoo\resources\sass\guest.scss */"./resources/sass/guest.scss");
 
 
 /***/ })
