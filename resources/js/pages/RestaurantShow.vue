@@ -19,6 +19,7 @@
                 <button  @click="remove(product)">-</button>
                 <button  @click="add(product)">+</button>
             </div>
+            <router-link :to="{name:'payment'}"> Completa l'acquisto </router-link>
       </div>
   </div>
 </template>

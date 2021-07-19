@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import NotFound from "./pages/NotFound";
 import RestaurantShow from "./pages/RestaurantShow";
 import Home from "./pages/Home";
+import Payment from "./pages/Payment";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const router = new VueRouter({
             path: "/restaurant/:slug",
             component:RestaurantShow,
             name:"restaurantShow",
+        },
+        {
+            path: "/payment",
+            component:Payment,
+            name:"payment",
         },
         {
             path: "*",
