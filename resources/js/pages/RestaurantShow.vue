@@ -31,14 +31,13 @@ export default {
             my_restaurant : null,
             my_categories : [],
             cart : {
-                key: 'cart',
+                key: "lol",
                 products: [],
             },
         }
     },
     created(){
        this.getRestaurant();
-       this.init();
     },
     methods:{
         getRestaurant(){
@@ -46,11 +45,12 @@ export default {
             .get(`http://127.0.0.1:8000/api/restaurants/${this.$route.params.slug}`)
             .then(res=>{
                 this.my_restaurant = res.data;
-
+                this.cart.key = res.data.restaurant.id;
                 res.data.products.forEach(element => {
                     if(!this.my_categories.includes(element.category.name)){
                         this.my_categories.push(element.category.name);
                     }
+                this.init();
                 });
             }).catch(err=>{
                 console.log(err);
@@ -86,14 +86,11 @@ export default {
         async sync(){
             let content = JSON.stringify(this.cart.products)
             await localStorage.setItem(this.cart.key, content);
-
-            console.log(localStorage.getItem(this.cart.key))
         },
 
         //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
         find(id){
             let check = undefined;
-            console.log(this.cart.products);
             this.cart.products.forEach(e=>{
                 if(e.id == id){
                     check = true;
@@ -134,6 +131,12 @@ export default {
         },
 
         init(){
+            for (var i = 0; i < localStorage.length; i++){
+               console.log(localStorage.key(i));
+               if(this.cart.key != localStorage.key(i)){
+                     localStorage.removeItem(i);
+                }
+            }
             let contents = localStorage.getItem(this.cart.key);
             if(contents){
                 this.cart.products = JSON.parse(contents);

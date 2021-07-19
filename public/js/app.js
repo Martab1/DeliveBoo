@@ -2116,14 +2116,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       my_restaurant: null,
       my_categories: [],
       cart: {
-        key: 'cart',
+        key: "lol",
         products: []
       }
     };
   },
   created: function created() {
     this.getRestaurant();
-    this.init();
   },
   methods: {
     getRestaurant: function getRestaurant() {
@@ -2131,10 +2130,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios.get("http://127.0.0.1:8000/api/restaurants/".concat(this.$route.params.slug)).then(function (res) {
         _this.my_restaurant = res.data;
+        _this.cart.key = res.data.restaurant.id;
         res.data.products.forEach(function (element) {
           if (!_this.my_categories.includes(element.category.name)) {
             _this.my_categories.push(element.category.name);
           }
+
+          _this.init();
         });
       })["catch"](function (err) {
         console.log(err);
@@ -2180,9 +2182,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return localStorage.setItem(_this2.cart.key, content);
 
               case 3:
-                console.log(localStorage.getItem(_this2.cart.key));
-
-              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2193,7 +2192,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
     find: function find(id) {
       var check = undefined;
-      console.log(this.cart.products);
       this.cart.products.forEach(function (e) {
         if (e.id == id) {
           check = true;
@@ -2233,6 +2231,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     init: function init() {
+      for (var i = 0; i < localStorage.length; i++) {
+        console.log(localStorage.key(i));
+
+        if (this.cart.key != localStorage.key(i)) {
+          localStorage.removeItem(i);
+        }
+      }
+
       var contents = localStorage.getItem(this.cart.key);
 
       if (contents) {
