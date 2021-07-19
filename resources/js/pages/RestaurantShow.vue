@@ -31,7 +31,7 @@ export default {
             my_restaurant : null,
             my_categories : [],
             cart : {
-                key: "lol",
+                key: "",
                 products: [],
             },
         }

@@ -2116,7 +2116,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       my_restaurant: null,
       my_categories: [],
       cart: {
-        key: "lol",
+        key: "",
         products: []
       }
     };
