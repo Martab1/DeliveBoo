@@ -31,7 +31,7 @@ export default {
             my_restaurant : null,
             my_categories : [],
             cart : {
-                key: 'cart',
+                key: 'lol',
                 products: [],
             },
         }
@@ -86,14 +86,11 @@ export default {
         async sync(){
             let content = JSON.stringify(this.cart.products)
             await localStorage.setItem(this.cart.key, content);
-
-            console.log(localStorage.getItem(this.cart.key))
         },
 
         //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
         find(id){
             let check = undefined;
-            console.log(this.cart.products);
             this.cart.products.forEach(e=>{
                 if(e.id == id){
                     check = true;
@@ -134,6 +131,10 @@ export default {
         },
 
         init(){
+            for(let i in localStorage){
+                console.log(localStorage.key(i));
+            }
+
             let contents = localStorage.getItem(this.cart.key);
             if(contents){
                 this.cart.products = JSON.parse(contents);

@@ -2116,7 +2116,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       my_restaurant: null,
       my_categories: [],
       cart: {
-        key: 'cart',
+        key: 'lol',
         products: []
       }
     };
@@ -2180,9 +2180,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return localStorage.setItem(_this2.cart.key, content);
 
               case 3:
-                console.log(localStorage.getItem(_this2.cart.key));
-
-              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2193,7 +2190,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //CONTROLLO SE UN PRODOTTO è GIA PRESENTE NEL CARRELLO
     find: function find(id) {
       var check = undefined;
-      console.log(this.cart.products);
       this.cart.products.forEach(function (e) {
         if (e.id == id) {
           check = true;
@@ -2233,6 +2229,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     init: function init() {
+      for (var i in localStorage) {
+        console.log(localStorage.key(i));
+      }
+
       var contents = localStorage.getItem(this.cart.key);
 
       if (contents) {
