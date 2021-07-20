@@ -27,6 +27,9 @@ class OrderRequest extends FormRequest
             "token" => "required",
             "products" => "required",
             "restaurantId" => "required",
+            "payer_name" => "required",
+            "payer_email" => "required",
+            "payer_address" => "required",
         ];
     }
 }

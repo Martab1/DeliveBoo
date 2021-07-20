@@ -1,15 +1,32 @@
 <template>
-    <div class="container">
-    <div v-if=loader>
-        <div>Importo da pagare = {{this.$route.params.orderTotal}}</div>
-        <v-braintree 
-            locale="it_IT"
-            :authorization=tokenApi
-            @success="onSuccess"
-            @error="onError"
-            btnText="paga subito">
-        </v-braintree>
-    </div>
+    <div>
+        <div v-if=loader>
+            <div>Importo da pagare = {{this.$route.params.orderTotal}}</div>
+            <form>
+                <div>
+                    <label for="payer_name">Name: </label>
+                    <input   
+                    type="text" id="payer_name" 
+                    v-model="form.payer_name">
+                </div>
+                <div>
+                    <label for="payer_email">Email: </label>
+                    <input type="text" required id="payer_email" v-model="form.payer_email">
+                </div>
+                <div>
+                    <label for="payer_address">Address: </label>
+                    <input 
+                    type="text" id="payer_address" v-model="form.payer_address">
+                </div>
+                <v-braintree
+                    locale="it_IT"
+                    :authorization=tokenApi
+                    @success="onSuccess"
+                    @error="onError"
+                    btnText="paga subito">
+                </v-braintree>
+            </form>
+        </div>
         <div v-else>loading...</div>
     </div>
 </template>
@@ -25,7 +42,11 @@ export default {
                 token : "",
                 products : [],
                 restaurantId : this.$route.params.restaurantId,
+                payer_name : "",
+                payer_email : "",
+                payer_address : "",
             },
+
         }
     },
     mounted(){
@@ -55,6 +76,7 @@ export default {
             try{
                 axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
                 .then(res=>{
+                    localStorage.clear();
                     return this.$router.push("/checkout/success");
                 })
                 .catch(err=>{

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Orders;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
+use App\Order;
 use App\Product;
 use App\Restaurant;
 use Braintree\Gateway;
@@ -22,7 +23,7 @@ class OrderController extends Controller
     }
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
-        
+
         $this_restaurant = Restaurant::find($request->restaurantId);
         $amount = 0;
         foreach($request->products as $product){
@@ -30,6 +31,17 @@ class OrderController extends Controller
             $amount +=  $this_product->price * $product['qty'];
         }
 
+        // POPULATE ORDER TABLE
+        $new_order = new Order();
+    
+        $new_order->restaurant_id = $request->restaurantId;
+        $new_order->payer_name = $request->payer_name;
+        $new_order->payer_email = $request->payer_email;
+        $new_order->payer_address = $request->payer_address;
+        $new_order->total = $amount;
+        $new_order->save();
+
+        // GENERATE SECOND KEY
         $result = $gateway->transaction()->sale([
             "amount" => $amount,
             "paymentMethodNonce" => $request->token,
