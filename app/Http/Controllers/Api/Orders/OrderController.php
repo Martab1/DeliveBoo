@@ -22,17 +22,16 @@ class OrderController extends Controller
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
 
-        $product = Product::find($request->product);
-
+        // dd($request);
         $result = $gateway->transaction()->sale([
-            "amount" => $product->price,
+            "amount" => $request->amount,
             "paymentMethodNonce" => $request->token,
-            "option" => [
+            "options" => [
                 "submitForSettlement" => true,
             ]
         ]);
 
-        if($request->success){
+        if($result->success){
             $data = [
                 "success" => true,
                 "message" => "Transazione avvenuta con successo",

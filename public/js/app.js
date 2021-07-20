@@ -2078,12 +2078,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -2112,7 +2119,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     this.generateKey();
-    console.log("created " + this.tokenApi);
   },
   methods: {
     generateKey: function generateKey() {
@@ -2127,8 +2133,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 3;
                 return axios.get("http://127.0.0.1:8000/api/orders/generate").then(function (res) {
                   _this.tokenApi = res.data.token;
-                  console.log("token " + res.data.token);
-                  console.log("after " + _this.tokenApi);
                   _this.loader = true;
                 })["catch"](function (err) {
                   console.log(err);
@@ -2143,13 +2147,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     onSuccess: function onSuccess(payload) {
-      // let token = payload.nonce;
       this.form.token = payload.nonce;
-      this.buy(); // Do something great with the nonce...
+      this.buy();
     },
     onError: function onError(error) {
       var message = error.message;
-      alert("messaggio1" + message); // Whoops, an error has occured while trying to get the nonce
+      alert("messaggio1 " + message);
     },
     buy: function buy() {
       var _this2 = this;
@@ -2160,10 +2163,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 try {
-                  axios.post("http://127.0.0.1:8000/api/orders/make/payment").then(function (res) {
+                  axios.post("http://127.0.0.1:8000/api/orders/make/payment", _objectSpread({}, _this2.form)).then(function (res) {
                     alert("SUCCESSO");
                   })["catch"](function (err) {
-                    alert("messaggio2" + err);
+                    alert("messaggio2 " + err.message);
                   });
                 } catch (error) {
                   _this2.loader = false;
@@ -27570,7 +27573,11 @@ var render = function() {
           "div",
           [
             _c("v-braintree", {
-              attrs: { locale: "it_IT", authorization: _vm.tokenApi },
+              attrs: {
+                locale: "it_IT",
+                authorization: _vm.tokenApi,
+                btnText: "paga subito"
+              },
               on: { success: _vm.onSuccess, error: _vm.onError }
             })
           ],

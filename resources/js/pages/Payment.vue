@@ -5,7 +5,8 @@
             locale="it_IT"
             :authorization=tokenApi
             @success="onSuccess"
-            @error="onError">
+            @error="onError"
+            btnText="paga subito">
         </v-braintree>
     </div>
         <div v-else>loading...</div>
@@ -27,7 +28,6 @@ export default {
     },
     created(){
         this.generateKey();
-        console.log("created " + this.tokenApi);
     },
     methods:{
         async generateKey(){
@@ -35,32 +35,27 @@ export default {
             await axios.get("http://127.0.0.1:8000/api/orders/generate")
             .then(res=>{
                 this.tokenApi = res.data.token;
-                console.log("token " + res.data.token);
-                console.log("after " + this.tokenApi);
                 this.loader = true;
             }).catch(err=>{
                 console.log(err);
             })
         },
         onSuccess (payload) {
-            // let token = payload.nonce;
             this.form.token = payload.nonce;
             this.buy();
-            // Do something great with the nonce...
         },
         onError (error) {
             let message = error.message;
-            alert("messaggio1" + message);
-            // Whoops, an error has occured while trying to get the nonce
+            alert("messaggio1 " + message);
         },
         async buy(){
             try{
-                axios.post("http://127.0.0.1:8000/api/orders/make/payment")
+                axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
                 .then(res=>{
                     alert("SUCCESSO")
                 })
                 .catch(err=>{
-                    alert("messaggio2" + err)
+                    alert("messaggio2 " + err.message)
                 });
             }catch(error){
                this.loader = false;        
