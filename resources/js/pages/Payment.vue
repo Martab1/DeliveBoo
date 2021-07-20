@@ -55,10 +55,11 @@ export default {
             try{
                 axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
                 .then(res=>{
-                    console.log(res.data)
+                    return this.$router.push("/checkout/success");
                 })
                 .catch(err=>{
-                    alert("messaggio2 " + err.message)
+                    alert("mi dispiace...qualcosa è andato storto....");
+                    return this.$router.push("/checkout/error");
                 });
             }catch(error){
                this.loader = false;        

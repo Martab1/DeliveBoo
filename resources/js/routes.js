@@ -5,6 +5,8 @@ import NotFound from "./pages/NotFound";
 import RestaurantShow from "./pages/RestaurantShow";
 import Home from "./pages/Home";
 import Payment from "./pages/Payment";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
+import CheckoutError from "./pages/CheckoutError";
 
 Vue.use(VueRouter);
 
@@ -19,14 +21,22 @@ const router = new VueRouter({
         {
             path: "/restaurant/:slug",
             component:RestaurantShow,
-            props:true,
             name:"restaurantShow",
         },
         {
             path: "/payment",
             component:Payment,
-            props:true,
             name:"payment",
+        },
+        {
+            path: "/checkout/success",
+            component:CheckoutSuccess,
+            name:"checkoutSuccess",
+        },
+        {
+            path: "/checkout/error",
+            component:CheckoutError,
+            name:"checkoutError",
         },
         {
             path: "*",
