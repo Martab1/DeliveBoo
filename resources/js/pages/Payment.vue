@@ -22,12 +22,14 @@ export default {
             loader: false,
             form : {
                 token : "",
-                amount : "4.00",
+                amount : 0,
             },
         }
     },
-    created(){
+    mounted(){
         this.generateKey();
+        // console.log("PROPS PASSATA: " + this.$route.params.restaurantId);
+        this.paymentCart();
     },
     methods:{
         async generateKey(){
@@ -52,7 +54,8 @@ export default {
             try{
                 axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
                 .then(res=>{
-                    alert("SUCCESSO")
+                    console.log(res.data)
+
                 })
                 .catch(err=>{
                     alert("messaggio2 " + err.message)
@@ -60,6 +63,13 @@ export default {
             }catch(error){
                this.loader = false;        
             }
+        },
+        paymentCart(){
+            let contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
+            contents.forEach(product=>{
+                this.form.amount += product.total;
+            })
+                console.log(this.form.amount);
         }
     }
 }

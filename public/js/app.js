@@ -2113,12 +2113,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loader: false,
       form: {
         token: "",
-        amount: "4.00"
+        amount: 0
       }
     };
   },
-  created: function created() {
-    this.generateKey();
+  mounted: function mounted() {
+    this.generateKey(); // console.log("PROPS PASSATA: " + this.$route.params.restaurantId);
+
+    this.paymentCart();
   },
   methods: {
     generateKey: function generateKey() {
@@ -2164,7 +2166,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 try {
                   axios.post("http://127.0.0.1:8000/api/orders/make/payment", _objectSpread({}, _this2.form)).then(function (res) {
-                    alert("SUCCESSO");
+                    console.log(res.data);
                   })["catch"](function (err) {
                     alert("messaggio2 " + err.message);
                   });
@@ -2179,6 +2181,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    paymentCart: function paymentCart() {
+      var _this3 = this;
+
+      var contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
+      contents.forEach(function (product) {
+        _this3.form.amount += product.total;
+      });
+      console.log(this.form.amount);
     }
   }
 });
@@ -2351,8 +2362,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     init: function init() {
       for (var i = 0; i < localStorage.length; i++) {
-        console.log(localStorage.key(i));
-
         if (this.cart.key != localStorage.key(i)) {
           localStorage.removeItem(i);
         }
@@ -27709,9 +27718,18 @@ var render = function() {
               ])
             }),
             _vm._v(" "),
-            _c("router-link", { attrs: { to: { name: "payment" } } }, [
-              _vm._v(" Completa l'acquisto ")
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "payment",
+                    params: { restaurantId: _vm.cart.key }
+                  }
+                }
+              },
+              [_vm._v(" Completa l'acquisto ")]
+            )
           ],
           2
         )
