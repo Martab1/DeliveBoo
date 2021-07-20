@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Api')->group(function (){
     Route::get("restaurants", "RestaurantController@index");
     Route::get("restaurants/{slug}", "RestaurantController@show");
+    Route::get('orders/generate',"Orders\OrderController@generate");
+    Route::post('orders/make/payment',"Orders\OrderController@makePayment"); 
 });
 
 

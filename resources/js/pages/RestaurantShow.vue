@@ -19,6 +19,7 @@
                 <button  @click="remove(product)">-</button>
                 <button  @click="add(product)">+</button>
             </div>
+            <router-link :to="{name:'payment', params:{restaurantId: cart.key} }"> Completa l'acquisto </router-link>
       </div>
   </div>
 </template>
@@ -132,7 +133,6 @@ export default {
 
         init(){
             for (var i = 0; i < localStorage.length; i++){
-               console.log(localStorage.key(i));
                if(this.cart.key != localStorage.key(i)){
                      localStorage.removeItem(i);
                 }
@@ -141,7 +141,7 @@ export default {
             if(contents){
                 this.cart.products = JSON.parse(contents);
             }
-        }
+        },
     },
 }
 </script>
