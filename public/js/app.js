@@ -2105,6 +2105,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Payment",
   data: function data() {
@@ -2113,13 +2114,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loader: false,
       form: {
         token: "",
-        amount: 0
+        products: [],
+        restaurantId: this.$route.params.restaurantId
       }
     };
   },
   mounted: function mounted() {
-    this.generateKey(); // console.log("PROPS PASSATA: " + this.$route.params.restaurantId);
-
+    this.generateKey();
     this.paymentCart();
   },
   methods: {
@@ -2187,9 +2188,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
       contents.forEach(function (product) {
-        _this3.form.amount += product.total;
+        _this3.form.products.push({
+          productId: product.id,
+          qty: product.qty
+        });
       });
-      console.log(this.form.amount);
+      console.log(this.$route.params.orderTotal);
     }
   }
 });
@@ -2239,6 +2243,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RestaurantShow",
   data: function data() {
@@ -2248,7 +2254,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       cart: {
         key: "",
         products: []
-      }
+      },
+      total: 0
     };
   },
   created: function created() {
@@ -2265,9 +2272,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           if (!_this.my_categories.includes(element.category.name)) {
             _this.my_categories.push(element.category.name);
           }
-
-          _this.init();
         });
+
+        _this.init();
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2287,6 +2294,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.cart.products.push(obj);
       }
 
+      this.total += product.price;
       this.sync();
     },
     //RIMUOVI PRODOTTI
@@ -2296,6 +2304,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       this.sync();
+      this.total -= product.price;
     },
     //SINCRONIZZAZIONE DATI LOCAL STORAGE
     sync: function sync() {
@@ -2361,6 +2370,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     init: function init() {
+      var _this4 = this;
+
       for (var i = 0; i < localStorage.length; i++) {
         if (this.cart.key != localStorage.key(i)) {
           localStorage.removeItem(i);
@@ -2372,6 +2383,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (contents) {
         this.cart.products = JSON.parse(contents);
       }
+
+      this.cart.products.forEach(function (e) {
+        _this4.total += e.total;
+      });
     }
   }
 });
@@ -27581,6 +27596,12 @@ var render = function() {
       ? _c(
           "div",
           [
+            _c("div", [
+              _vm._v(
+                "Importo da pagare = " + _vm._s(this.$route.params.orderTotal)
+              )
+            ]),
+            _vm._v(" "),
             _c("v-braintree", {
               attrs: {
                 locale: "it_IT",
@@ -27718,13 +27739,20 @@ var render = function() {
               ])
             }),
             _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", [_vm._v("Total: " + _vm._s(_vm.total))]),
+            _vm._v(" "),
             _c(
               "router-link",
               {
                 attrs: {
                   to: {
                     name: "payment",
-                    params: { restaurantId: _vm.cart.key }
+                    params: {
+                      restaurantId: _vm.cart.key,
+                      orderTotal: _vm.total
+                    }
                   }
                 }
               },
@@ -88889,10 +88917,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: "/restaurant/:slug",
     component: _pages_RestaurantShow__WEBPACK_IMPORTED_MODULE_3__["default"],
+    props: true,
     name: "restaurantShow"
   }, {
     path: "/payment",
     component: _pages_Payment__WEBPACK_IMPORTED_MODULE_5__["default"],
+    props: true,
     name: "payment"
   }, {
     path: "*",

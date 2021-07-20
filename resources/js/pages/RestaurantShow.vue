@@ -19,7 +19,9 @@
                 <button  @click="remove(product)">-</button>
                 <button  @click="add(product)">+</button>
             </div>
-            <router-link :to="{name:'payment', params:{restaurantId: cart.key} }"> Completa l'acquisto </router-link>
+            <hr>
+            <div>Total: {{total}}</div>
+            <router-link :to="{name:'payment', params:{restaurantId: cart.key, orderTotal: total}}"> Completa l'acquisto </router-link>
       </div>
   </div>
 </template>
@@ -35,6 +37,7 @@ export default {
                 key: "",
                 products: [],
             },
+            total : 0,
         }
     },
     created(){
@@ -51,8 +54,8 @@ export default {
                     if(!this.my_categories.includes(element.category.name)){
                         this.my_categories.push(element.category.name);
                     }
-                this.init();
                 });
+                this.init();
             }).catch(err=>{
                 console.log(err);
             })
@@ -72,6 +75,7 @@ export default {
                 };
                 this.cart.products.push(obj);
             }
+                this.total += product.price; 
         this.sync();
         },
 
@@ -81,6 +85,8 @@ export default {
                 this.decrement(product.id)
             }
         this.sync();
+            this.total -= product.price; 
+
         },
 
         //SINCRONIZZAZIONE DATI LOCAL STORAGE
@@ -134,13 +140,16 @@ export default {
         init(){
             for (var i = 0; i < localStorage.length; i++){
                if(this.cart.key != localStorage.key(i)){
-                     localStorage.removeItem(i);
+                     localStorage.removeItem(i); 
                 }
             }
             let contents = localStorage.getItem(this.cart.key);
             if(contents){
                 this.cart.products = JSON.parse(contents);
             }
+            this.cart.products.forEach(e=>{
+                this.total += e.total;
+            })
         },
     },
 }
