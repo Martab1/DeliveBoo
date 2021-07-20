@@ -19,11 +19,13 @@ const router = new VueRouter({
         {
             path: "/restaurant/:slug",
             component:RestaurantShow,
+            props:true,
             name:"restaurantShow",
         },
         {
             path: "/payment",
             component:Payment,
+            props:true,
             name:"payment",
         },
         {

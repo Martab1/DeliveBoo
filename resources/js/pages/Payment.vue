@@ -1,6 +1,7 @@
 <template>
     <div class="container">
     <div v-if=loader>
+        <div>Importo da pagare = {{this.$route.params.orderTotal}}</div>
         <v-braintree 
             locale="it_IT"
             :authorization=tokenApi
@@ -22,13 +23,13 @@ export default {
             loader: false,
             form : {
                 token : "",
-                amount : 0,
+                products : [],
+                restaurantId : this.$route.params.restaurantId,
             },
         }
     },
     mounted(){
         this.generateKey();
-        // console.log("PROPS PASSATA: " + this.$route.params.restaurantId);
         this.paymentCart();
     },
     methods:{
@@ -55,7 +56,6 @@ export default {
                 axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
                 .then(res=>{
                     console.log(res.data)
-
                 })
                 .catch(err=>{
                     alert("messaggio2 " + err.message)
@@ -67,9 +67,12 @@ export default {
         paymentCart(){
             let contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
             contents.forEach(product=>{
-                this.form.amount += product.total;
+                this.form.products.push({
+                    productId : product.id,
+                    qty : product.qty,
+                    });
             })
-                console.log(this.form.amount);
+            console.log(this.$route.params.orderTotal);
         }
     }
 }

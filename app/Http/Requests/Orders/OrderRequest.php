@@ -25,7 +25,8 @@ class OrderRequest extends FormRequest
     {
         return [
             "token" => "required",
-            "amount" => "required",
+            "products" => "required",
+            "restaurantId" => "required",
         ];
     }
 }
