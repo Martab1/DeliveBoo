@@ -1983,48 +1983,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "App",
-  data: function data() {
-    return {
-      search: "",
-      result: []
-    };
-  },
-  methods: {
-    searching: function searching() {
-      var _this = this;
-
-      if (this.search == "") {
-        this.result = [];
-      } else {
-        axios.get("http://127.0.0.1:8000/api/restaurants", {
-          params: {
-            tipology: this.search
-          }
-        }).then(function (res) {
-          _this.result = res.data;
-          console.log(_this.result);
-        })["catch"](function (err) {
-          console.log(err);
-        });
-      }
-    } // storage(){
-    //     localStorage.setItem("nome dato", "valore dato");
-    //     console.log(localStorage.getItem("valore dato"));
-    // }
-
-  }
+  name: "App"
 });
 
 /***/ }),
@@ -2080,8 +2040,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Home"
+  name: "Home",
+  data: function data() {
+    return {
+      search: "",
+      result: []
+    };
+  },
+  methods: {
+    searching: function searching() {
+      var _this = this;
+
+      if (this.search == "") {
+        this.result = [];
+      } else {
+        axios.get("http://127.0.0.1:8000/api/restaurants", {
+          params: {
+            tipology: this.search
+          }
+        }).then(function (res) {
+          _this.result = res.data;
+          console.log(_this.result);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -27519,83 +27521,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "http://127.0.0.1:8000/admin" } }, [
-        _vm._v("ADMIN")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model.trim",
-            value: _vm.search,
-            expression: "search",
-            modifiers: { trim: true }
-          }
-        ],
-        staticStyle: { border: "1px solid black" },
-        attrs: { type: "text", name: "search" },
-        domProps: { value: _vm.search },
-        on: {
-          keyup: _vm.searching,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.search = $event.target.value.trim()
-          },
-          blur: function($event) {
-            return _vm.$forceUpdate()
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.result.restaurants, function(restaurant) {
-        return _c(
-          "div",
-          { key: restaurant.id },
-          [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: {
-                    name: "restaurantShow",
-                    params: { slug: restaurant.slug }
-                  }
-                }
-              },
-              [_vm._v(" " + _vm._s(restaurant.name) + " ")]
-            )
-          ],
-          1
-        )
-      }),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("router-view")
-    ],
-    2
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h1", [
+  return _c("v-app", { staticClass: "app" }, [
+    _c("h1", [
       _c("a", { attrs: { href: "http://127.0.0.1:8000" } }, [
         _vm._v("Vue single page application")
       ])
-    ])
-  }
-]
+    ]),
+    _vm._v(" "),
+    _c("a", { attrs: { href: "http://127.0.0.1:8000/admin" } }, [
+      _vm._v("ADMIN")
+    ]),
+    _vm._v(" "),
+    _c("main", [_c("router-view")], 1)
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -27665,7 +27605,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("HOME")])
+  return _c(
+    "div",
+    { staticClass: "home" },
+    [
+      _vm._v("\nHOMEEEEEEEEEEEEEEEEEEEEEEE\n            "),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model.trim",
+            value: _vm.search,
+            expression: "search",
+            modifiers: { trim: true }
+          }
+        ],
+        staticStyle: { border: "1px solid black" },
+        attrs: { type: "text", name: "search" },
+        domProps: { value: _vm.search },
+        on: {
+          keyup: _vm.searching,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value.trim()
+          },
+          blur: function($event) {
+            return _vm.$forceUpdate()
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.result.restaurants, function(restaurant) {
+        return _c(
+          "div",
+          { key: restaurant.id },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "restaurantShow",
+                    params: { slug: restaurant.slug }
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(restaurant.name) + " ")]
+            )
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c("hr")
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -89329,9 +89327,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/sass/guest.scss */"./resources/sass/guest.scss");
+__webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\sass\guest.scss */"./resources/sass/guest.scss");
 
 
 /***/ })

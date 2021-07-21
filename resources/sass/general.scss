@@ -1,1 +1,17 @@
-font-family: 'Dosis', sans-serif;
+@import "./vars.scss";
+@import "./mixins.scss";
+
+body{
+    min-height: 100vh;
+    font-family: 'Dosis', sans-serif;
+    @include flex("column");
+}
+
+main{
+    flex-grow:1;
+    background-color: $bg-color;
+}
+
+.container{
+    max-width: 1170px;
+}

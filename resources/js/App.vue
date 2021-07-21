@@ -1,65 +1,25 @@
 <template>
-    <!-- <v-app class="app"> -->
-        <div>
+    <v-app class="app">
         <!-- HEADER -->
         <h1><a href="http://127.0.0.1:8000">Vue single page application</a></h1>
         <a href="http://127.0.0.1:8000/admin">ADMIN</a>
-        <input
-            style="border: 1px solid black"
-            type="text"
-            name="search"
-            v-model.trim="search"
-            @keyup="searching"
-        />
-        <!-- PAGE RESULTS -->
-        <div v-for="restaurant in result.restaurants" :key="restaurant.id">
-            <router-link :to="{name:'restaurantShow', params:{slug: restaurant.slug}}"> {{ restaurant.name }} </router-link>
-        </div>
-        <hr>
-        
-        <!-- MAIN -->
-        <router-view></router-view>
+        <!-- FINE HEADER -->
 
-    </div>
-    <!-- </v-app> -->
+        <!-- MAIN -->
+        <main>
+            <router-view></router-view>
+        </main>
+
+        <!-- FOOTER -->
+    </v-app>
 </template>
 
 <script>
 export default {
     name: "App",
-    data() {
-        return {
-            search: "",
-            result: [],
-        };
-    },
-    methods: {
-        searching() {
-            if (this.search == "") {
-                this.result = [];
-            }else{
-                axios
-                    .get(`http://127.0.0.1:8000/api/restaurants`,
-                    {
-                        params: {
-                            tipology:this.search,
-                        }
-                    })
-                    .then(res => {
-                        this.result = res.data;
-                        console.log(this.result);
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-            }
-        },
-        // storage(){
-        //     localStorage.setItem("nome dato", "valore dato");
-        //     console.log(localStorage.getItem("valore dato"));
-        // }
-    },
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
