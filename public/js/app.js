@@ -2144,6 +2144,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Payment",
   data: function data() {
@@ -2153,7 +2170,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       form: {
         token: "",
         products: [],
-        restaurantId: this.$route.params.restaurantId
+        restaurantId: this.$route.params.restaurantId,
+        payer_name: "",
+        payer_email: "",
+        payer_address: ""
       }
     };
   },
@@ -2205,6 +2225,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 try {
                   axios.post("http://127.0.0.1:8000/api/orders/make/payment", _objectSpread({}, _this2.form)).then(function (res) {
+                    localStorage.clear();
                     return _this2.$router.push("/checkout/success");
                   })["catch"](function (err) {
                     alert("mi dispiace...qualcosa è andato storto....");
@@ -27678,28 +27699,111 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", [
     _vm.loader
-      ? _c(
-          "div",
-          [
-            _c("div", [
-              _vm._v(
-                "Importo da pagare = " + _vm._s(this.$route.params.orderTotal)
-              )
-            ]),
-            _vm._v(" "),
-            _c("v-braintree", {
-              attrs: {
-                locale: "it_IT",
-                authorization: _vm.tokenApi,
-                btnText: "paga subito"
-              },
-              on: { success: _vm.onSuccess, error: _vm.onError }
-            })
-          ],
-          1
-        )
+      ? _c("div", [
+          _c("div", [
+            _vm._v(
+              "Importo da pagare = " + _vm._s(this.$route.params.orderTotal)
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            [
+              _c("div", [
+                _c("label", { attrs: { for: "payer_name" } }, [
+                  _vm._v("Name: ")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.payer_name,
+                      expression: "form.payer_name"
+                    }
+                  ],
+                  attrs: { type: "text", id: "payer_name" },
+                  domProps: { value: _vm.form.payer_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "payer_name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("label", { attrs: { for: "payer_email" } }, [
+                  _vm._v("Email: ")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.payer_email,
+                      expression: "form.payer_email"
+                    }
+                  ],
+                  attrs: { type: "text", required: "", id: "payer_email" },
+                  domProps: { value: _vm.form.payer_email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "payer_email", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("label", { attrs: { for: "payer_address" } }, [
+                  _vm._v("Address: ")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.payer_address,
+                      expression: "form.payer_address"
+                    }
+                  ],
+                  attrs: { type: "text", id: "payer_address" },
+                  domProps: { value: _vm.form.payer_address },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "payer_address", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("v-braintree", {
+                attrs: {
+                  locale: "it_IT",
+                  authorization: _vm.tokenApi,
+                  btnText: "paga subito"
+                },
+                on: { success: _vm.onSuccess, error: _vm.onError }
+              })
+            ],
+            1
+          )
+        ])
       : _c("div", [_vm._v("loading...")])
   ])
 }
