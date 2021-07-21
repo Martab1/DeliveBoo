@@ -20,7 +20,7 @@
                 <button  @click="remove(product)">-</button>
                 <button  @click="add(product)">+</button>
             </div>
-            <hr>
+            <hr>   
             <button @click="removeCart(cart)">Elimina carrello</button>
             <div>Total: {{total}}</div>
 
