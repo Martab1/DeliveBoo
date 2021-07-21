@@ -3,6 +3,7 @@
         <!-- HEADER -->
         <h1><a href="http://127.0.0.1:8000">Vue single page application</a></h1>
         <a href="http://127.0.0.1:8000/admin">ADMIN</a>
+       
         <!-- FINE HEADER -->
 
         <!-- MAIN -->
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+
 export default {
     name: "App",
 };

@@ -7,33 +7,58 @@
             <div v-for="category in my_categories" :key="category.id">
                 <h2>{{category}}</h2>
                 <div v-for="product in my_restaurant.products" :key="product.id">
-                   <span v-if="category == product.category.name">{{product.name}}</span> 
-                   <span>{{product.price}} €</span>
+                   <span v-if="category == product.category.name">{{product.name}} {{ product.price}} €</span> 
                    <button  @click="remove(product)" v-if="category == product.category.name">-</button>
                    <button  @click="add(product)" v-if="category == product.category.name">+</button>
                 </div>
             </div>
+            
             <hr>
-            <h2>Carrello</h2>
-            <div v-for="product in cart.products" :key="product.id">
-                <span>prodotto: {{product.name}} {{product.total}} € Quantità: {{product.qty}}</span>
-                <button  @click="remove(product)">-</button>
-                <button  @click="add(product)">+</button>
-            </div>
-            <hr>   
-            <button @click="removeCart(cart)">Elimina carrello</button>
-            <div>Total: {{total}}</div>
+            
 
 
-            <router-link  :to="{name:'payment', params:{restaurantId: cart.key, orderTotal: total}}"> Completa l'acquisto </router-link>
+             <!-- Carrello -->
+             <v-card elevation="2" class="d-flex justify-space-between" >
+                  <div class="fakew-h cart">
+                       <h2 class="text-uppercase text-center mb-6"> il tuo carrello</h2>
+                        <Cart v-for="product in cart.products" :key="product.id" :product="product"  class="mb-3 text-capitalize"
+                                :total ="total"
+                                @clickAdd="add"
+                                @clickRemove="remove"
+                                @clickRemoveCart="removeCart"/>
 
+                     <div  class="text-center" >
+                         <v-chip filter class="text-center"> 
+                              Totale {{total}}€
+                         </v-chip>
+                     </div>
+
+
+                     <div v-if="total=== 0" class="text-center mt-12">
+                         Non hai ancora aggiunto alcun prodotto. Quando lo farai, compariranno qui!
+
+                     </div>
+                     <div v-else class="d-flex justify-end ">
+                        <v-btn elevation="3" class="mt-5 mr-3 btn d-inline"  @click="removeCart(cart)">Elimina</v-btn>
+                        <v-btn elevation="3" class="mt-5 d-inline"   >
+                            <router-link  class="no-decoration" :to="{name:'payment', params:{restaurantId: cart.key, orderTotal: total}}"> Ordina </router-link>
+                        </v-btn> 
+                      </div>
+                 </div>
+             </v-card>
+             
       </div>
   </div>
 </template>
 
 <script>
+import Cart from '../components/Cart.vue';
+
 export default {
     name: "RestaurantShow",
+    components:{
+        Cart,
+    },
     data(){
       return{
             my_restaurant : null,
@@ -43,10 +68,13 @@ export default {
                 products: [],
             },
             total : 0,
+
+        
         }
     },
     created(){
        this.getRestaurant();
+
     },
     methods:{
         getRestaurant(){
@@ -167,6 +195,25 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+/* @import "../sass/vars.scss"; */
+
+.fakew-h{
+     width:400px;
+     height: 500px;
+     padding: 20px;
+}
+
+.cart{
+     background: #70B5B3;
+     overflow: scroll;
+}
+
+.no-decoration{
+     text-decoration: none;
+     color:black;
+}
+
+
 
 </style>
