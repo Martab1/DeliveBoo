@@ -2284,6 +2284,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RestaurantShow",
   data: function data() {
@@ -2407,6 +2412,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }
       });
+    },
+    // RIMUOVI TUTTO IL CARRELLO
+    removeCart: function removeCart(cart) {
+      if (cart != 0) {
+        this.total = 0;
+        this.cart.products = [];
+      }
+
+      this.sync();
     },
     init: function init() {
       var _this4 = this;
@@ -27749,6 +27763,8 @@ var render = function() {
                         ? _c("span", [_vm._v(_vm._s(product.name))])
                         : _vm._e(),
                       _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(product.price) + " €")]),
+                      _vm._v(" "),
                       category == product.category.name
                         ? _c(
                             "button",
@@ -27793,9 +27809,9 @@ var render = function() {
                   _vm._v(
                     "prodotto: " +
                       _vm._s(product.name) +
-                      " prezzo " +
+                      " " +
                       _vm._s(product.total) +
-                      " Quantità: " +
+                      " € Quantità: " +
                       _vm._s(product.qty)
                   )
                 ]),
@@ -27827,6 +27843,18 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("hr"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.removeCart(_vm.cart)
+                  }
+                }
+              },
+              [_vm._v("Elimina carrello")]
+            ),
             _vm._v(" "),
             _c("div", [_vm._v("Total: " + _vm._s(_vm.total))]),
             _vm._v(" "),
@@ -89197,9 +89225,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\sass\guest.scss */"./resources/sass/guest.scss");
+__webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/martabernardo/Desktop/DeliveBoo/resources/sass/guest.scss */"./resources/sass/guest.scss");
 
 
 /***/ })
