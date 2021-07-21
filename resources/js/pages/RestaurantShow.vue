@@ -8,6 +8,7 @@
                 <h2>{{category}}</h2>
                 <div v-for="product in my_restaurant.products" :key="product.id">
                    <span v-if="category == product.category.name">{{product.name}}</span> 
+                   <span>{{product.price}} €</span>
                    <button  @click="remove(product)" v-if="category == product.category.name">-</button>
                    <button  @click="add(product)" v-if="category == product.category.name">+</button>
                 </div>
@@ -15,13 +16,17 @@
             <hr>
             <h2>Carrello</h2>
             <div v-for="product in cart.products" :key="product.id">
-                <span>prodotto: {{product.name}} prezzo {{product.total}} Quantità: {{product.qty}}</span>
+                <span>prodotto: {{product.name}} {{product.total}} € Quantità: {{product.qty}}</span>
                 <button  @click="remove(product)">-</button>
                 <button  @click="add(product)">+</button>
             </div>
-            <hr>
+            <hr>   
+            <button @click="removeCart(cart)">Elimina carrello</button>
             <div>Total: {{total}}</div>
-            <router-link :to="{name:'payment', params:{restaurantId: cart.key, orderTotal: total}}"> Completa l'acquisto </router-link>
+
+
+            <router-link  :to="{name:'payment', params:{restaurantId: cart.key, orderTotal: total}}"> Completa l'acquisto </router-link>
+
       </div>
   </div>
 </template>
@@ -136,7 +141,14 @@ export default {
                 } 
             })
         },
-
+        // RIMUOVI TUTTO IL CARRELLO
+        removeCart(cart){
+            if(cart != 0){
+                this.total = 0;
+                this.cart.products = [];
+            }
+        this.sync();
+        },
         init(){
             for (var i = 0; i < localStorage.length; i++){
                if(this.cart.key != localStorage.key(i)){
