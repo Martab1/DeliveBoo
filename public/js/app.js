@@ -2085,17 +2085,18 @@ __webpack_require__.r(__webpack_exports__);
     searching: function searching() {
       var _this = this;
 
-      console.log(this.checkedTipologies);
-      axios.get("http://127.0.0.1:8000/api/restaurants/filter", {
-        params: {
-          tipology: this.checkedTipologies
-        }
-      }).then(function (res) {
-        console.log(res.data);
-        _this.result = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      if (!this.checkedTipologies.length == 0) {
+        axios.get("http://127.0.0.1:8000/api/restaurants/filter", {
+          params: {
+            tipology: this.checkedTipologies
+          }
+        }).then(function (res) {
+          console.log(res.data);
+          _this.result = res.data;
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
     },
     getCategories: function getCategories() {
       var _this2 = this;
@@ -27715,7 +27716,7 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _vm._l(_vm.result.restaurants, function(restaurant) {
+      _vm._l(_vm.result, function(restaurant) {
         return _c(
           "div",
           { key: restaurant.id },

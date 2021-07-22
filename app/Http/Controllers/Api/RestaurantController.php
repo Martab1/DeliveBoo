@@ -23,30 +23,15 @@ class RestaurantController extends Controller
         return response()->json($data);
     }
 
-
     /* FILTRAGGIO RISTORANTI */
     public function filteredRestaurants(Request $request){
         /* array di tipologie ottenute dalle checkbox */
-       /*  $reqTipologies = ['5', '8', '9', '12', '11', '10', '1', '2', '4', '3', '1']; */
-        $reqTipologies = $request;
-
-        /* $restaurants = Tipology::all()->whereIn('id', $reqTipologies)->with('restaurants')->get(); */
-
-        /* $restaurants = Restaurant::join('restaurant_tipology', 'restaurant_tipology.restaurant_id', '=' , 'restaurants.id')
-        ->join('tipologies', 'restaurant_tipology.tipology_id', '=', 'tipologies.id')
-        ->whereIn('tipologies.id', $reqTipologies)
-        ->get(); */
+       $req = $request['tipology'];
 
         /* chiamata a db con relazione */
-        $restaurants = Restaurant::whereHas('tipologies', function($q) use($reqTipologies) {
-            $q->whereIn('tipology_id', $reqTipologies);
+        $restaurants = Restaurant::whereHas('tipologies', function($q) use($req) {
+            $q->whereIn('tipology_id', $req);
         })->get();
-        /* $restaurants = Tipology::whereIn('id', $reqTipologies)->with('restaurants')->get() */;
-
-        /* dati da passare in json */
-        $data = [
-            'restaurants' => $restaurants,
-        ];
 
         return response()->json($restaurants);
     }

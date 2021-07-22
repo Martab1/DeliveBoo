@@ -23,7 +23,7 @@
         </div>
         <!-- FINE ASIDE -->
         <!-- PAGE RESULTS -->
-        <div v-for="restaurant in result.restaurants" :key="restaurant.id">
+        <div v-for="restaurant in result" :key="restaurant.id">
             <router-link :to="{name:'restaurantShow', params:{slug: restaurant.slug}}"> {{ restaurant.name }} </router-link>
         </div>
         <hr>
@@ -48,21 +48,22 @@ export default {
 
     methods: {
         searching() {
-            console.log(this.checkedTipologies)
-            axios
-                .get(`http://127.0.0.1:8000/api/restaurants/filter`,
-                {
-                    params: {
-                        tipology: this.checkedTipologies,
-                    }
-                })
-                .then(res => {
-                    console.log(res.data);
-                    this.result = res.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            if(!this.checkedTipologies.length == 0){
+                axios
+                    .get(`http://127.0.0.1:8000/api/restaurants/filter`,
+                    {
+                        params: {
+                            tipology: this.checkedTipologies,
+                        }
+                    })
+                    .then(res => {
+                        console.log(res.data);
+                        this.result = res.data;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
         },
 
         getCategories(){
