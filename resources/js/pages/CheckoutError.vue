@@ -1,7 +1,7 @@
 <template>
   <div class="payment-error container">
     <h1>Mi dispiace, il pagamento non è avvenuto correttamente</h1>
-    <img src="/site_img/error_avocado.png" alt="happy-avocado">
+    <img src="/site_img/error_avocado.png" alt="error avocado">
     <h2>Ricontrolla i dati inseriti o ritenta con un altra carta</h2>
     <h2>Grazie</h2>
       <router-link :to="{name:'home'}">
