@@ -60,7 +60,6 @@ export default {
             },
             errors: {},
             any_errors: false,
-
         }
     },
     mounted(){
@@ -79,6 +78,7 @@ export default {
             })
         },
         onSuccess (payload) {
+            this.loader = false;
             this.form.token = payload.nonce;
             this.buy();
         },
@@ -95,6 +95,7 @@ export default {
                         alert("attenzione, qualche dato non è inserito correttamente: ");
                         this.errors = res.data.errors;
                         this.any_errors= true;
+                        this.loader = true;
                     }else{
                         this.any_errors= false;
                         return this.$router.push("/checkout/success");

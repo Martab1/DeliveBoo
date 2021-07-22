@@ -2224,6 +2224,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     onSuccess: function onSuccess(payload) {
+      this.loader = false;
       this.form.token = payload.nonce;
       this.buy();
     },
@@ -2247,6 +2248,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       alert("attenzione, qualche dato non è inserito correttamente: ");
                       _this2.errors = res.data.errors;
                       _this2.any_errors = true;
+                      _this2.loader = true;
                     } else {
                       _this2.any_errors = false;
                       return _this2.$router.push("/checkout/success");
