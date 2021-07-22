@@ -8,15 +8,27 @@
                     <input   
                     type="text" id="payer_name" 
                     v-model="form.payer_name">
+                    <!-- ERROR -->
+                <div v-show="any_errors">
+                    <span v-for="error in errors['payer_name']" :key="error" >{{error}}</span>
+                </div>
                 </div>
                 <div>
                     <label for="payer_email">Email: </label>
                     <input type="text" required id="payer_email" v-model="form.payer_email">
+                    <!-- ERROR -->
+                    <div v-show="any_errors">
+                    <span v-for="error in errors['payer_email']" :key="error" >{{error}}</span>
+                    </div>
                 </div>
                 <div>
                     <label for="payer_address">Address: </label>
                     <input 
                     type="text" id="payer_address" v-model="form.payer_address">
+                    <!-- ERROR -->
+                     <div v-show="any_errors">
+                    <span v-for="error in errors['payer_address']" :key="error" >{{error}}</span>
+                    </div>
                 </div>
                 <v-braintree
                     locale="it_IT"
@@ -46,6 +58,8 @@ export default {
                 payer_email : "",
                 payer_address : "",
             },
+            errors: {},
+            any_errors: false,
 
         }
     },
@@ -70,14 +84,21 @@ export default {
         },
         onError (error) {
             let message = error.message;
-            alert("messaggio1 " + message);
+            alert("dati della carta non inseriti correttamente");
         },
         async buy(){
             try{
                 axios.post("http://127.0.0.1:8000/api/orders/make/payment", {...this.form})
                 .then(res=>{
                     localStorage.clear();
-                    return this.$router.push("/checkout/success");
+                    if(res.data.errors){
+                        alert("attenzione, qualche dato non è inserito correttamente: ");
+                        this.errors = res.data.errors;
+                        this.any_errors= true;
+                    }else{
+                        this.any_errors= false;
+                        return this.$router.push("/checkout/success");
+                    }
                 })
                 .catch(err=>{
                     alert("mi dispiace...qualcosa è andato storto....");
@@ -95,7 +116,6 @@ export default {
                     qty : product.qty,
                     });
             })
-            console.log(this.$route.params.orderTotal);
         }
     }
 }

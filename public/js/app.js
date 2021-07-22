@@ -2163,6 +2163,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Payment",
   data: function data() {
@@ -2176,7 +2188,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         payer_name: "",
         payer_email: "",
         payer_address: ""
-      }
+      },
+      errors: {},
+      any_errors: false
     };
   },
   mounted: function mounted() {
@@ -2215,7 +2229,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     onError: function onError(error) {
       var message = error.message;
-      alert("messaggio1 " + message);
+      alert("dati della carta non inseriti correttamente");
     },
     buy: function buy() {
       var _this2 = this;
@@ -2228,7 +2242,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 try {
                   axios.post("http://127.0.0.1:8000/api/orders/make/payment", _objectSpread({}, _this2.form)).then(function (res) {
                     localStorage.clear();
-                    return _this2.$router.push("/checkout/success");
+
+                    if (res.data.errors) {
+                      alert("attenzione, qualche dato non è inserito correttamente: ");
+                      _this2.errors = res.data.errors;
+                      _this2.any_errors = true;
+                    } else {
+                      _this2.any_errors = false;
+                      return _this2.$router.push("/checkout/success");
+                    }
                   })["catch"](function (err) {
                     alert("mi dispiace...qualcosa è andato storto....");
                     return _this2.$router.push("/checkout/error");
@@ -2255,7 +2277,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           qty: product.qty
         });
       });
-      console.log(this.$route.params.orderTotal);
     }
   }
 });
@@ -27747,7 +27768,25 @@ var render = function() {
                       _vm.$set(_vm.form, "payer_name", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.any_errors,
+                        expression: "any_errors"
+                      }
+                    ]
+                  },
+                  _vm._l(_vm.errors["payer_name"], function(error) {
+                    return _c("span", { key: error }, [_vm._v(_vm._s(error))])
+                  }),
+                  0
+                )
               ]),
               _vm._v(" "),
               _c("div", [
@@ -27774,7 +27813,25 @@ var render = function() {
                       _vm.$set(_vm.form, "payer_email", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.any_errors,
+                        expression: "any_errors"
+                      }
+                    ]
+                  },
+                  _vm._l(_vm.errors["payer_email"], function(error) {
+                    return _c("span", { key: error }, [_vm._v(_vm._s(error))])
+                  }),
+                  0
+                )
               ]),
               _vm._v(" "),
               _c("div", [
@@ -27801,7 +27858,25 @@ var render = function() {
                       _vm.$set(_vm.form, "payer_address", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.any_errors,
+                        expression: "any_errors"
+                      }
+                    ]
+                  },
+                  _vm._l(_vm.errors["payer_address"], function(error) {
+                    return _c("span", { key: error }, [_vm._v(_vm._s(error))])
+                  }),
+                  0
+                )
               ]),
               _vm._v(" "),
               _c("v-braintree", {

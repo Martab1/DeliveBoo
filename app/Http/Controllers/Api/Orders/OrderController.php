@@ -9,6 +9,7 @@ use App\Order;
 use App\Product;
 use App\Restaurant;
 use Braintree\Gateway;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -24,8 +25,26 @@ class OrderController extends Controller
         return response()->json($data,200);
     }
 
-    public function makePayment(OrderRequest $request, Gateway $gateway){
+    public function makePayment(Request $request, Gateway $gateway){
 
+        $validator = Validator::make($request->all(),[
+            "token" => "required",
+            "products" => "required",
+            "restaurantId" => "required",
+            'payer_name' => "required|string|min:3|max:50",
+            'payer_email' => "required",
+            'payer_address' => "required|min:3|max:200",
+        ],[
+            'required'=> 'Questo campo è obbligatorio',
+            'name.max'=> 'Massimo :max caratteri concessi',
+            'min'=> 'Minimo :min caratteri richiesti',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'errors' => $validator->errors()
+            ]);
+        }
+        
         $this_restaurant = Restaurant::find($request->restaurantId);
         $amount = 0;
         $all_products = [];
