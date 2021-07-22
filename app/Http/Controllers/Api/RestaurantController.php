@@ -10,14 +10,33 @@ use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
+    /* TIPOLOGIE RISTORANTI */
     public function index(Request $request){
-        $search = $request->query('tipology');
-        
-        $tipology = Tipology::where("name", "like" , "%".$search."%")->with(["restaurants"])->get()->first();
-        
-        return response()->json($tipology);
+        /* array con tutte le tipologie dei ristoranti */
+        $tipologies = Tipology::all();
+
+        /* dati da passare in json */
+        $data = [
+            'tipologies' => $tipologies
+        ];
+       
+        return response()->json($data);
     }
 
+    /* FILTRAGGIO RISTORANTI */
+    public function filteredRestaurants(Request $request){
+        /* array di tipologie ottenute dalle checkbox */
+       $req = $request['tipology'];
+
+        /* chiamata a db con relazione */
+        $restaurants = Restaurant::whereHas('tipologies', function($q) use($req) {
+            $q->whereIn('tipology_id', $req);
+        })->get();
+
+        return response()->json($restaurants);
+    }
+
+    /* SHOW PER IL MENU RISTORANTE */
     public function show($slug){
         $restaurant = Restaurant::where("slug", $slug)->with(["tipologies"])->get()->first();
        
