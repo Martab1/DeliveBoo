@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api\Orders;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
+use App\Mail\SendMail;
 use App\Order;
 use App\Product;
 use App\Restaurant;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -26,9 +28,13 @@ class OrderController extends Controller
 
         $this_restaurant = Restaurant::find($request->restaurantId);
         $amount = 0;
+        $all_products = [];
         foreach($request->products as $product){
             $this_product = Product::where("id", $product['productId'])->where("restaurant_id", $this_restaurant->id)->get()->first();
             $amount +=  $this_product->price * $product['qty'];
+            // PUSH IN ARRAY FOR DATA EMAIL
+            $this_product["qty"] = $product['qty'];
+            array_push($all_products, $this_product);
         }
 
         // POPULATE ORDER TABLE
@@ -55,6 +61,16 @@ class OrderController extends Controller
                 "success" => true,
                 "message" => "Transazione avvenuta con successo",
             ];
+
+            $this_order =  [
+                "total" => $amount,
+                "restaurant_name" => $this_restaurant->name,
+                "payer_name" => $request->payer_name,
+                "payer_address" => $request->payer_address,
+                "all_products" => $all_products,
+            ];
+
+            Mail::to($request->payer_email)->send(new SendMail($this_order));
             return response()->json($data,200);
         }else{
             $data = [
