@@ -2056,32 +2056,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
     return {
       search: "",
-      result: []
+      result: [],
+      tipologies: undefined,
+      checkedTipologies: []
     };
+  },
+  created: function created() {
+    this.getCategories();
   },
   methods: {
     searching: function searching() {
       var _this = this;
 
-      if (this.search == "") {
-        this.result = [];
-      } else {
-        axios.get("http://127.0.0.1:8000/api/restaurants", {
-          params: {
-            tipology: this.search
-          }
-        }).then(function (res) {
-          _this.result = res.data;
-          console.log(_this.result);
-        })["catch"](function (err) {
-          console.log(err);
-        });
-      }
+      console.log(this.checkedTipologies);
+      axios.get("http://127.0.0.1:8000/api/restaurants/filter", {
+        params: {
+          tipology: this.checkedTipologies
+        }
+      }).then(function (res) {
+        console.log(res.data);
+        _this.result = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    getCategories: function getCategories() {
+      var _this2 = this;
+
+      axios.get('http://127.0.0.1:8000/api/restaurants').then(function (res) {
+        _this2.tipologies = res.data.tipologies;
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -27636,6 +27659,60 @@ var render = function() {
             return _vm.$forceUpdate()
           }
         }
+      }),
+      _vm._v(" "),
+      _c("div", [_vm._v("Checked: " + _vm._s(_vm.checkedTipologies))]),
+      _vm._v(" "),
+      _vm._l(_vm.tipologies, function(tipology) {
+        return _c("div", { key: "tipology" + tipology.id }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.checkedTipologies,
+                expression: "checkedTipologies"
+              }
+            ],
+            attrs: { type: "checkbox", name: tipology, id: tipology.id },
+            domProps: {
+              value: tipology.id,
+              checked: Array.isArray(_vm.checkedTipologies)
+                ? _vm._i(_vm.checkedTipologies, tipology.id) > -1
+                : _vm.checkedTipologies
+            },
+            on: {
+              change: [
+                function($event) {
+                  var $$a = _vm.checkedTipologies,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = tipology.id,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.checkedTipologies = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.checkedTipologies = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.checkedTipologies = $$c
+                  }
+                },
+                function($event) {
+                  return _vm.searching()
+                }
+              ]
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: tipology.id } }, [
+            _vm._v(_vm._s(tipology.name))
+          ])
+        ])
       }),
       _vm._v(" "),
       _vm._l(_vm.result.restaurants, function(restaurant) {
@@ -89327,9 +89404,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Teo e Robi\Desktop\DeliveBoo\resources\sass\guest.scss */"./resources/sass/guest.scss");
+__webpack_require__(/*! C:\Users\Alex\Desktop\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Alex\Desktop\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Alex\Desktop\DeliveBoo\resources\sass\guest.scss */"./resources/sass/guest.scss");
 
 
 /***/ })
