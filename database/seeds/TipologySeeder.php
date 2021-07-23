@@ -22,6 +22,8 @@ class TipologySeeder extends Seeder
             "vietnamita", "vegano" , "vegetariano"
         ];
 
+        sort($tipologies);
+
         foreach($tipologies as $tipology){
 
             $new_tipology = new Tipology();

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api\Orders;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
+use App\Mail\SendAdminMail;
 use App\Mail\SendMail;
 use App\Order;
 use App\Product;
 use App\Restaurant;
+use App\User;
 use Braintree\Gateway;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -81,15 +83,21 @@ class OrderController extends Controller
                 "message" => "Transazione avvenuta con successo",
             ];
 
+            $user= User::where("id", $this_restaurant["user_id"])->get()->first();
+
             $this_order =  [
                 "total" => $amount,
                 "restaurant_name" => $this_restaurant->name,
                 "payer_name" => $request->payer_name,
                 "payer_address" => $request->payer_address,
                 "all_products" => $all_products,
+                "deliveboo_client" => $user['name'],
             ];
 
             Mail::to($request->payer_email)->send(new SendMail($this_order));
+
+            Mail::to($user['email'])->send(new SendAdminMail($this_order));
+
             return response()->json($data,200);
         }else{
             $data = [
