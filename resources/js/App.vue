@@ -1,22 +1,27 @@
 <template>
     <v-app class="app">
-        <!-- HEADER -->
-        <h1><a href="http://127.0.0.1:8000">Vue single page application</a></h1>
-        <a href="http://127.0.0.1:8000/admin">ADMIN</a>
-        <!-- FINE HEADER -->
 
-        <!-- MAIN -->
+        <Header/>
+
         <main>
             <router-view></router-view>
         </main>
-
-        <!-- FOOTER -->
+ 
+       <Footer/>
+       
     </v-app>
 </template>
 
 <script>
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+
 export default {
     name: "App",
+    components:{
+        Header,
+        Footer,
+    }
 };
 </script>
 
