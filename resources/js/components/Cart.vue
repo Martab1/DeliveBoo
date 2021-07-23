@@ -1,13 +1,15 @@
 <template>
     <section>
-        <div>
+        <div class="container"> 
             <p>{{ product.name }} {{ product.total }}€</p>
             <span>Quantità {{ product.qty }}</span>
+            
 
             <v-btn
                 elevation="3"
                 icon
                 class="btn "
+                id="color"
                 @click.prevent="$emit('clickRemove', product)"
             >
                 <i class="fas color-icon fa-minus"></i>
@@ -16,10 +18,12 @@
                 elevation="3"
                 icon
                 class="btn"
+                id="color"
                 @click.prevent="$emit('clickAdd', product)"
                 ><i class="fas  color-icon fa-plus"></i
             ></v-btn>
         </div>
+        
     </section>
 </template>
 
@@ -36,6 +40,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../sass/vars.scss';
+
+// .container{
+//     padding: 40pX;
+// }
 /* .fakew-h{
     width:400px;
     height: 500px;
@@ -47,4 +56,8 @@ export default {
 .btn{
     background:#F5DC45;
 } */
+
+#color{
+    color:#fff;
+}
 </style>
