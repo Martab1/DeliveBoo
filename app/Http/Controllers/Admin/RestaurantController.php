@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\Tipology;
 use App\Restaurant;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -213,6 +215,21 @@ class RestaurantController extends Controller
         }else{
             abort(404);
         }
+    }
 
+    public function orders($id){
+        $restaurant = Restaurant::find($id);
+        if(Auth::user()->id == $restaurant->user_id){
+            $orders = Order::where('restaurant_id', $id)->get();
+        }else{
+            abort(404);
+        }
+
+        foreach($orders as $order){
+            $order["date"] = Carbon::parse($order->created_at)->format('d-m-Y');
+            $order["hour"] = Carbon::parse($order->created_at)->format('H:i');
+        };
+
+        return view('admin.restaurant.orders', compact('orders','id'));
     }
 }
