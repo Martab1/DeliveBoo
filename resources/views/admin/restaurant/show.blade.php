@@ -34,12 +34,15 @@
 
             {{-- BUTTONS --}}
         </div>
-        <a class="btn btn-success m-4" href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
-        <a class="btn btn-warning m-4" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
-            locale</a>
-        <form class="delete-post-form" action=" {{ route('admin.restaurant.destroy', $my_restaurant->id) }}" method="POST">
-            @csrf
-            @method("DELETE")
-            <input class="btn btn-danger" type="submit" value="cancella">
-        </form>
+        <div class="d-flex justify-content-center">
+                <a class="btn btn-primary m-4" href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
+                <a class="btn btn-warning m-4" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
+                    locale</a>
+                <a class="btn btn-success m-4" href="{{ route('admin.restaurant.orders', $my_restaurant->id) }}">I tuoi ordini</a>
+            <form class="delete-post-form" action=" {{ route('admin.restaurant.destroy', $my_restaurant->id) }}" method="POST">
+                @csrf
+                @method("DELETE")
+                <input class="btn btn-danger m-4" type="submit" value="cancella ristorante">
+            </form>
+        </div>
     @endsection

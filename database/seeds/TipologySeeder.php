@@ -19,8 +19,10 @@ class TipologySeeder extends Seeder
             "buffet", "osteria" , "taverna" , "greco", "trattoria", 
             "teppanyaki-ya", "kosher", "kebab", "gelateria", "pub" , "pasticceria",
             "speakeasy", "birreria", "fritti" , "nepalese", "poke", "rosticceria", 
-            "vietnamita", "vegano" , "vegetariano"
+            "vietnamita", "vegano" , "vegetariano", "tex-mex"
         ];
+
+        sort($tipologies);
 
         foreach($tipologies as $tipology){
 

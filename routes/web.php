@@ -25,6 +25,7 @@ Route::prefix('admin')
             //rotte home admin
             Route::get('/', 'HomeController@index')->name('home');
             //controller restaurant
+            Route::get('orders/{id}', ['as' => 'restaurant.orders', 'uses' => 'RestaurantController@orders']);
             Route::resource('/restaurant', "RestaurantController");
             // home products
             Route::get('products/{id}', ['as' => 'product.index', 'uses' => 'ProductController@index']);

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="container d-flex justify-content-between">
+    <div class="" >
+        <div class="d-flex">
             <SingleRestaurant
                 :product="product"
                 :my_categories="my_categories"
@@ -10,8 +10,8 @@
             />
 
             <!-- Carrello -->
-            <v-card elevation="2" class="d-flex justify-space-between">
-                <div class="fakew-h cart">
+            <div >
+                <div class="fakew-h cart  container-cart">
                     <h2 class="text-uppercase text-center mb-6">
                         il tuo carrello
                     </h2>
@@ -25,8 +25,9 @@
                         @clickRemove="remove"
                         @clickRemoveCart="removeCart"
                     />
+                    <v-divider class="mt-5 mb-5"></v-divider>
                     <div class="text-center">
-                        <v-chip filter class="text-center">
+                        <v-chip filter class="text-center font-w ">
                             Totale {{ total }}€
                         </v-chip>
                     </div>
@@ -34,14 +35,15 @@
                         Non hai ancora aggiunto alcun prodotto. Quando lo farai,
                         compariranno qui!
                     </div>
-                    <div v-else class="d-flex justify-end ">
+                    <div v-else class="d-flex justify-space-between  mt-8">
                         <v-btn
                             elevation="3"
-                            class="mt-5 mr-3 btn d-inline"
+                            class="mt-5 mr-3 btn d-inline  "
+                            id="color"
                             @click="removeCart(cart)"
                             >Elimina</v-btn
                         >
-                        <v-btn elevation="3" class="mt-5 d-inline">
+                        <v-btn elevation="3" class="mt-5 d-inline"  id="color">
                             <router-link
                                 class="no-decoration"
                                 :to="{
@@ -57,7 +59,7 @@
                         </v-btn>
                     </div>
                 </div>
-            </v-card>
+            </div>
         </div>
     </div>
 </template>
@@ -212,22 +214,39 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-    justify-content: space-between;
-}
+@import '../../sass/vars.scss';
+@import '../../sass/general.scss';
+
 /* Carrello*/
+
+.container-cart{
+    padding: 30px;
+    color: #fff;
+}
 .fakew-h {
     width: 400px;
-    /*margin: 18px 0 16px;*/
+    height:500px;
     border-radius: 15px;
     box-shadow: 3px 2px 4px darkred;
 }
 .cart {
-    background: #70b5b3;
-    overflow: scroll;
+    background: $layout-color;
+   overflow: auto;
 }
 .no-decoration {
     text-decoration: none;
     color: black;
+}
+
+#color{
+    background:$btn-color;
+}
+
+#color:hover{
+    background:$btn-hover;
+}
+
+.font-w{
+   font-weight: 300;
 }
 </style>
