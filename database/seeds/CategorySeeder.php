@@ -13,10 +13,24 @@ class CategorySeeder extends Seeder
     public function run()
     {
          $categories = [
-            "antipasti", "primi", "frutta", "dessert", 
-            "street food", "pizze" , "piatti unici" , "specialità" ,
-            "secondi di carne" , "secondi di pesce" , "secondi vegetariani" , "contorni",
-            "amari" , "vini", "birre" , "cocktails" , "cocktails analcolici", "bevande",
+            "antipasti", 
+            "primi",
+            "secondi di carne",
+            "secondi di pesce" , 
+            "secondi vegetariani",
+            "specialità" ,
+            "piatti unici" , 
+            "contorni",
+            "street food", 
+            "pizze" , 
+            "bevande", 
+            "vini", 
+            "birre" , 
+            "cocktails" , 
+            "cocktails analcolici", 
+            "amari" , 
+            "frutta", 
+            "desserts",
         ];
 
         foreach($categories as $category){
