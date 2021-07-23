@@ -1,12 +1,11 @@
 <template>
     <div class="all-container container">
         <div class="payment">
-            <div class="section-payment" v-if=loader>
-                <h1>Completa il tuo acquisto</h1>
+            <div class="section-payment" v-if="loader">
+                <h2>Completa il tuo acquisto</h2>
                 <img src="/site_img/cool_avocado.png" alt="cool avocado">
                 <v-form class="sub-container">
                             <template>
-
                                 <!-- INPUT NAME -->
                                 <v-text-field
                                 class="input"
@@ -64,7 +63,7 @@
                                 </div>
 
                             </template>
-                        <h2>Importo complessivo: {{this.$route.params.orderTotal}} 
+                        <h2 class="total-payment">Importo complessivo: {{this.$route.params.orderTotal}} 
                             <span v-if="!this.$route.params.orderTotal">0</span> €
                         </h2>
                         <v-braintree
@@ -79,6 +78,28 @@
                     </template>
                         </v-braintree>
                 </v-form>
+            </div>
+            <div v-else class="loading">
+                <v-progress-circular
+                :size="70"
+                color="#C4007A"
+                indeterminate
+                ></v-progress-circular>
+            </div>
+        </div>
+        <div class="my_order">
+            <div class="h-100" v-if="loader" >
+                <h2>Il tuo ordine</h2>
+                <div class="sub-container-my-order">
+                    <h5 v-for="article in my_order" :key="article.id">
+                        <div class="container-articles">
+                            <div class="article-name">{{article.name}}</div>
+                            <div class="article-qty">qtà: {{article.qty}}</div>
+                            <div class="article-total">€ {{article.total}}</div>
+                        </div>
+                    </h5>
+                </div>
+                <h4 class="slogan">Comleta l'acquisto e ricevilo subito a casa!</h4>
             </div>
             <div v-else class="loading">
                 <v-progress-circular
@@ -108,13 +129,20 @@ export default {
             },
             errors: {},
             any_errors: false,
+            my_order : [],
         }
     },
     mounted(){
+        this.controll();
         this.generateKey();
         this.paymentCart();
     },
     methods:{
+        controll(){
+            if(!this.$route.params.restaurantId){
+                return this.$router.push("*");
+            }
+        },
         async generateKey(){
             this.loader = false;
             await axios.get("http://127.0.0.1:8000/api/orders/generate")
@@ -140,7 +168,6 @@ export default {
                 .then(res=>{
                     localStorage.clear();
                     if(res.data.errors){
-                        alert("attenzione, qualche dato non è inserito correttamente: ");
                         this.errors = res.data.errors;
                         this.any_errors= true;
                         this.loader = true;
@@ -150,7 +177,6 @@ export default {
                     }
                 })
                 .catch(err=>{
-                    alert("mi dispiace...qualcosa è andato storto....");
                     return this.$router.push("/checkout/error");
                 });
             }catch(error){
@@ -159,13 +185,14 @@ export default {
         },
         paymentCart(){
             let contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
+            this.my_order = contents;
             contents.forEach(product=>{
                 this.form.products.push({
                     productId : product.id,
                     qty : product.qty,
                     });
             })
-        }
+        },
     },
 }
 </script>
@@ -187,17 +214,15 @@ export default {
     height: 100%;
     background-color: $content-color;
     border: 2px solid $layout-color;
+    border-radius: 8px;
+    padding-top: 20px;
 }
+
 
 img{
     width: 7%;
     margin-bottom: 8px;
     margin-top: 8px;
-}
-
-h2{
-    color: #0f0e17;
-    margin-top: 30px;
 }
 
 .input{
@@ -226,6 +251,11 @@ h2{
     max-width: 70%;
 }
 
+.total-payment{
+    margin-top: 30px;
+    color: $special-black;
+}
+
 #btn{
     background-color: $layout-color;
 }
@@ -235,7 +265,61 @@ h2{
     @include flex("center");
 }
 
+.my_order{
+    margin-left: 2%;
+    padding: 20px;
+    color: white;
+    width: 28%;
+    height: 100%;
+    background-color: $layout-color;
+    border-radius: 8px;
+    border: 2px solid $special-black;
+    h2{
+        text-align: center;
+    }
+}
+
+.h-100{
+    height: 100%;
+}
+
+.sub-container-my-order{
+    height: 80%;
+    margin-top: 30px;
+    border: 10px double $content-color;
+    padding: 50px 20px;
+    border-radius: 20px;
+    overflow-y: auto
+}
+
+.container-articles{
+    @include flex("flex");
+    border-bottom: 1px dotted white;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    .article-name{
+        width: 60%;
+    };
+    .article-qty{
+        width: 20%;
+    };
+    .article-total{
+        width: 20%;
+        text-align: right;
+    }
+}
+
+.slogan{
+    margin-top:20px;
+    text-align: center;
+}
 // PER I MEDIA QUERY FARE SPARIRE CARRELLO
+@media screen and (max-width:1500px){
+    .my_order{
+        font-size:0.7rem;
+        padding: 5px;
+    }
+}
 @media screen and (max-width:999px){
     .payment{
         width: 100%;
@@ -243,6 +327,9 @@ h2{
     .sub-container{
         max-width: 90%;
         padding: 8px;
+    }
+    .my_order{
+        display: none;
     }
 }
 

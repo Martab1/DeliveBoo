@@ -2466,6 +2466,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Payment",
   data: function data() {
@@ -2481,14 +2502,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         payer_address: ""
       },
       errors: {},
-      any_errors: false
+      any_errors: false,
+      my_order: []
     };
   },
   mounted: function mounted() {
+    this.controll();
     this.generateKey();
     this.paymentCart();
   },
   methods: {
+    controll: function controll() {
+      if (!this.$route.params.restaurantId) {
+        return this.$router.push("*");
+      }
+    },
     generateKey: function generateKey() {
       var _this = this;
 
@@ -2536,7 +2564,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     localStorage.clear();
 
                     if (res.data.errors) {
-                      alert("attenzione, qualche dato non è inserito correttamente: ");
                       _this2.errors = res.data.errors;
                       _this2.any_errors = true;
                       _this2.loader = true;
@@ -2545,7 +2572,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       return _this2.$router.push("/checkout/success");
                     }
                   })["catch"](function (err) {
-                    alert("mi dispiace...qualcosa è andato storto....");
                     return _this2.$router.push("/checkout/error");
                   });
                 } catch (error) {
@@ -2564,6 +2590,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       var contents = JSON.parse(localStorage.getItem(this.$route.params.restaurantId));
+      this.my_order = contents;
       contents.forEach(function (product) {
         _this3.form.products.push({
           productId: product.id,
@@ -25810,7 +25837,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".all-container[data-v-be3450e6] {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  height: calc(100% - 40px);\n  display: flex;\n}\n.payment[data-v-be3450e6] {\n  text-align: center;\n  color: white;\n  width: 70%;\n  height: 100%;\n  background-color: #D989AD;\n  border: 2px solid #70B5B3;\n}\nimg[data-v-be3450e6] {\n  width: 7%;\n  margin-bottom: 8px;\n  margin-top: 8px;\n}\nh2[data-v-be3450e6] {\n  color: #0f0e17;\n  margin-top: 30px;\n}\n.input[data-v-be3450e6] {\n  background-color: #eff0f3;\n  margin: 0;\n}\n.alert[data-v-be3450e6] {\n  background-color: #eff0f3;\n  margin: 0;\n}\n.braintree[data-v-be3450e6] {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border: transparent;\n  background-color: #eff0f3;\n}\n.sub-container[data-v-be3450e6] {\n  background-color: #eff0f3;\n  border: 2px solid #70B5B3;\n  padding: 20px;\n  margin: 0 auto;\n  max-width: 70%;\n}\n#btn[data-v-be3450e6] {\n  background-color: #70B5B3;\n}\n.loading[data-v-be3450e6] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (max-width: 999px) {\n.payment[data-v-be3450e6] {\n    width: 100%;\n}\n.sub-container[data-v-be3450e6] {\n    max-width: 90%;\n    padding: 8px;\n}\n}\n@media screen and (max-width: 438px) {\nimg[data-v-be3450e6] {\n    width: 15%;\n}\n}", ""]);
+exports.push([module.i, ".all-container[data-v-be3450e6] {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  height: calc(100% - 40px);\n  display: flex;\n}\n.payment[data-v-be3450e6] {\n  text-align: center;\n  color: white;\n  width: 70%;\n  height: 100%;\n  background-color: #D989AD;\n  border: 2px solid #70B5B3;\n  border-radius: 8px;\n  padding-top: 20px;\n}\nimg[data-v-be3450e6] {\n  width: 7%;\n  margin-bottom: 8px;\n  margin-top: 8px;\n}\n.input[data-v-be3450e6] {\n  background-color: #eff0f3;\n  margin: 0;\n}\n.alert[data-v-be3450e6] {\n  background-color: #eff0f3;\n  margin: 0;\n}\n.braintree[data-v-be3450e6] {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border: transparent;\n  background-color: #eff0f3;\n}\n.sub-container[data-v-be3450e6] {\n  background-color: #eff0f3;\n  border: 2px solid #70B5B3;\n  padding: 20px;\n  margin: 0 auto;\n  max-width: 70%;\n}\n.total-payment[data-v-be3450e6] {\n  margin-top: 30px;\n  color: #0f0e17;\n}\n#btn[data-v-be3450e6] {\n  background-color: #70B5B3;\n}\n.loading[data-v-be3450e6] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.my_order[data-v-be3450e6] {\n  margin-left: 2%;\n  padding: 20px;\n  color: white;\n  width: 28%;\n  height: 100%;\n  background-color: #70B5B3;\n  border-radius: 8px;\n  border: 2px solid #0f0e17;\n}\n.my_order h2[data-v-be3450e6] {\n  text-align: center;\n}\n.h-100[data-v-be3450e6] {\n  height: 100%;\n}\n.sub-container-my-order[data-v-be3450e6] {\n  height: 80%;\n  margin-top: 30px;\n  border: 10px double #D989AD;\n  padding: 50px 20px;\n  border-radius: 20px;\n  overflow-y: auto;\n}\n.container-articles[data-v-be3450e6] {\n  display: flex;\n  border-bottom: 1px dotted white;\n  padding-bottom: 10px;\n  margin-bottom: 10px;\n}\n.container-articles .article-name[data-v-be3450e6] {\n  width: 60%;\n}\n.container-articles .article-qty[data-v-be3450e6] {\n  width: 20%;\n}\n.container-articles .article-total[data-v-be3450e6] {\n  width: 20%;\n  text-align: right;\n}\n.slogan[data-v-be3450e6] {\n  margin-top: 20px;\n  text-align: center;\n}\n@media screen and (max-width: 1500px) {\n.my_order[data-v-be3450e6] {\n    font-size: 0.7rem;\n    padding: 5px;\n}\n}\n@media screen and (max-width: 999px) {\n.payment[data-v-be3450e6] {\n    width: 100%;\n}\n.sub-container[data-v-be3450e6] {\n    max-width: 90%;\n    padding: 8px;\n}\n.my_order[data-v-be3450e6] {\n    display: none;\n}\n}\n@media screen and (max-width: 438px) {\nimg[data-v-be3450e6] {\n    width: 15%;\n}\n}", ""]);
 
 // exports
 
@@ -28791,7 +28818,7 @@ var render = function() {
             "div",
             { staticClass: "section-payment" },
             [
-              _c("h1", [_vm._v("Completa il tuo acquisto")]),
+              _c("h2", [_vm._v("Completa il tuo acquisto")]),
               _vm._v(" "),
               _c("img", {
                 attrs: {
@@ -28993,7 +29020,7 @@ var render = function() {
                     )
                   ],
                   _vm._v(" "),
-                  _c("h2", [
+                  _c("h2", { staticClass: "total-payment" }, [
                     _vm._v(
                       "Importo complessivo: " +
                         _vm._s(this.$route.params.orderTotal) +
@@ -29038,6 +29065,50 @@ var render = function() {
             ],
             1
           )
+        : _c(
+            "div",
+            { staticClass: "loading" },
+            [
+              _c("v-progress-circular", {
+                attrs: { size: 70, color: "#C4007A", indeterminate: "" }
+              })
+            ],
+            1
+          )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "my_order" }, [
+      _vm.loader
+        ? _c("div", { staticClass: "h-100" }, [
+            _c("h2", [_vm._v("Il tuo ordine")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "sub-container-my-order" },
+              _vm._l(_vm.my_order, function(article) {
+                return _c("h5", { key: article.id }, [
+                  _c("div", { staticClass: "container-articles" }, [
+                    _c("div", { staticClass: "article-name" }, [
+                      _vm._v(_vm._s(article.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "article-qty" }, [
+                      _vm._v("qtà: " + _vm._s(article.qty))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "article-total" }, [
+                      _vm._v("€ " + _vm._s(article.total))
+                    ])
+                  ])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("h4", { staticClass: "slogan" }, [
+              _vm._v("Comleta l'acquisto e ricevilo subito a casa!")
+            ])
+          ])
         : _c(
             "div",
             { staticClass: "loading" },
