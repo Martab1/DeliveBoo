@@ -46,7 +46,7 @@ export default {
 @import '../../sass/vars.scss';
 
 .bg{
-    background: $layout-color;
+    background: $btn-color;
 }
 
 </style>

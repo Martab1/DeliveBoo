@@ -1,8 +1,9 @@
 <template>
     <div class="" >
-        <div class="d-flex">
+        <div class="container flex">
             <SingleRestaurant
                 :product="product"
+                :cart="cart.products"
                 :my_categories="my_categories"
                 :my_restaurant="my_restaurant"
                 @clickAdd="add"
@@ -10,21 +11,23 @@
             />
 
             <!-- Carrello -->
-            <div >
+            <div class="cart-w">
                 <div class="fakew-h cart  container-cart">
                     <h2 class="text-uppercase text-center mb-6">
                         il tuo carrello
                     </h2>
-                    <Cart
-                        v-for="product in cart.products"
-                        :key="product.id"
-                        :product="product"
-                        class="mb-3 text-capitalize"
-                        :total="total"
-                        @clickAdd="add"
-                        @clickRemove="remove"
-                        @clickRemoveCart="removeCart"
-                    />
+                    <div class="sub-container-my-order">
+                        <Cart
+                            v-for="product in cart.products"
+                            :key="product.id"
+                            :product="product"
+                            class="mb-3 text-capitalize"
+                            :total="total"
+                            @clickAdd="add"
+                            @clickRemove="remove"
+                            @clickRemoveCart="removeCart"
+                        />
+                    </div>
                     <v-divider class="mt-5 mb-5"></v-divider>
                     <div class="text-center">
                         <v-chip filter class="text-center font-w ">
@@ -216,22 +219,31 @@ export default {
 <style scoped lang="scss">
 @import '../../sass/vars.scss';
 @import '../../sass/general.scss';
+@import '../../sass/mixins.scss';
 
 /* Carrello*/
+.container{
+    padding: 30px;
+}
+.flex{
+    @include flex("flex");
+}
+
+.cart-w{
+    flex-basis: 25%;
+}
 
 .container-cart{
     padding: 30px;
     color: #fff;
 }
 .fakew-h {
-    width: 400px;
-    height:500px;
     border-radius: 15px;
-    box-shadow: 3px 2px 4px darkred;
 }
 .cart {
-    background: $layout-color;
-   overflow: auto;
+    background: $special-white;
+    overflow: auto;
+    color: $special-black2;
 }
 .no-decoration {
     text-decoration: none;
@@ -239,7 +251,8 @@ export default {
 }
 
 #color{
-    background:$btn-color;
+    background:$special-white;
+    color: $special-black2;
 }
 
 #color:hover{

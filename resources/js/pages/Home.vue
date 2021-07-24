@@ -5,9 +5,8 @@
             <!-- CHECKBOX CUCINE -->
             <aside>
                 <div class="kitchens">
-                    <h2>Cucine</h2>
                     <div class="check-container">
-                        <div class="w-25" v-for="tipology in tipologies" :key="'tipology'+tipology.id"> 
+                        <div id="label-div" class="w-25" v-for="tipology in tipologies" :key="'tipology'+tipology.id"> 
                             <label :class="{checked : checkedTipologies.includes(tipology.id)}" :for="tipology.id">{{tipology.name}}
                                 <input
                                     type="checkbox" 
@@ -22,9 +21,8 @@
                 </div>
             </aside>
 
-            <div class="restaurants">
-                <h2>Ristoranti</h2>
-                <div class="restaurants-container">
+            <div v-if="result.length != 0" class="restaurants">
+                <div class="restaurants-container" id="restaurant-div">
                     <!-- PAGE RESULTS -->
                     <div v-for="restaurant in result" :key="restaurant.id">
                         <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
@@ -36,6 +34,12 @@
                     </div>
 
                 </div>
+            </div>
+
+            <div v-else class="restaurants">
+                <h2>
+                I nostri suggerimenti
+                </h2>
             </div>
         </div>
     </div>
@@ -95,17 +99,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../sass/vars.scss';
 
-/* tablet */
-@media screen and (max-width: 878px){
-    router-link{
-        min-width: calc(100% / 4 - 100px);
-        display: block;
-    }
-    .card{
-        width: 100%;
-    }
-}
-
 body {
     padding: 10px;
     max-height: 100px;
@@ -114,7 +107,7 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    color: white;
+    color: $special-black2;
 
     aside{
         margin-bottom: 20px;
@@ -131,35 +124,27 @@ body {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-    
-            /* Hide scrollbar for IE, Edge and Firefox */
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            &::-webkit-scrollbar {
-                display: none;
-            }
-        
+
             div{
-                width: calc((100% / 9) - 14px);
+                width: calc((100% / 12) - 14px);
                 margin: 7px;
 
                 label{
                     display: block;
-                    color: grey;
+                    color: $special-black2;
                     transition: 0.3s;
+                    box-shadow: 0 1px 3px rgba(0,0,0,.2);
                     width: 100%;
-                    background-color: #f5e9e9;
+                    background-color: transparent;
                     border-radius: 18px;
                     padding: 2px 0;
                     text-align: center;
                     cursor: pointer;
-                    font-size: 12px;
+                    font-size: 14px;
 
                     &:hover{
-                        background-color: #fafafa;
-                        box-shadow: 0px 2px 5px $layout-color;
+                        background-color: $special-white;
+                        box-shadow: 0 2px 5px rgba(0,0,0,.2);
                     }
 
                     input{
@@ -169,12 +154,12 @@ body {
             }
 
             .checked{
-                background-color: $content-color;
+                background-color: #f0883df6;
                 color: white;
-                box-shadow: 0px 2px 5px $layout-color;
+                box-shadow: 0 2px 5px rgba(0,0,0,.2);
 
                 &:hover{
-                    background-color: #eea1c4;
+                    background-color: #f69b59f6;
                 }
             }
 
@@ -190,7 +175,7 @@ body {
 
 
         .restaurants-container > div{
-                width: calc(100% / 4 - 20px);
+                width: calc(100% / 5 - 20px);
                 margin: 10px;
         }
         .restaurants-container{
@@ -206,7 +191,7 @@ body {
                 width: 100%;
                 position: relative;
                 border-radius: 5px;
-                border: 1px solid $layout-color;
+                box-shadow: 0 2px 5px rgba(0,0,0,.8);
                 overflow: hidden;
 
                 .layover{
@@ -231,6 +216,8 @@ body {
                 }
 
                 img{
+                    object-fit: cover;
+                    height: 100%;
                     width: 100%;
                     transition: 0.3s;
                 }
@@ -241,5 +228,64 @@ body {
             }
         }    
     }
+
+
 }
+
+@media screen and (max-width:1903px){
+    #label-div{
+        width: calc((100% / 9) - 14px);
+    }
+
+    #restaurant-div > div{
+        width: calc((100% / 4) - 20px);
+    }
+}
+
+@media screen and (max-width:1263px){
+    #label-div{
+        width: calc((100% / 8) - 14px);
+        label{
+            font-size: 12px;
+        }
+    }
+
+    #restaurant-div > div{
+        width: calc((100% / 3) - 20px);
+    }
+}
+
+@media screen and (max-width:833px){
+    #label-div{
+        width: calc((100% / 7) - 14px);
+    }
+}
+
+@media screen and (max-width:705px){
+    #label-div{
+        width: calc((100% / 5) - 14px);
+    }
+    #restaurant-div > div{
+        width: calc((100% / 2) - 20px);
+    }
+}
+
+@media screen and (max-width:506px){
+    #label-div{
+        width: calc((100% / 3) - 14px);
+    }
+    #restaurant-div > div{
+        width: calc((100% / 2) - 20px);
+    }
+}
+
+@media screen and (max-width:506px){
+    #label-div{
+        width: calc((100% / 3) - 14px);
+    }
+    #restaurant-div > div{
+        width: calc((100% / 1) - 20px);
+    }
+}
+
 </style>
