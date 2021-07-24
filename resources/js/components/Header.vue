@@ -4,7 +4,7 @@
       absolute
       dark
       height="70"
-      bottom=0
+      :bottom='false'
       shrink-on-scroll
       prominent
       src="https://ilfattoalimentare.it/wp-content/uploads/2017/06/junk-food-hamburger-patatine-fast-food-pizza-dolci-Fotolia_130389179_Subscription_Monthly_M.jpg"

@@ -32,7 +32,31 @@
                             <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
                         </router-link>
                     </div>
+                </div>
 
+                <!-- PNAV PAG -->
+                <div class="pagination" v-if="pagination.maxPages != 1">  
+                    <button
+                        @click="searching(pagination.current - 1)"
+                        :disabled="pagination.current === 1"
+                        :class="{disable : pagination.current === 1}">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button
+                        v-for="i in pagination.maxPages"
+                        :key="'pag'+i"
+                        @click="searching(i)"
+                        :class="{active : pagination.current == i}">
+                        {{i}}
+                    </button>
+
+                    <button
+                        @click="searching(pagination.current + 1)"
+                        :disabled="pagination.current === pagination.maxPages"
+                        :class="{disable : pagination.current === pagination.maxPages}">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
@@ -40,6 +64,41 @@
                 <h2>
                 I nostri suggerimenti
                 </h2>
+                <div class="restaurants-container" id="restaurant-div">
+                    <div v-for="restaurant in firstRestaurants" :key="restaurant.id">
+                        <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
+                            <div class="layover">
+                                <h5>{{restaurant.name}}</h5>
+                            </div>
+                            <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                        </router-link>
+                    </div>
+                </div>
+
+                <!-- PNAV PAG -->
+                <div class="pagination" v-if="pagination.maxPages != 1"> 
+                    <button
+                        @click="getCategories(pagination.current - 1)"
+                        :disabled="pagination.current === 1"
+                        :class="{disable : pagination.current === 1}">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button
+                        v-for="i in pagination.maxPages"
+                        :key="'pag'+i"
+                        @click="getCategories(i)"
+                        :class="{active : pagination.current == i}">
+                        {{i}}
+                    </button>
+
+                    <button
+                        @click="getCategories(pagination.current + 1)"
+                        :disabled="pagination.current === pagination.maxPages"
+                        :class="{disable : pagination.current === pagination.maxPages}">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -50,10 +109,11 @@ export default {
     name: "Home",
     data() {
         return {
-            search: "",
             result: [],
             tipologies: undefined,
             checkedTipologies: [],
+            firstRestaurants: [],
+            pagination: {},
         };
     },
 
@@ -62,10 +122,10 @@ export default {
     },
 
     methods: {
-        searching() {
+        searching(page = 1) {
             if(!this.checkedTipologies.length == 0){
                 axios
-                    .get(`http://127.0.0.1:8000/api/restaurants/filter`,
+                    .get(`http://127.0.0.1:8000/api/restaurants/filter?page=${page}`,
                     {
                         params: {
                             tipology: this.checkedTipologies,
@@ -73,7 +133,12 @@ export default {
                     })
                     .then(res => {
                         console.log(res.data);
-                        this.result = res.data;
+                        this.result = res.data.data;
+                        this.pagination = {
+                            current: res.data.current_page,
+                            maxPages: res.data.last_page
+                        }
+                        
                     })
                     .catch(err => {
                         console.log(err);
@@ -83,10 +148,16 @@ export default {
             }
         },
 
-        getCategories(){
-            axios.get('http://127.0.0.1:8000/api/restaurants')
+        /* dara le categorie e i ristoranti a prima vista */
+        getCategories(page = 1){
+            axios.get(`http://127.0.0.1:8000/api/restaurants?page=${page}`)
             .then(res=>{
                 this.tipologies = res.data.tipologies;
+                this.firstRestaurants = res.data.restaurants.data;
+                this.pagination = {
+                    current: res.data.restaurants.current_page,
+                    maxPages: res.data.restaurants.last_page
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -99,6 +170,48 @@ export default {
 <style lang="scss" scoped>
 @import '../../sass/vars.scss';
 
+.pagination{
+    display: flex;
+    justify-content: center;
+    button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        margin: 0 2px;
+        background-color: transparent;
+        color: $special-black2;
+        transition: 0.3s;
+        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+
+        &:hover{
+            background-color: $special-white;
+            box-shadow: 0 2px 5px rgba(0,0,0,.2);
+        }
+    }
+
+    .active{
+        background-color: #f0883df6;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,.2);
+
+        &:hover{
+            background-color: #f69b59f6;
+        }
+    }
+
+    .disable{
+        background-color: #cecece;
+        box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+
+        &:hover{
+           background-color: #cecece;
+            box-shadow: inset 0 0 10px rgba(0,0,0,.2); 
+        }
+    }
+}
+
 body {
     padding: 10px;
     max-height: 100px;
@@ -106,9 +219,10 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 20px;
     color: $special-black2;
 
+    /* CUCINE */
     aside{
         margin-bottom: 20px;
         h2{
@@ -166,6 +280,7 @@ body {
         }
     }
 
+    /* RISTORANTI */
     .restaurants{
         flex-grow: 1;
         h2{
