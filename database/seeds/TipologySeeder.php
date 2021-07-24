@@ -13,13 +13,12 @@ class TipologySeeder extends Seeder
     public function run()
     {
         $tipologies = [
-            "italiano", "giapponese" , "messicano" , "cinese", "indiano" , 
-            "arabo" , "thailandese" , "pizzeria" , "steakhouse" , "fastfood"
-            , "fusion" , "paninoteca" , "ramen-ya" , "bistrot", "tavola calda",
-            "buffet", "osteria" , "taverna" , "greco", "trattoria", 
-            "teppanyaki-ya", "kosher", "kebab", "gelateria", "pub" , "pasticceria",
-            "speakeasy", "birreria", "fritti" , "nepalese", "poke", "rosticceria", 
-            "vietnamita", "vegano" , "vegetariano", "tex-mex"
+            "italiano", "giapponese" , "messicano" , 
+            "cinese", "indiano" , "poke" , 
+            "thailandese" , "pizzeria" , "fastfood", 
+            "osteria" , "greco", "trattoria", 
+            "vietnamita" , "kebab",  "pub" , 
+            "pasticceria", "birreria", "vegetariano",  
         ];
 
         sort($tipologies);
