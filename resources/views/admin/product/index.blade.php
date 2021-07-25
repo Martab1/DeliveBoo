@@ -11,8 +11,10 @@
     </div>
     <div class="container">
         <h1>Prodotti</h1>
-        <a class="btn btn-primary mb-4" href="{{ route('admin.product.create', $restaurant_id) }}">Aggiungi un nuovo prodotto</a>
-
+        <div>
+            <a class="btn btn-primary mb-4" href="{{ route('admin.product.create', $restaurant_id) }}">Aggiungi un nuovo prodotto</a>
+        </div>
+        <a class="btn btn-secondary" href="{{ route('admin.restaurant.show',  $restaurant_id) }}">Torna indietro</a>
         <div class="d-flex flex-wrap">
             @foreach ($my_products as $product)
                 <div class="card m-3" style="width: 15rem;">
@@ -47,5 +49,12 @@
                 </div>
             @endforeach
         </div>
+
+
+        <div class=" d-flex justify-content-center">
+            <a class="btn btn-outline-dark" href="#"><i class="fas fa-arrow-up"></i></a>
+        </div>
+            
+
     </div>
 @endsection
