@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center container ">
+    <div class="text-center container show">
         <h1 class="my-5 text-uppercase">{{ $my_restaurant->name }}</h1>
 
         <div class="d-flex">
@@ -31,21 +31,22 @@
                 @endif
                     alt="{{ $my_restaurant->name }}">
             </div>
-
-            {{-- BUTTONS --}}
         </div>
+
+        {{-- BUTTONS --}}
         <div class="m-4 d-flex justify-content-center">
-                <a class="btn btn-primary m-3 " href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
-                <a class="btn btn-warning m-3" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
+                <a class="btn btn-primary m-3 " id="my-btn" href="{{ route('admin.product.index', $my_restaurant->id) }}">Guarda i prodotti</a>
+                <a class="btn btn-warning m-3" id="my-btn" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
                     locale</a>
-                <a class="btn btn-success m-3" href="{{ route('admin.restaurant.orders', $my_restaurant->id) }}">I tuoi ordini</a>
+                <a class="btn btn-success m-3" id="my-btn" href="{{ route('admin.restaurant.orders', $my_restaurant->id) }}">I tuoi ordini</a>
             <form class="delete-post-form" action=" {{ route('admin.restaurant.destroy', $my_restaurant->id) }}" method="POST">
                 @csrf
                 @method("DELETE")
-                <input class="btn btn-danger m-3" type="submit" value="cancella ristorante">
+                <input class="btn btn-danger m-3" id="my-btn" type="submit" value="Cancella ristorante">
             </form>
         </div>
         <div class="d-flex justify-content-center">
             <a class="btn btn-secondary" href="{{ route('admin.home') }}">Torna indietro</a>
         </div>
-    @endsection
+    </div>
+@endsection

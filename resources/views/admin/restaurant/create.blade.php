@@ -94,9 +94,9 @@
             </div>
             
             <div class="form-group mx-2">
-                <input role="button" type="submit" class="btn btn-primary" value="salva">
+                <input role="button" type="submit" id="my-btn" class="btn btn-primary" value="salva">
             </div>
-
         </form>
+        
     </div>
 @endsection

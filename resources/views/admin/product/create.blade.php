@@ -108,8 +108,8 @@
                     </div>
 
                     <div class="form-group mt-4">
-                        <input role="button" type="submit" class="btn btn-primary">
-                        <a class="btn btn-secondary" href="{{ route('admin.restaurant.show',  $restaurant_id) }}">Torna indietro</a>
+                        <input role="button" type="submit" class="btn btn-primary" id="my-btn">
+                        <a class="btn btn-secondary" id="my-btn" href="{{ route('admin.restaurant.show',  $restaurant_id) }}">Torna indietro</a>
                     </div>
 
 
