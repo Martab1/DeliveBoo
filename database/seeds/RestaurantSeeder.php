@@ -2,6 +2,7 @@
 
 use App\Restaurant;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class RestaurantSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
-        $restaurants = [
+        $pizzerie = [
 
             // Pizzerie
             [
@@ -58,5 +59,18 @@ class RestaurantSeeder extends Seeder
 
             // Giapponese
         ];
+
+        foreach($pizzerie as $restaurant){
+            $new_record = new Restaurant();
+
+            $new_record->name = $restaurant['name'];
+            $new_record->slug = Str::slug( $new_record->name, '-' );
+            $new_record->address = $restaurant['address'];
+            $new_record->user_id = 1;
+            $new_record->phone_number = '0210010' + rand(0, 999);
+            
+            $new_record->save();
+            $new_record->tipologies()->sync([1,8]);
+        }
     }
 }
