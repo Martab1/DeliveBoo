@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center container">
-        <h1 class="my-5">{{ $my_restaurant->name }}</h1>
+    <div class="text-center container ">
+        <h1 class="my-5 text-uppercase">{{ $my_restaurant->name }}</h1>
 
         <div class="d-flex">
 
             {{-- INFORMATIONS --}}
-            <div class="informations w-50 d-flex flex-column justify-content-center">
+            <div class="informations w-50 d-flex flex-column justify-content-center  text-left">
                 <h3>Proprietario: {{ $user_auth->name }} {{ $user_auth->surname }}</h3>
                 <h3>P.iva: {{ $user_auth->vat_number }}</h3>
                 <hr>
-                <h3>Città: {{ $my_restaurant->address }}</h3>
+                <h3>Città: <span class="text-capitalize">{{ $my_restaurant->address }} </span> </h3>
                 <h3>Telefono: {{ $my_restaurant->phone_number }}</h3>
                 {{-- TIPOLOGIES --}}
                 <div class="tipologies my-4">
@@ -34,15 +34,18 @@
 
             {{-- BUTTONS --}}
         </div>
-        <div class="d-flex justify-content-center">
-                <a class="btn btn-primary m-4" href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
-                <a class="btn btn-warning m-4" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
+        <div class="m-4 d-flex justify-content-center">
+                <a class="btn btn-primary m-3 " href="{{ route('admin.product.index', $my_restaurant->id) }}">guarda i prodotti</a>
+                <a class="btn btn-warning m-3" href="{{ route('admin.restaurant.edit', $my_restaurant->id) }}">Modifica
                     locale</a>
-                <a class="btn btn-success m-4" href="{{ route('admin.restaurant.orders', $my_restaurant->id) }}">I tuoi ordini</a>
+                <a class="btn btn-success m-3" href="{{ route('admin.restaurant.orders', $my_restaurant->id) }}">I tuoi ordini</a>
             <form class="delete-post-form" action=" {{ route('admin.restaurant.destroy', $my_restaurant->id) }}" method="POST">
                 @csrf
                 @method("DELETE")
-                <input class="btn btn-danger m-4" type="submit" value="cancella ristorante">
+                <input class="btn btn-danger m-3" type="submit" value="cancella ristorante">
             </form>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-secondary" href="{{ route('admin.home') }}">Torna indietro</a>
         </div>
     @endsection

@@ -6,6 +6,7 @@
 
         <div class="row">
             <div class="col-md-8 offset-md-2">
+                
 
                 <form action="{{ route('admin.product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -110,6 +111,7 @@
                     <div class="form-group mt-4">
                         <input role="button" type="submit" class="btn btn-primary">
                     </div>
+
 
                 </form>
             </div>
