@@ -61,9 +61,6 @@
             </div>
 
             <div v-else class="restaurants">
-                <h2>
-                I nostri suggerimenti
-                </h2>
                 <div class="restaurants-container" id="restaurant-div">
                     <div v-for="restaurant in firstRestaurants" :key="restaurant.id">
                         <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">

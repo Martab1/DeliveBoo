@@ -86,7 +86,6 @@ export default {
   }
   #title{
     font-size: 2.7rem;
-    color: #ff8e3c;
   }
 }
 

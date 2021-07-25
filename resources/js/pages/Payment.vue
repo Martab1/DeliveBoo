@@ -1,10 +1,9 @@
 <template>
     <div class="all-container container">
-        <div class="payment">
+        <!-- <div class="payment"> -->
             <div class="section-payment" v-if="loader">
-                <h2>Completa il tuo acquisto</h2>
-                <img src="/site_img/cool_avocado.png" alt="cool avocado">
                 <v-form class="sub-container">
+                    <h2>Completa il tuo acquisto</h2>
                             <template>
                                 <!-- INPUT NAME -->
                                 <v-text-field
@@ -69,7 +68,7 @@
                         <v-braintree
                             class="braintree"
                             locale="it_IT"
-                            vaultManager="true"
+                            :vaultManager="true"
                             :authorization=tokenApi
                             @success="onSuccess"
                             @error="onError"
@@ -84,29 +83,30 @@
             <div v-else class="loading">
                 <v-progress-circular
                 :size="70"
-                color="#C4007A"
+                color="#ff8e3c"
                 indeterminate
                 ></v-progress-circular>
             </div>
-        </div>
+        <!-- </div> -->
         <div class="my_order">
             <div class="h-100" v-if="loader" >
                 <h2>Il tuo ordine</h2>
                 <div class="sub-container-my-order">
-                    <h5 v-for="article in my_order" :key="article.id">
+                    <span v-for="article in my_order" :key="article.id">
                         <div class="container-articles">
                             <div class="article-name">{{article.name}}</div>
                             <div class="article-qty">qtà: {{article.qty}}</div>
                             <div class="article-total">€ {{article.total}}</div>
                         </div>
-                    </h5>
+                            <v-divider></v-divider>
+                    </span>
                 </div>
-                <h4 class="slogan">Comleta l'acquisto e ricevilo subito a casa!</h4>
+                <h4 class="slogan">Completa l'acquisto e ricevilo subito a casa!</h4>
             </div>
             <div v-else class="loading">
                 <v-progress-circular
                 :size="70"
-                color="#C4007A"
+                color="#ff8e3c"
                 indeterminate
                 ></v-progress-circular>
             </div>
@@ -138,11 +138,6 @@ export default {
         this.controll();
         this.generateKey();
         this.paymentCart();
-        braintree.dropin.create({
-        authorization: this.tokenApi,
-        selector: '#dropin-container',
-        locale: 'it_IT'
-        }, callback);
     },
     methods:{
         controll(){
@@ -208,23 +203,14 @@ export default {
 @import "../../sass/vars.scss";
 @import "../../sass/mixins.scss";
 .all-container{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: calc(100% - 40px);
+    padding: 30px;
+    height: 100%;
     @include flex("flex");
 }
 
-.payment{
-    text-align: center;
-    color: white;
-    width: 70%;
-    height: 100%;
-    background-color: $content-color;
-    border: 2px solid $layout-color;
-    border-radius: 8px;
-    padding-top: 20px;
+.section-payment{
+    flex-grow: 1;
 }
-
 
 img{
     width: 7%;
@@ -252,10 +238,14 @@ img{
 
 .sub-container{
     background-color: $special-white;
-    border: 2px solid $layout-color;
-    padding: 20px;
+    min-height: 100%;
+    padding: 10px 80px;
     margin: 0 auto;
-    max-width: 70%;
+    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
+    & > h2:first-child{
+        text-align:center;
+        text-transform: uppercase;
+    }
 }
 
 .total-payment{
@@ -263,8 +253,9 @@ img{
     color: $special-black;
 }
 
-#btn{
-    background-color: $layout-color;
+#btn:hover{
+    background-color: $btn-color;
+    color: white;
 }
 
 .loading{
@@ -273,16 +264,18 @@ img{
 }
 
 .my_order{
-    margin-left: 2%;
+    text-transform: capitalize;
+    flex-basis: 25%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: 20px;
     padding: 20px;
-    color: white;
-    width: 28%;
     height: 100%;
-    background-color: $layout-color;
-    border-radius: 8px;
-    border: 2px solid $special-black;
+    background-color: $special-white;
+    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
     h2{
         text-align: center;
+        text-transform: uppercase;
     }
 }
 
@@ -293,17 +286,14 @@ img{
 .sub-container-my-order{
     height: 80%;
     margin-top: 30px;
-    border: 10px double $content-color;
     padding: 50px 20px;
-    border-radius: 20px;
     overflow-y: auto
 }
 
 .container-articles{
     @include flex("flex");
-    border-bottom: 1px dotted white;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    padding: 8px 0px;
+    margin: 8px 0px;
     .article-name{
         width: 60%;
     };
@@ -319,31 +309,10 @@ img{
 .slogan{
     margin-top:20px;
     text-align: center;
+    font-size: $special-black2;
 }
 // PER I MEDIA QUERY FARE SPARIRE CARRELLO
 @media screen and (max-width:1500px){
-    .my_order{
-        font-size:0.7rem;
-        padding: 5px;
-    }
-}
-@media screen and (max-width:999px){
-    .payment{
-        width: 100%;
-    }
-    .sub-container{
-        max-width: 90%;
-        padding: 8px;
-    }
-    .my_order{
-        display: none;
-    }
-}
-
-@media screen and (max-width:438px){
-    img{
-        width: 15%;
-    }
 }
 
 </style>

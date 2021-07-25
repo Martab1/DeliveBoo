@@ -2,7 +2,7 @@
     <div class="" >
         <div class="container flex">
             <SingleRestaurant
-                :product="product"
+                
                 :cart="cart.products"
                 :my_categories="my_categories"
                 :my_restaurant="my_restaurant"
@@ -28,26 +28,24 @@
                             @clickRemoveCart="removeCart"
                         />
                     </div>
-                    <v-divider class="mt-5 mb-5"></v-divider>
                     <div class="text-center">
-                        <v-chip filter class="text-center font-w ">
+                        <div class="text-center font-w custom-total">
                             Totale {{ total }}€
-                        </v-chip>
+                        </div>
                     </div>
                     <div v-if="total === 0" class="text-center mt-12">
                         Non hai ancora aggiunto alcun prodotto. Quando lo farai,
                         compariranno qui!
                     </div>
                     <div v-else class="d-flex justify-space-between  mt-8">
+
                         <v-btn
                             elevation="3"
-                            class="mt-5 mr-3 btn d-inline  "
-                            id="color"
+                            class="mt-5 mr-3 btn d-inline color"
                             @click="removeCart(cart)"
                             >Elimina</v-btn
                         >
-                        <v-btn elevation="3" class="mt-5 d-inline"  id="color">
-                            <router-link
+                        <router-link
                                 class="no-decoration"
                                 :to="{
                                     name: 'payment',
@@ -57,9 +55,11 @@
                                     }
                                 }"
                             >
-                                Ordina
-                            </router-link>
-                        </v-btn>
+                            <v-btn elevation="3" class="mt-5 d-inline color">
+                                    Ordina
+                            </v-btn>
+                        </router-link>
+
                     </div>
                 </div>
             </div>
@@ -225,6 +225,7 @@ export default {
 .container{
     padding: 30px;
 }
+
 .flex{
     @include flex("flex");
 }
@@ -234,11 +235,14 @@ export default {
 }
 
 .container-cart{
+    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
     padding: 30px;
     color: #fff;
 }
+
 .fakew-h {
-    border-radius: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .cart {
     background: $special-white;
@@ -250,16 +254,54 @@ export default {
     color: black;
 }
 
-#color{
-    background:$special-white;
-    color: $special-black2;
-}
+.d-flex{
+    .color{
+        background:$special-white;
+        color: $special-black2;
+    }
+    
+    .color:hover{
+        background: $btn-color;
+        color: white;
+    }
 
-#color:hover{
-    background:$btn-hover;
+    .color:hover .no-decoration{
+        color: white;
+    }
+
 }
 
 .font-w{
    font-weight: 300;
 }
+
+.custom-total{
+    margin-top: 10px;
+    display: inline-block;
+    padding: 5px 8px;
+    background-color: #ebe5e5;
+    border-radius: 15px;
+}
+
+@media screen and (max-width:1903px) {
+    .cart-w{
+        flex-basis: 40%;
+    }
+}
+
+@media screen and (max-width:1263px) {
+    .flex{
+        flex-direction: column;
+    };
+    .cart-w{
+        margin-top:20px;
+        flex-basis: 100%;
+    }
+    .container-cart{
+    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
+}
+
+}
+
+
 </style>
