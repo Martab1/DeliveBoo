@@ -45,27 +45,28 @@
                         </div>
 
                         <label class="mt-3" for="visibility">Disponibile</label>
-
                         <select
                             required
                             name="visibility"
                             id="visibility">
 
                             <option
-                            @if ($product->visibility == old('visibility', $product->visibility))
+                            @if ($product->visibility == old('visibility', 1))
                             selected
                             @endif
                                 value="1">
                                 si
                             </option>
+                            
 
-                            <option  @if ($product->visibility == old('visibility', $product->visibility))
+                            <option  @if ($product->visibility == old('visibility', 0))
                                 selected
                             @endif
                                 value="0">
                                 no
                             </option>
                         </select>
+
                         @error('visibility')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

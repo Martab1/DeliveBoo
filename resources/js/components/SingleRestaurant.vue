@@ -1,6 +1,6 @@
 <!-- Name Restaurant -->
 <template>
-    <section class="single-restaurant">
+    <section class="single-restaurant" v-if="my_restaurant">
         <div class="container-single-restaurant">
             <div class="bg-title">
                 <img
@@ -14,10 +14,11 @@
                 </div>
             </div>
             <template>
-                <v-expansion-panels>
+                <v-expansion-panels >
                     <v-expansion-panel
                         v-for="category in my_categories"
                         :key="category.id"
+                        
                     >
                         <v-expansion-panel-header class="capitalize">{{
                             category
@@ -26,15 +27,15 @@
                             v-for="product in my_restaurant.products"
                             :key="product.id"
                         >
-                            <v-expansion-panel-content
+                            <v-expansion-panel-content 
                                 v-if="category == product.category.name"
                             >
                                 <div>
                                     <template>
                                         <div id="flex">
-                                            <v-card flat id="card" outlined>
+                                            <v-card flat id="card" outlined :disabled="!product.visibility">
                                                 <v-list-item three-line>
-                                                    <v-list-item-content>
+                                                    <v-list-item-content >
                                                         <div
                                                             class="text-overline mb-4"
                                                         >
@@ -70,56 +71,53 @@
                                                         />
                                                     </v-list-item-avatar>
                                                 </v-list-item>
-                                                <v-card-actions class="pr-16">
-                                                    <div
-                                                        v-if="
-                                                            product.visibility
-                                                        "
-                                                    >
-                                                        <v-btn
-                                                            elevation="3"
-                                                            icon
-                                                            color="lighten-2"
-                                                            @click.prevent="
-                                                                $emit(
-                                                                    'clickRemove',
-                                                                    product
-                                                                )
-                                                            "
-                                                            v-if="
-                                                                category ==
-                                                                    product
-                                                                        .category
-                                                                        .name
-                                                            "
-                                                        >
-                                                            <i
-                                                                class="fas  color-icon fa-minus"
-                                                            ></i>
-                                                        </v-btn>
-                                                        <v-btn
-                                                            elevation="3"
-                                                            icon
-                                                            color="lighten-2"
-                                                            @click.prevent="
-                                                                $emit(
-                                                                    'clickAdd',
-                                                                    product
-                                                                )
-                                                            "
-                                                            v-if="
-                                                                category ==
-                                                                    product
-                                                                        .category
-                                                                        .name
-                                                            "
-                                                        >
-                                                            <i
-                                                                class="fas  color-icon fa-plus"
-                                                            ></i>
-                                                        </v-btn>
+                                                <v-card-actions class="pr-16 flex-actions"  v-if="product.visibility">
+                                                        <span class="btn-actions">
+                                                            <v-btn
+                                                                elevation="3"
+                                                                icon
+                                                                color="lighten-2"
+                                                                @click.prevent="
+                                                                    $emit(
+                                                                        'clickRemove',
+                                                                        product
+                                                                    )
+                                                                "
+                                                                v-if="
+                                                                    category ==
+                                                                        product
+                                                                            .category
+                                                                            .name
+                                                                "
+                                                            >
+                                                                <i
+                                                                    class="fas  color-icon fa-minus"
+                                                                ></i>
+                                                            </v-btn>
+                                                            <v-btn
+                                                                elevation="3"
+                                                                icon
+                                                                color="lighten-2"
+                                                                @click.prevent="
+                                                                    $emit(
+                                                                        'clickAdd',
+                                                                        product
+                                                                    )
+                                                                "
+                                                                v-if="
+                                                                    category ==
+                                                                        product
+                                                                            .category
+                                                                            .name
+                                                                "
+                                                            >
+                                                                <i
+                                                                    class="fas  color-icon fa-plus"
+                                                                ></i>
+                                                            </v-btn>
+                                                        </span>
                                                         <div>
-                                                            <span class="mx-20"
+                                                            <span class="mx-20 price"
                                                                 >{{
                                                                     product.price
                                                                 }}
@@ -154,11 +152,10 @@
                                                                 >
                                                             </span>
                                                         </div>
-                                                    </div>
-                                                    <button v-else disabled>
-                                                        Non disponibile
-                                                    </button>
                                                 </v-card-actions>
+                                                <v-card-actions class="pr-16" v-else>
+                                                        Non disponibile
+                                                </v-card-actions >
                                             </v-card>
                                         </div>
                                     </template>
@@ -179,14 +176,8 @@ export default {
     data() {
         return {
             restaurant: {},
-            selected: null
         };
     },
-    methods: {
-        selected(index) {
-            this.selected = index;
-        }
-    }
 };
 </script>
 
@@ -194,11 +185,17 @@ export default {
 @import "../../sass/vars.scss";
 @import "../../sass/mixins.scss";
 
+.shadow{
+    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
+}
+
 .single-restaurant {
     flex-basis: calc(75% - 20px);
     margin-right: 20px;
 }
-
+.container-single-restaurant {
+    box-shadow: none;
+}
 .capitalize {
     text-transform: capitalize;
 }
@@ -250,4 +247,46 @@ h1 {
 .mx-20 {
     margin: 0px 20px;
 }
+
+@media screen and (max-width:1903px) { 
+    .single-restaurant {
+        flex-basis: calc(60% - 20px);
+    }
+}
+
+@media screen and (max-width:1263px) {
+    .single-restaurant {
+        flex-basis: 100%;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width:556px) {
+    .flex-actions{
+        @include flex("column");
+        align-items: flex-start;
+        .btn-actions{
+            margin-bottom: 15px;
+        }
+        .price{
+            margin: 0px  20px 0px 0px;
+        }
+    }
+}
+
+@media screen and (max-width:477px) {
+    .flex-actions{
+        font-size: 0.9rem;
+        .price{
+            margin: 0px  5px 0px 0px;
+        }
+    }
+    .mx-20 {
+        margin: 0px 5px;
+    }
+}
+
+
+
+
 </style>
