@@ -69,13 +69,15 @@
                         <v-braintree
                             class="braintree"
                             locale="it_IT"
+                            vaultManager="true"
                             :authorization=tokenApi
                             @success="onSuccess"
                             @error="onError"
                             >
-                    <template v-slot:button="slotProps">
-                        <v-btn @click="slotProps.submit" elevation="2" id="btn">Paga subito</v-btn>
-                    </template>
+                            <template v-slot:button="slotProps">
+                                <v-btn @click="slotProps.submit" elevation="2" id="btn">Paga subito</v-btn>
+                            </template>
+
                         </v-braintree>
                 </v-form>
             </div>
@@ -136,6 +138,11 @@ export default {
         this.controll();
         this.generateKey();
         this.paymentCart();
+        braintree.dropin.create({
+        authorization: this.tokenApi,
+        selector: '#dropin-container',
+        locale: 'it_IT'
+        }, callback);
     },
     methods:{
         controll(){

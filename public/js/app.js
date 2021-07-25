@@ -2627,6 +2627,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Payment",
   data: function data() {
@@ -2650,6 +2652,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.controll();
     this.generateKey();
     this.paymentCart();
+    braintree.dropin.create({
+      authorization: this.tokenApi,
+      selector: '#dropin-container',
+      locale: 'it_IT'
+    }, callback);
   },
   methods: {
     controll: function controll() {
@@ -29698,7 +29705,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-braintree", {
                     staticClass: "braintree",
-                    attrs: { locale: "it_IT", authorization: _vm.tokenApi },
+                    attrs: {
+                      locale: "it_IT",
+                      vaultManager: "true",
+                      authorization: _vm.tokenApi
+                    },
                     on: { success: _vm.onSuccess, error: _vm.onError },
                     scopedSlots: _vm._u(
                       [
@@ -90773,6 +90784,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_2___default.a);
 Vue.use(vue_braintree__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.config.productionTip = false;
 var vuetify = new vuetify__WEBPACK_IMPORTED_MODULE_2___default.a();
 var app = new Vue({
   el: "#root",

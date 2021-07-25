@@ -12,7 +12,9 @@ import "vuetify/dist/vuetify.min.css";
 import vuebraintree from "vue-braintree";
 
 Vue.use(Vuetify);
-Vue.use(vuebraintree)
+Vue.use(vuebraintree);
+
+Vue.config.productionTip = false;
 
 const vuetify = new Vuetify();
 
