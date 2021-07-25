@@ -11,13 +11,15 @@ use Illuminate\Http\Request;
 class RestaurantController extends Controller
 {
     /* TIPOLOGIE RISTORANTI */
-    public function index(Request $request){
+    public function index(){
         /* array con tutte le tipologie dei ristoranti */
         $tipologies = Tipology::all();
+        $restaurants = Restaurant::paginate(12);
 
         /* dati da passare in json */
         $data = [
-            'tipologies' => $tipologies
+            'tipologies' => $tipologies,
+            'restaurants' => $restaurants
         ];
        
         return response()->json($data);
@@ -31,7 +33,7 @@ class RestaurantController extends Controller
         /* chiamata a db con relazione */
         $restaurants = Restaurant::whereHas('tipologies', function($q) use($req) {
             $q->whereIn('tipology_id', $req);
-        })->get();
+        })->paginate(12);
 
         return response()->json($restaurants);
     }
