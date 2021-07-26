@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container order">
         @if (count($orders) != 0)
             <h1>Ordini ricevuti</h1>
-            <table class="table table-striped table-dark">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Nome cliente</th>
-                        <th>Indirizzo cliente</th>
-                        <th>Email cliente</th>
+                        <th class="my_none">Indirizzo cliente</th>
+                        <th class="my_none2">Email cliente</th>
                         <th>Importo totale</th>
                         <th>Data ordine</th>
                         <th>orario ordine</th>
@@ -19,8 +19,8 @@
                     @foreach ($orders as $order)
                         <tr>
                             <th scope="row">{{ $order->payer_name }}</th>
-                            <td>{{ $order->payer_address }}</td>
-                            <td>{{ $order->payer_email }}</td>
+                            <td class="my_none">{{ $order->payer_address }}</td>
+                            <td class="my_none2">{{ $order->payer_email }}</td>
                             <td>{{ $order->total}} €</td>
                             <td>{{ $order->date }}</td>
                             <td>{{ $order->hour }}</td>

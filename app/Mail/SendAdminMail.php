@@ -16,10 +16,12 @@ class SendAdminMail extends Mailable
      *
      * @return void
      */
+    private $restaurant_id;
     private $my_order;
     public function __construct($data)
     {
         $this->my_order = $data;
+        $this->restaurant_id = $data["restaurant_id"];
     }
 
     /**
@@ -29,6 +31,6 @@ class SendAdminMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.sendAdminMail')->with(["order" => $this->my_order]);
+        return $this->markdown('email.sendAdminMail')->with(["order" => $this->my_order, "restaurant_id" => $this->restaurant_id]);
     }
 }

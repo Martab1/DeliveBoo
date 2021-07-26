@@ -190,11 +190,28 @@ body{
         width: calc(100% / 2 - 20px);
     }
 }
+
+@media screen and (max-width: 767px){
+    .order{
+        .my_none{
+            display:none;
+        }
+    }
+}
+
 @media screen and (max-width: 670px){
     .up{
         bottom: 10px;
         right: 10px;
         transform: scale(0.7);
+    }
+}
+
+@media screen and (max-width: 516px){
+    .order{
+        .my_none2{
+            display:none;
+        }
     }
 }
 

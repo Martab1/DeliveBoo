@@ -19,10 +19,11 @@ Ti auguriamo una buona giornata!
 Deliveboo
 Team 3
 
-{{-- @component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => "http://127.0.0.1:8000/admin/orders/$restaurant_id"])
+Vedi i tuoi ordini
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }} --}}
+Grazie,<br>
+Deliveboo <br>
+Team 3
 @endcomponent

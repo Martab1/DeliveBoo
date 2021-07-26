@@ -89,6 +89,7 @@ class OrderController extends Controller
                 "total" => $amount,
                 "restaurant_name" => $this_restaurant->name,
                 "payer_name" => $request->payer_name,
+                "restaurant_id" => $this_restaurant->id,
                 "payer_address" => $request->payer_address,
                 "all_products" => $all_products,
                 "deliveboo_client" => $user['name'],
