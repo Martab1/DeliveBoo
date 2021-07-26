@@ -16,9 +16,9 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Città</th>
-                        <th>Numero di telefono</th>
-                        <th>Tipologia</th>
+                        <th class="my-none">Città</th>
+                        <th class="my-none">Numero di telefono</th>
+                        <th class="my-none">Tipologia</th>
                         <th colspan="3">Azioni</th>
                     </tr>
                 </thead>
@@ -26,9 +26,9 @@
                     @foreach ($my_restaurants as $restaurant)
                         <tr>
                             <th scope="row">{{ $restaurant->name }}</th>
-                            <td>{{ $restaurant->address }}</td>
-                            <td>{{ $restaurant->phone_number }}</td>
-                            <td>
+                            <td class="my-none">{{ $restaurant->address }}</td>
+                            <td class="my-none">{{ $restaurant->phone_number }}</td>
+                            <td class="my-none">
                                 @foreach ($restaurant->tipologies as $tipology)
                                     {{ $tipology->name }} @if(!$loop->last) - @endif
                                 @endforeach

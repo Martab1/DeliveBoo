@@ -11075,6 +11075,14 @@ body .pad {
 }
 
 @media screen and (max-width: 714px) {
+  .index {
+    font-size: 14px;
+  }
+
+  .index .my-none {
+    display: none;
+  }
+
   .index td a.mostra::after {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
