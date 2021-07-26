@@ -11130,6 +11130,16 @@ body .pad {
   z-index: 10;
 }
 
+.error {
+  height: calc(100vh - 250px);
+  width: 100%;
+  color: #ff8e3c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 991px) {
   #my-card {
     width: calc(100% / 3 - 20px);

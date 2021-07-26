@@ -1,8 +1,7 @@
 <template>
-  <div class="payment-error container">
-    <h1>Qualcosa è andato storto...</h1>
-    <img src="/site_img/not_found_avocado.png" alt="error avocado">
-    <h2>Pagina non trovata</h2>
+  <div class="payment-success container">
+    <i class="icon fas fa-times"></i>
+     <h1>Qualcosa è andato storto...</h1>
       <router-link :to="{name:'home'}">
           <v-btn
           id="btn"
@@ -24,41 +23,47 @@ export default {
 @import "../../sass/vars.scss";
 @import "../../sass/mixins.scss";
 
-.payment-error{
+.payment-success{
   text-align: center;
-  color: white;
+  width: 50%;
+  color: $special-black2;
   margin-top:20px;
   margin-bottom:20px;
   height: calc(100% - 40px);
-  background-color: $layout-color;
+  background-color: $special-white;
   @include flex("column-center");
 }
 
-img{
+.icon{
+  font-size: 8rem;
   margin: 10px 0;
-  width: 30%;
+  color: rgb(224, 38, 38);
 }
 
 #btn{
-  margin: 10px 0;
+  margin-top: 50px;
   background-color: $btn-color;
+  color: white;
 }
 
-@media screen and (max-width:680px){
-    .payment-error{
-      font-size: 0.7rem;
+@media screen and (max-width:1903px){
+     .payment-success{
+      width: 80%;
     };
 }
 
-@media screen and (max-width:438px){
-    .payment-error{
-      font-size: 0.6rem;
-    };
-    h2{
-      margin-bottom: 5px;
+@media screen and (max-width:766px){
+    h1{
+      font-size: 1.4rem;
     }
-    img{
-      width: 35%;
+    h2{
+      font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width:531px){
+    h2{
+      margin-top: 20px
     }
 }
 

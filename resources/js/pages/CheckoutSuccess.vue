@@ -1,8 +1,8 @@
 <template>
   <div class="payment-success container">
+    <i class="icon far fa-check-circle"></i>
     <h1>Pagamento avvenuto con successo!</h1>
-    <img src="/site_img/happy_avocado.png" alt="happy-avocado">
-    <h2>A breve riceverai un email con la conferma d'ordine</h2>
+    <h2>Riceverai un email con la conferma d'ordine</h2>
     <h2>Grazie</h2>
       <router-link :to="{name:'home'}">
           <v-btn
@@ -27,39 +27,45 @@ export default {
 
 .payment-success{
   text-align: center;
-  color: white;
+  width: 50%;
+  color: $special-black2;
   margin-top:20px;
   margin-bottom:20px;
   height: calc(100% - 40px);
-  background-color: $layout-color;
+  background-color: $special-white;
   @include flex("column-center");
 }
 
-img{
+.icon{
+  font-size: 5rem;
   margin: 10px 0;
-  width: 10%;
+  color: rgb(21, 175, 21);
 }
 
 #btn{
   margin: 10px 0;
   background-color: $btn-color;
+  color: white;
 }
 
-@media screen and (max-width:680px){
-    .payment-success{
-      font-size: 0.7rem;
+@media screen and (max-width:1903px){
+     .payment-success{
+      width: 80%;
     };
 }
 
-@media screen and (max-width:438px){
-    .payment-success{
-      font-size: 0.6rem;
-    };
-    h2{
-      margin-bottom: 5px;
+@media screen and (max-width:766px){
+    h1{
+      font-size: 1.4rem;
     }
-    img{
-      width: 15%;
+    h2{
+      font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width:531px){
+    h2{
+      margin-top: 20px
     }
 }
 

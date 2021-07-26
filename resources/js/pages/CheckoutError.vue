@@ -1,9 +1,8 @@
 <template>
-  <div class="payment-error container">
-    <h1>Mi dispiace, il pagamento non è avvenuto correttamente</h1>
-    <img src="/site_img/error_avocado.png" alt="error avocado">
-    <h2>Ricontrolla i dati inseriti o ritenta con un altra carta</h2>
-    <h2>Grazie</h2>
+  <div class="payment-success container">
+    <i class="icon fas fa-exclamation-circle"></i>
+    <h1>Mi dispiace</h1>
+    <h2>Il pagamento non è avvenuto correttamente</h2>
       <router-link :to="{name:'home'}">
           <v-btn
           id="btn"
@@ -25,41 +24,47 @@ export default {
 @import "../../sass/vars.scss";
 @import "../../sass/mixins.scss";
 
-.payment-error{
+.payment-success{
   text-align: center;
-  color: white;
+  width: 50%;
+  color: $special-black2;
   margin-top:20px;
   margin-bottom:20px;
   height: calc(100% - 40px);
-  background-color: $layout-color;
+  background-color: $special-white;
   @include flex("column-center");
 }
 
-img{
+.icon{
+  font-size: 5rem;
   margin: 10px 0;
-  width: 15%;
+  color: rgb(224, 38, 38);
 }
 
 #btn{
-  margin: 10px 0;
+  margin-top: 50px;
   background-color: $btn-color;
+  color: white;
 }
 
-@media screen and (max-width:680px){
-    .payment-error{
-      font-size: 0.7rem;
+@media screen and (max-width:1903px){
+     .payment-success{
+      width: 80%;
     };
 }
 
-@media screen and (max-width:438px){
-    .payment-error{
-      font-size: 0.6rem;
-    };
-    h2{
-      margin-bottom: 5px;
+@media screen and (max-width:766px){
+    h1{
+      font-size: 1.4rem;
     }
-    img{
-      width: 20%;
+    h2{
+      font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width:531px){
+    h2{
+      margin-top: 20px
     }
 }
 

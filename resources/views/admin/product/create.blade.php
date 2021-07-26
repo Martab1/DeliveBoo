@@ -87,6 +87,7 @@
                         <input name="restaurant_id" type="hidden" value="{{$restaurant_id}}">
                     </div>
 
+
                     <label for="description" class="control-label">Descrizione del prodotto</label>
                     <textarea maxlength="255" class="form-control @error('description') is-invalid @enderror"placeholder="Inserisci una descrizione" id="description" name="description" rows="3">{{ old('description') }}</textarea>
                     @error('description')

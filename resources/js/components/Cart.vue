@@ -88,11 +88,9 @@ export default {
 @media screen and (max-width:447px) {
     .container-articles{
         .article-name{
-            border: 1px solid #000;
             width: 38%;
         }
         .article-btn{
-            border: 1px solid #000;
             width:28%;
         }
     }

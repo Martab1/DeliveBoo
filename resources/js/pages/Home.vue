@@ -21,43 +21,43 @@
                 </div>
             </aside>
 
-            <div v-if="result.length != 0" class="restaurants">
-                <div class="restaurants-container" id="restaurant-div">
-                    <!-- PAGE RESULTS -->
-                    <div v-for="restaurant in result" :key="restaurant.id">
-                        <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
-                            <div class="layover">
-                                <h5>{{restaurant.name}}</h5>
-                            </div>
-                            <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
-                        </router-link>
+            <div v-if="checkedTipologies.length != 0" class="restaurants">
+                <div v-if="result.length != 0">
+                    <div class="restaurants-container" id="restaurant-div">
+                        <!-- PAGE RESULTS -->
+                        <div v-for="restaurant in result" :key="restaurant.id">
+                            <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
+                                <div class="layover">
+                                    <h5>{{restaurant.name}}</h5>
+                                </div>
+                                <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                            </router-link>
+                        </div>
+                    </div>
+                    <!-- PNAV PAG -->
+                    <div class="pagination" v-if="pagination.maxPages != 1">
+                        <button
+                            @click="searching(pagination.current - 1)"
+                            :disabled="pagination.current === 1"
+                            :class="{disable : pagination.current === 1}">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button
+                            v-for="i in pagination.maxPages"
+                            :key="'pag'+i"
+                            @click="searching(i)"
+                            :class="{active : pagination.current == i}">
+                            {{i}}
+                        </button>
+                        <button
+                            @click="searching(pagination.current + 1)"
+                            :disabled="pagination.current === pagination.maxPages"
+                            :class="{disable : pagination.current === pagination.maxPages}">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
-
-                <!-- PNAV PAG -->
-                <div class="pagination" v-if="pagination.maxPages != 1">  
-                    <button
-                        @click="searching(pagination.current - 1)"
-                        :disabled="pagination.current === 1"
-                        :class="{disable : pagination.current === 1}">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-
-                    <button
-                        v-for="i in pagination.maxPages"
-                        :key="'pag'+i"
-                        @click="searching(i)"
-                        :class="{active : pagination.current == i}">
-                        {{i}}
-                    </button>
-
-                    <button
-                        @click="searching(pagination.current + 1)"
-                        :disabled="pagination.current === pagination.maxPages"
-                        :class="{disable : pagination.current === pagination.maxPages}">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+                <div v-else class="no-result">Nessun risultato corrisponde alla ricerca</div>
             </div>
 
             <div v-else class="restaurants">
@@ -141,6 +141,7 @@ export default {
                         console.log(err);
                     });
             }else{
+                this.getCategories();
                 this.result = [];
             }
         },
@@ -166,6 +167,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/vars.scss';
+@import '../../sass/mixins.scss';
 
 .pagination{
     display: flex;
@@ -340,8 +342,13 @@ body {
             }
         }    
     }
+}
 
-
+.no-result{
+    padding-top: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
 }
 
 @media screen and (max-width:1903px){
