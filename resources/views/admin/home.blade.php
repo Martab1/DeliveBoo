@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container index">
         @if (session('deleted'))
             <div class="alert alert-success">
                 <strong>{{ session('deleted') }}</strong>
@@ -10,9 +10,9 @@
         @endif
         @if ($my_restaurants)
             <h1>Le tue attività</h1>
-            <a class="mb-3 btn btn-primary" href="{{ route('admin.restaurant.create') }}">Registra una nuova attività</a>
+            <a class="mb-3 btn btn-primary" id="my-btn" href="{{ route('admin.restaurant.create') }}">Registra una nuova attività</a>
 
-            <table class="table table-striped table-dark">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -33,13 +33,14 @@
                                     {{ $tipology->name }} @if(!$loop->last) - @endif
                                 @endforeach
                             </td>
-                            <td><a class="btn btn-primary" href="{{route('admin.restaurant.show', $restaurant->id)}}">Mostra</a></td>
-                            <td><a class="btn btn-warning" href="{{route('admin.restaurant.edit', $restaurant->id)}}">Modifica</a></td>
+                            <td><a class="btn btn-primary mostra" id="my-btn" href="{{route('admin.restaurant.show', $restaurant->id)}}"></a></td>
+                            <td><a class="btn btn-warning modifica" id="my-btn" href="{{route('admin.restaurant.edit', $restaurant->id)}}"></a></td>
                             <td>
                                 <form class="delete-post-form" method="POST" action="{{route('admin.restaurant.destroy', $restaurant->id)}}">
                                     @csrf
                                     @method('DELETE')
-                                    <input class="btn btn-danger" value="Cancella" type="submit">
+                                    {{-- <input class="btn btn-danger" id="my-btn" value="Cancella" type="submit"> --}}
+                                    <button class="btn btn-danger cancella" id="my-btn" type="submit"></button>
                                 </form>
                             </td>
                         </tr>

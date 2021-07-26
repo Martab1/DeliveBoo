@@ -95,11 +95,11 @@
             @endif
             
             <div class="form-group mx-2">
-                <input role="button" type="submit" class="btn btn-primary" value="aggiorna">
+                <input role="button" type="submit" class="btn btn-primary" id="my-btn" value="aggiorna">
             </div>
-            <a class="btn btn-secondary" href="{{ route('admin.restaurant.show',  $restaurant->id) }}">Torna indietro</a>
-
+            
             
         </form>
+        <a class="btn btn-secondary mx-2" href="{{ route('admin.restaurant.show',  $restaurant->id) }}">Torna indietro</a>
     </div>
 @endsection

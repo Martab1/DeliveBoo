@@ -14,7 +14,7 @@ class RestaurantController extends Controller
     public function index(){
         /* array con tutte le tipologie dei ristoranti */
         $tipologies = Tipology::all();
-        $restaurants = Restaurant::paginate(12);
+        $restaurants = Restaurant::inRandomOrder()->paginate(12);
 
         /* dati da passare in json */
         $data = [

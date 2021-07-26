@@ -8,16 +8,14 @@
                 L'eliminazione ha avuto successo.
             </div>
         @endif
-    </div>
-    <div class="container">
         <h1>Prodotti</h1>
         <div>
-            <a class="btn btn-primary mb-4" href="{{ route('admin.product.create', $restaurant_id) }}">Aggiungi un nuovo prodotto</a>
+            <a class="btn btn-primary mb-4" id="my-btn" href="{{ route('admin.product.create', $restaurant_id) }}">Aggiungi un nuovo prodotto</a>
         </div>
-        <a class="btn btn-secondary" href="{{ route('admin.restaurant.show',  $restaurant_id) }}">Torna indietro</a>
+        <a class="btn btn-secondary mb-5" href="{{ route('admin.restaurant.show',  $restaurant_id) }}">Torna indietro</a>
         <div class="d-flex flex-wrap">
             @foreach ($my_products as $product)
-                <div class="card m-3" style="width: 15rem;">
+                <div class="card" id="my-card">
                     <div style="height: 12rem">
                         <img class="my-img"
                         @if ($product->image)
@@ -37,13 +35,13 @@
                         <li class="list-group-item">Categoria: {{ $product->category->name}}</li>
                     </ul>
                     <div class="card-body d-flex d-flex justify-content-between">
-                        <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-warning">Modifica</a>
+                        <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-warning" id="my-btn">Modifica</a>
                         <form class="delete-post-form card-link"
                             action="{{ route('admin.product.destroy', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 
-                            <input type="submit" class="btn btn-danger" value="Elimina">
+                            <input type="submit" class="btn btn-danger" id="my-btn" value="Elimina">
                         </form>
                     </div>
                 </div>
@@ -51,7 +49,7 @@
         </div>
 
 
-        <div class=" d-flex justify-content-center">
+        <div class=" d-flex justify-content-center up">
             <a class="btn btn-outline-dark" href="#"><i class="fas fa-arrow-up"></i></a>
         </div>
             

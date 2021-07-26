@@ -7,6 +7,18 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+/* general colors */
+@import "./vars.scss";
+
+body{
+    min-height: 100vh;
+    .pad{
+        position: relative;
+        padding-bottom: 132px;
+        min-height: 100vh;
+    }
+}
+
 .w-33{
     flex-basis: calc(100% / 3);
 }
@@ -33,4 +45,161 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* 
+    BUTTON
+*/
+#my-btn{
+    background-color: $btn-color;
+    border: transparent;
+    color: white;
+    &:hover{
+        background-color: #fc9c57;
+
+    }
+}
+
+
+/* 
+    HEADER & FOOTER
+*/
+.my-header{
+    background-image: linear-gradient(to top right, rgba(100,115,201,.7), rgba(25,32,72,.7));
+
+    .my-link{
+        color: white;
+        i{
+            color: white;
+        }
+    }
+    
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://ilfattoalimentare.it/wp-content/uploads/2017/06/junk-food-hamburger-patatine-fast-food-pizza-dolci-Fotolia_130389179_Subscription_Monthly_M.jpg');
+        background-position: center;
+        z-index: -1;
+    }
+    
+    a{
+        color: white;
+    }
+    .dropdown-item{
+        color: black;
+    }
+}
+.my-footer{
+    background-color: $btn-color;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    .top{
+        text-align: center;
+        padding: 18px;
+        a{
+            text-decoration: none;
+            color: white;
+            margin: 0 25px;
+        }
+    }
+    
+    .bot{
+        text-align: center;
+        padding-bottom: 20px;
+    }
+}
+
+/* 
+    RESTAURANT INDEX
+*/
+
+.index{
+    td a.mostra::after{
+        content: "Mostra";
+    }
+    td a.modifica::after{
+        content: "Modifica";
+    }
+    td button.cancella::after{
+        content: "Cancella";
+    } 
+}
+
+@media screen and (max-width: 714px){
+    .index{
+        td a.mostra::after{
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f002";
+        }
+        td a.modifica::after{
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f304";
+        }
+        td button.cancella::after{
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f1f8";
+        } 
+    } 
+}
+
+
+/* 
+    RESTAURANT SHOW
+*/
+.show{
+    .d-flex{
+        flex-wrap: wrap;
+        
+        a{
+            width: 145px;
+        }
+    } 
+}
+
+/* 
+    RESTAURANT SHOW
+*/
+#my-card{
+    width: calc(100% / 4 - 20px);
+    margin: 10px;
+}
+
+.up{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 10;
+}
+
+@media screen and (max-width: 991px){
+    #my-card{
+        width: calc(100% / 3 - 20px);
+    }
+}
+@media screen and (max-width: 767px){
+    #my-card{
+        width: calc(100% / 2 - 20px);
+    }
+}
+@media screen and (max-width: 670px){
+    .up{
+        bottom: 10px;
+        right: 10px;
+        transform: scale(0.7);
+    }
+}
+
+@media screen and (max-width: 475px){
+    #my-card{
+        width: calc(100% - 20px);
+    }
 }
