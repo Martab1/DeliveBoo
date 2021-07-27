@@ -58,6 +58,9 @@ body{
         background-color: #fc9c57;
 
     }
+    &:focus{
+        outline: none;
+    }
 }
 
 
@@ -182,6 +185,24 @@ body{
     bottom: 40px;
     right: 40px;
     z-index: 10;
+}
+
+// ORDERS
+.links{
+    display: flex;
+    justify-content: center;
+    .page-item{
+        border: 1px solid transparent;
+    }
+    .page-link{
+        color: $btn-color;
+    }
+    .active{
+        .page-link{
+            background-color: $btn-color;
+            border: 1px solid transparent;
+        }
+    }
 }
 
 // ERROR 404

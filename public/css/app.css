@@ -10998,6 +10998,10 @@ body .pad {
   background-color: #fc9c57;
 }
 
+#my-btn:focus {
+  outline: none;
+}
+
 /* 
     HEADER & FOOTER
 */
@@ -11128,6 +11132,24 @@ body .pad {
   bottom: 40px;
   right: 40px;
   z-index: 10;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+.links .page-item {
+  border: 1px solid transparent;
+}
+
+.links .page-link {
+  color: #ff8e3c;
+}
+
+.links .active .page-link {
+  background-color: #ff8e3c;
+  border: 1px solid transparent;
 }
 
 .error {

@@ -4,7 +4,7 @@
     <h1>Pagamento avvenuto con successo!</h1>
     <h2>Riceverai un email con la conferma d'ordine</h2>
     <h2>Grazie</h2>
-      <router-link :to="{name:'home'}">
+      <router-link id="a" :to="{name:'home'}">
           <v-btn
           id="btn"
           elevation="2"
@@ -46,6 +46,10 @@ export default {
   margin: 10px 0;
   background-color: $btn-color;
   color: white;
+}
+
+#a{
+  text-decoration: none;
 }
 
 @media screen and (max-width:1903px){

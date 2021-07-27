@@ -2,7 +2,7 @@
   <div class="payment-success container">
     <i class="icon fas fa-times"></i>
      <h1>Qualcosa è andato storto...</h1>
-      <router-link :to="{name:'home'}">
+      <router-link id="a" :to="{name:'home'}">
           <v-btn
           id="btn"
           elevation="2"
@@ -44,6 +44,10 @@ export default {
   margin-top: 50px;
   background-color: $btn-color;
   color: white;
+}
+
+#a{
+  text-decoration: none;
 }
 
 @media screen and (max-width:1903px){

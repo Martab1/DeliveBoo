@@ -16,14 +16,11 @@ per un totale di **{{$order['total']}} euro** da consegnare in **{{$order["payer
 
 Ti auguriamo una buona giornata!
 
-Deliveboo
-Team 3
-
 @component('mail::button', ['url' => "http://127.0.0.1:8000/admin/orders/$restaurant_id"])
 Vedi i tuoi ordini
 @endcomponent
 
 Grazie,<br>
 Deliveboo <br>
-Team 3
+**Team 3**
 @endcomponent

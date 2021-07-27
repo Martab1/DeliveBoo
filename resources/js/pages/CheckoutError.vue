@@ -3,7 +3,7 @@
     <i class="icon fas fa-exclamation-circle"></i>
     <h1>Mi dispiace</h1>
     <h2>Il pagamento non è avvenuto correttamente</h2>
-      <router-link :to="{name:'home'}">
+      <router-link id="a" :to="{name:'home'}">
           <v-btn
           id="btn"
           elevation="2"
@@ -45,6 +45,10 @@ export default {
   margin-top: 50px;
   background-color: $btn-color;
   color: white;
+}
+
+#a{
+  text-decoration: none;
 }
 
 @media screen and (max-width:1903px){

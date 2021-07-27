@@ -87,6 +87,7 @@ export default {
 
 @media screen and (max-width:447px) {
     .container-articles{
+        font-size: 12px;
         .article-name{
             width: 38%;
         }

@@ -48,6 +48,9 @@
                 </tbody>
             </table>
 
+            <div class="links">
+                {{$my_restaurants->links()}}
+            </div>
             {{-- IF USER DOESN'T HAVE A RESTAURANT --}}
         @else
             <h1 class="text-center my-4">Benvenuto</h1>

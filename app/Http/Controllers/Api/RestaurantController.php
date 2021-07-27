@@ -14,7 +14,7 @@ class RestaurantController extends Controller
     public function index(){
         /* array con tutte le tipologie dei ristoranti */
         $tipologies = Tipology::all();
-        $restaurants = Restaurant::inRandomOrder()->paginate(12);
+        $restaurants = Restaurant::inRandomOrder()->paginate(15);
 
         /* dati da passare in json */
         $data = [
@@ -33,7 +33,7 @@ class RestaurantController extends Controller
         /* chiamata a db con relazione */
         $restaurants = Restaurant::whereHas('tipologies', function($q) use($req) {
             $q->whereIn('tipology_id', $req);
-        })->paginate(12);
+        })->paginate(15);
 
         return response()->json($restaurants);
     }

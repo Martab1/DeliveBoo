@@ -18,6 +18,6 @@ Torna al sito
 @endcomponent
 
 Grazie,<br>
-Deliveboo 
-Team 3
+Deliveboo <br>
+**Team 3**
 @endcomponent

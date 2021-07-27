@@ -26,7 +26,7 @@ class ProductController extends Controller
         }
         elseif(Auth::user()->id == Restaurant::find($id)->user->id){
             $restaurant_id = $id;
-            $my_products = Restaurant::find($id)->products;
+            $my_products= Product::where("restaurant_id", $id)->paginate(12);
             return view('admin.product.index', compact('my_products', 'restaurant_id'));
         }else{
             abort(404);

@@ -151,7 +151,6 @@ export default {
         },
         onError (error) {
             let message = error.message;
-            alert("dati della carta non inseriti correttamente");
         },
         async buy(){
             try{
@@ -193,7 +192,7 @@ export default {
 @import "../../sass/mixins.scss";
 .all-container{
     padding: 30px;
-    height: calc(100vh - 166px - 108px);
+    min-height: calc(100vh - 166px - 108px);
 }
 
 .section-payment{
@@ -306,7 +305,7 @@ img{
     font-size: $special-black2;
 }
 // PER I MEDIA QUERY FARE SPARIRE CARRELLO
-@media screen and (max-height:99vh){
+@media screen and (max-height:812px){
     .all-container{
     height: unset;
     }

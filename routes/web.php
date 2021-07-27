@@ -35,9 +35,12 @@ Route::prefix('admin')
             Route::resource('/product', "ProductController", ['except' => ['index', 'create']]);
        });
 
+       Route::get('/charts/{id}', 'ChartController@index')->name("charts");
 
  Route::get('{any?}', function () {
     return view('guest.welcome');
  })->where('any', '.*');
+ 
+
 
 

@@ -78,6 +78,7 @@ class OrderController extends Controller
         ]);
 
         if($result->success){
+            // $verification = $result->paymentMethod->verification;
             $data = [
                 "success" => true,
                 "message" => "Transazione avvenuta con successo",

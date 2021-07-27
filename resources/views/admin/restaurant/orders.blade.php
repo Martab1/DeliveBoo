@@ -29,6 +29,7 @@
                 </tbody>
             </table>
 
+            <div class="links">{{ $orders->links() }}</div>
             {{-- IF USER DOESN'T HAVE A RESTAURANT --}}
         @else
             <div class="text-center">
@@ -37,6 +38,10 @@
         @endif
 
         <div class="d-flex justify-content-center">
+            <a class="btn btn-primary" id="my-btn" href="{{ route('charts', $id) }}">Statistiche</a>
+        </div>
+
+        <div style="margin-top: 20px" class="d-flex justify-content-center">
             <a class="btn btn-secondary" href="{{ route('admin.restaurant.show', $id) }}">Torna indietro</a>
         </div>
 

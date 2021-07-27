@@ -220,7 +220,7 @@ class RestaurantController extends Controller
     public function orders($id){
         $restaurant = Restaurant::find($id);
         if(Auth::user()->id == $restaurant->user_id){
-            $orders = Order::where('restaurant_id', $id)->get();
+            $orders = Order::where('restaurant_id', $id)->orderBy("id", "DESC")->paginate(8);
         }else{
             abort(404);
         }

@@ -48,6 +48,9 @@
             @endforeach
         </div>
 
+        <div class="links">
+            {{$my_products->links()}}
+        </div>
 
         <div class=" d-flex justify-content-center up">
             <a class="btn btn-outline-dark" href="#"><i class="fas fa-arrow-up"></i></a>
