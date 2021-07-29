@@ -1,6 +1,8 @@
 <template>
     <div class="home">
-
+        <!-- HEADER -->
+        <Header/>
+        
         <!-- HERO -->
         <section class="hero">
             <div class="my_container">
@@ -157,6 +159,7 @@
             <div class="my_container">
                 <h2>Cerchi qualcos'altro?</h2>
                 <div class="label-div">
+                    <!-- TIPOLOGIES -->
                     <div v-for="tipology in tipologies" :key="'tipology'+tipology.id">
                         <label :class="{checked : checkedTipologies.includes(tipology.id)}" :for="tipology.id">{{tipology.name}}
                             <input
@@ -169,14 +172,53 @@
                         </label>
                     </div>
                 </div>
+                <!-- SHOW RESULTS -->
+                <div v-if="checkedTipologies.length != 0" class="restaurants">
+                    <div class="restaurants-container" id="restaurant-div">
+                        <!-- PAGE RESULTS -->
+                        <div v-for="restaurant in result" :key="restaurant.id">
+                            <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
+                                <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                            </router-link>
+                            <h5>{{restaurant.name}}</h5>
+                        </div>
+                    </div>
+                    <!-- PNAV PAG -->
+                    <div class="pagination" v-if="pagination.maxPages != 1">
+                        <button
+                            @click="searching(pagination.current - 1)"
+                            :disabled="pagination.current === 1"
+                            :class="{disable : pagination.current === 1}">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button
+                            v-for="i in pagination.maxPages"
+                            :key="'pag'+i"
+                            @click="searching(i)"
+                            :class="{active : pagination.current == i}">
+                            {{i}}
+                        </button>
+                        <button
+                            @click="searching(pagination.current + 1)"
+                            :disabled="pagination.current === pagination.maxPages"
+                            :class="{disable : pagination.current === pagination.maxPages}">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </section>
     </div>
 </template>
 
 <script>
+import Header from '../components/Header.vue';
 export default {
     name: "Home",
+    components:{
+        Header,
+    },
     data() {
         return {
             result: [],
@@ -244,6 +286,16 @@ export default {
     margin-right: 30px;
 }
 
+// SECTION GENERAL
+section{
+    padding: 52px 0;
+    h2{
+        letter-spacing: -.035em;
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+}
+
 // HERO
 .hero{
     height: 448px;
@@ -263,15 +315,6 @@ export default {
                 font-size: 2.5rem;
             }
         }
-    }
-}
-
-section{
-    padding: 52px 0;
-    h2{
-        letter-spacing: -.035em;
-        font-size: 30px;
-        margin-bottom: 40px;
     }
 }
 
@@ -330,7 +373,8 @@ section{
 }
 
 // RECOMMENDED 
-.recommended{
+.recommended,
+.categories{
     background-color: #ffeae4;
     h2{
         margin-bottom: 20px;
@@ -361,7 +405,6 @@ section{
                 margin: 4px 0 4px;
                 text-transform: capitalize;
             }
-
             img{
                 object-fit: cover;
                 height: 100%;
@@ -374,6 +417,7 @@ section{
 
 // CATEGORIES
 .categories{
+    background-color: #fff;
     .my_container{
         .label-div{
             @include flex("flex");
@@ -393,8 +437,53 @@ section{
             }
             .checked{
             color: $d-primary;
+                &:hover{
+                color: #18e2d1;
+                }
             }
         }
     }
+    .pagination{
+    display: flex;
+    justify-content: center;
+    button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        margin: 0 2px;
+        background-color: transparent;
+        color: $special-black2;
+        transition: 0.3s;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+
+        &:hover{
+            background-color: $special-white;
+            box-shadow: 0 2px 5px rgba(0,0,0,.2);
+        }
+    }
+
+    .active{
+        background-color: $d-primary;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,.2);
+
+        &:hover{
+            background-color: #18e2d1;
+        }
+    }
+
+    .disable{
+        background-color: #cecece;
+        box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+
+        &:hover{
+           background-color: #cecece;
+            box-shadow: inset 0 0 10px rgba(0,0,0,.2); 
+        }
+    }
 }
+}
+
 </style>
