@@ -14,36 +14,70 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         $pizzerie = [
+
+            // Pizzerie
             [
-                'name' => 'Shardana',
-                'address' => 'Catania',
+                'name' => 'Al Vialetto',
+                'address' => 'Roma',
             ],
             [
-                'name' => "Kiki",
-                'address' => 'Domodossola',
+                'name' => 'Pizza Sprint',
+                'address' => 'Palermo',
             ],
             [
-                'name' => "Great Heart",
-                'address' => 'Trento',
+                'name' => 'Verace',
+                'address' => 'Milano',
             ],
             [
-                'name' => 'Clorofilla',
-                'address' => 'Trieste',
+                'name' => 'Pino Pizza',
+                'address' => 'Torino',
+            ],
+            [
+                'name' => 'Pizza da Gino',
+                'address' => 'Genova',
+            ],
+            [
+                'name' => 'Vesuvio',
+                'address' => 'Napoli',
+            ],
+            [
+                'name' => 'Vesuvio',
+                'address' => 'Napoli',
+            ],
+            [
+                'name' => 'Vesuvio',
+                'address' => 'Napoli',
+            ],
+            [
+                'name' => 'Vesuvio',
+                'address' => 'Napoli',
+            ],
+            [
+                'name' => 'De Santis',
+                'address' => 'Foggia',
+            ],
+
+            // Giapponese
+            [
+                'name' => 'Miyazaki',
+                'address' => 'Messina',
+            ],
+            [
+                'name' => 'Arumi',
+                'address' => 'Arona',
+            ],
+            [
+                'name' => 'Magenta Sushi',
+                'address' => 'Genova',
+            ],
+            [
+                'name' => 'Sashimi Aruki',
+                'address' => 'Livorno',
+            ],
+            [
+                'name' => 'Sashimi Aruki',
+                'address' => 'Livorno',
             ],
         ];
-
-
-        foreach($pizzerie as $restaurant){
-            $new_record = new Restaurant();
-
-            $new_record->name = $restaurant['name'];
-            $new_record->slug = Str::slug( $new_record->name, '-' );
-            $new_record->address = $restaurant['address'];
-            $new_record->user_id = 4;
-            $new_record->phone_number = '0210010' + rand(0, 9999);
-            
-            $new_record->save();
-            $new_record->tipologies()->sync([17]);
-        }
     }
 }
