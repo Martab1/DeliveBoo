@@ -174,7 +174,7 @@
                 </div>
                 <!-- SHOW RESULTS -->
                 <div v-if="checkedTipologies.length != 0" class="restaurants">
-                    <div class="restaurants-container" id="restaurant-div">
+                    <div class="restaurants-container" v-if="result.length > 0">
                         <!-- PAGE RESULTS -->
                         <div v-for="restaurant in result" :key="restaurant.id">
                             <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
@@ -184,7 +184,7 @@
                         </div>
                     </div>
                     <!-- PNAV PAG -->
-                    <div class="pagination" v-if="pagination.maxPages != 1">
+                    <div class="pagination" v-if="pagination.maxPages >= 2">
                         <button
                             @click="searching(pagination.current - 1)"
                             :disabled="pagination.current === 1"
@@ -205,7 +205,42 @@
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- NEWS -->
+        <section class="selection news">
+            <div class="my_container">
+                <h2>Novità dalla nostra cucina</h2>
+                <div class="row1">
+                    <div class="container-img">
+                        <img class="img1" src="https://blog.giallozafferano.it/francinut87/wp-content/uploads/2020/12/Sushi-giapponese-orizzontale.jpg" alt="sushi">
+                    </div>
+                    <div class="w-55">
+                        <div class="contattaci p-40">
+                            <h1>Deliveroo per le Aziende</h1>
+                            <div>
+                                Clienti o colleghi affamati? il nostro team
+                                Corporate ti può aiutare.
+                            </div>
+                            <button type="button" class="btn-primary">
+                                Contattaci
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row2">
+                    <div class="p-40 w-55">
+                        <h3 class="title-app">Hai già la nostra app?</h3>
+                            <div>
+                                Scaricala ora - disponibile su Apple store e Google Play!
+                            </div>
+                        </div>
+                    <div>
+                        <div class="container-img"><img class="img2" src="/img/delivebooCollabora.png" alt="deliveboo collabora"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -255,6 +290,8 @@ export default {
                     .catch(err => {
                         console.log(err);
                     });
+            }else{
+                this.result = [];
             }
         },
 
@@ -264,10 +301,6 @@ export default {
             .then(res=>{
                 this.tipologies = res.data.tipologies;
                 this.firstRestaurants = res.data.restaurants.data;
-                this.pagination = {
-                    current: res.data.restaurants.current_page,
-                    maxPages: res.data.restaurants.last_page
-                }
             })
             .catch(err => {
                 console.log(err);
@@ -284,6 +317,14 @@ export default {
 // UTILITIES
 .mr-30{
     margin-right: 30px;
+}
+
+.p-40{
+    padding: 40px;
+}
+
+.bd{
+    border: 1px solid #000;
 }
 
 // SECTION GENERAL
@@ -486,4 +527,61 @@ section{
 }
 }
 
+// NEWS
+.news{
+    background-color:#f9fafa;
+    .row1,
+    .row2{
+        background-color: #fff;
+        height: 208px;
+        & > div{
+            height: 100%;
+            width: 49%;
+        }
+        .w-55{
+            width: 51%;
+        }
+    }
+    .container-img{
+        height: 100%;
+        width: 100%;
+        .img1,
+        .img2{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .img1{
+            clip-path: polygon(0 0, 100% 0%, 94% 100%, 0% 100%);
+        }
+        .img2{
+            clip-path: polygon(6% 0, 100% 0%, 100% 100%, 0% 100%);
+        }
+    }
+    .contattaci {
+        .btn-primary {
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 12px 24px;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            padding: 10px;
+            color: #fff;
+            background-color: #00ccbc;
+            border-color: #00ccbc;
+            div,
+            h1,
+            button {
+                margin: 10px;
+            }
+        }
+    }
+}
 </style>
