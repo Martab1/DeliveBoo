@@ -1,9 +1,47 @@
 <template>
     <div class="home">
-        <div class="container">
 
-            <!-- CHECKBOX CUCINE -->
-            <aside>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="my_container">
+                <div>
+                    <h1>I piatti che ami, a domicilio.</h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTION -->
+        <section class="selection">
+            <div class="my_container">
+                <h2>La selezione di Deliveboo</h2>
+                <div class="row1">
+                    <div class="small mr-30">
+                        <div class="img img1">Comfort food</div>
+                        <div>I grandi classici che scaldano il cuore, perfetti in ogni momento.</div>
+                        <a href="">Scopri comfort food</a>
+                    </div>
+                    <div class="large">
+                        <div class="img img2">Dolci e dessert</div>
+                        <div>Dolci piaceri per rendere la giornata ancora più gustosa.</div>
+                        <a href="">Scopri dolci e dessert</a>
+                    </div>
+                </div>
+                <div class="row2">
+                    <div class="large mr-30">
+                        <div class="img img3">Perfetti da condividere</div>
+                        <div>Serve una scusa per stare insieme?Ordina dai ristoranti che trasformeranno la tua serata in una vera festa.</div>
+                        <a href="">Scopri perfetti da condividere</a>
+                    </div>
+                    <div class="small">
+                        <div class="img img4">Esclusiva Deliveboo</div>
+                        <div>I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveboo.</div>
+                        <a href="">Scopri Esclusiva Deliveboo</a>
+                    </div>
+                </div>
+            </div>
+
+           
+            <!-- <aside>
                 <div class="kitchens">
                     <div class="check-container">
                         <div id="label-div" class="w-25" v-for="tipology in tipologies" :key="'tipology'+tipology.id"> 
@@ -23,9 +61,9 @@
 
             <div v-if="checkedTipologies.length != 0" class="restaurants">
                 <div v-if="result.length != 0">
-                    <div class="restaurants-container" id="restaurant-div">
+                    <div class="restaurants-container" id="restaurant-div"> -->
                         <!-- PAGE RESULTS -->
-                        <div v-for="restaurant in result" :key="restaurant.id">
+                        <!-- <div v-for="restaurant in result" :key="restaurant.id">
                             <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
                                 <div class="layover">
                                     <h5>{{restaurant.name}}</h5>
@@ -33,9 +71,9 @@
                                 <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
                             </router-link>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- PNAV PAG -->
-                    <div class="pagination" v-if="pagination.maxPages != 1">
+                    <!-- <div class="pagination" v-if="pagination.maxPages != 1">
                         <button
                             @click="searching(pagination.current - 1)"
                             :disabled="pagination.current === 1"
@@ -70,10 +108,10 @@
                             <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
                         </router-link>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- PNAV PAG -->
-                <div class="pagination" v-if="pagination.maxPages != 1"> 
+                <!-- <div class="pagination" v-if="pagination.maxPages != 1"> 
                     <button
                         @click="getCategories(pagination.current - 1)"
                         :disabled="pagination.current === 1"
@@ -96,8 +134,43 @@
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
+            </div>-->
+        </section>
+
+        <!-- RECOMMENDED -->
+        <section class="recommended">
+            <div class="my_container">
+                <h2>I tuoi piatti preferiti, consegnati da noi</h2>
+                 <div class="restaurants-container">
+                    <div v-for="restaurant in firstRestaurants" :key="restaurant.id">
+                        <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
+                            <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                        </router-link>
+                        <h5>{{restaurant.name}}</h5>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="categories">
+            <div class="my_container">
+                <h2>Cerchi qualcos'altro?</h2>
+                <div class="label-div">
+                    <div v-for="tipology in tipologies" :key="'tipology'+tipology.id">
+                        <label :class="{checked : checkedTipologies.includes(tipology.id)}" :for="tipology.id">{{tipology.name}}
+                            <input
+                                type="checkbox"
+                                :name="tipology"
+                                :id="tipology.id"
+                                :value="tipology.id"
+                                v-model="checkedTipologies"
+                                @change="searching()">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -140,9 +213,6 @@ export default {
                     .catch(err => {
                         console.log(err);
                     });
-            }else{
-                this.getCategories();
-                this.result = [];
             }
         },
 
@@ -169,242 +239,162 @@ export default {
 @import '../../sass/vars.scss';
 @import '../../sass/mixins.scss';
 
-.pagination{
-    display: flex;
-    justify-content: center;
-    button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 35px;
-        margin: 0 2px;
-        background-color: transparent;
-        color: $special-black2;
-        transition: 0.3s;
-        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+// UTILITIES
+.mr-30{
+    margin-right: 30px;
+}
 
-        &:hover{
-            background-color: $special-white;
-            box-shadow: 0 2px 5px rgba(0,0,0,.2);
-        }
-    }
-
-    .active{
-        background-color: #f0883df6;
-        color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,.2);
-
-        &:hover{
-            background-color: #f69b59f6;
-        }
-    }
-
-    .disable{
-        background-color: #cecece;
-        box-shadow: inset 0 0 10px rgba(0,0,0,.2);
-
-        &:hover{
-           background-color: #cecece;
-            box-shadow: inset 0 0 10px rgba(0,0,0,.2); 
+// HERO
+.hero{
+    height: 448px;
+    // background-image: url("/img/hero.png");
+    background-image: url("https://media-exp1.licdn.com/dms/image/C561BAQHnh3Tsc_uBKQ/company-background_10000/0/1561589281326?e=2159024400&v=beta&t=3cfGYoRfVwt5-vQJL_x4W7MrP_uwZB-PRzqqpfBr5Gg");
+    background-size: cover;
+    .my_container{
+        height: 100%;
+        @include flex("center");
+        div{
+            background-color: rgba(0,0,0,0.15);
+            padding: 8px;
+            h1{
+                text-shadow: 0.5px 0.5px black;
+                color: #fff;
+                letter-spacing: -.035em;
+                font-size: 2.5rem;
+            }
         }
     }
 }
 
-body {
-    padding: 10px;
-    max-height: 100px;
+section{
+    padding: 52px 0;
+    h2{
+        letter-spacing: -.035em;
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
 }
-.container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    color: $special-black2;
 
-    /* CUCINE */
-    aside{
+// SELECTION
+.selection{
+    .row1, 
+    .row2{
+        height: 227px;
+        @include flex("vertical");
         margin-bottom: 20px;
-        h2{
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .kitchens{
-            border-radius: 12px;
-        }
-
-        .check-container{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            div{
-                width: calc((100% / 12) - 14px);
-                margin: 7px;
-
-                label{
-                    display: block;
-                    color: $special-black2;
-                    transition: 0.3s;
-                    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-                    width: 100%;
-                    background-color: transparent;
-                    border-radius: 18px;
-                    padding: 2px 0;
-                    text-align: center;
-                    cursor: pointer;
-                    font-size: 14px;
-
-                    &:hover{
-                        background-color: $special-white;
-                        box-shadow: 0 2px 5px rgba(0,0,0,.2);
-                    }
-
-                    input{
-                        display: none;
-                    }
-                }
+        .small{
+            height: 100%;
+            width: 427px;
+            cursor: pointer;
             }
-
-            .checked{
-                background-color: #f0883df6;
-                color: white;
-                box-shadow: 0 2px 5px rgba(0,0,0,.2);
-
-                &:hover{
-                    background-color: #f69b59f6;
-                }
-            }
-
+        .large{
+            height: 100%;
+            flex-grow: 1;
+            cursor: pointer;
         }
+        .img{
+            height: 149px;
+            margin-bottom: 8px;
+            @include flex("center");
+            color: #fff;
+            text-shadow: 1px 1px black;
+            font-size: 40px;
+            font-weight: 600;
+        }
+        .img1{
+            background-image: url("https://i2.wp.com/www.eatthis.com/wp-content/uploads/2020/04/unhealthy-foods.jpg?fit=1200%2C879&ssl=1");
+            background-size: cover;
+            background-position-y: -50px;
+        }
+        .img2{
+            background-image: url("https://st3.idealista.pt/cms/arquivos/styles/idcms_tablet/public/2019-06/media/image/arroz_doce_flickr.jpg?fv=qLaR6DRh&itok=735Gdi3X");
+            background-size: cover;
+            background-position-y: -150px;
+        }
+        .img3{
+            background-image: url("https://www.giordanovini.it/images/catalogo/social_dinner_3-b.png");
+            background-size: cover;
+            background-position-y: -100px;
+        }
+        .img4{
+            background-image: url("https://perugia.unicusano.it/wp-content/uploads/2019/04/dipendenza-da-cibo.jpg");
+            background-size: cover;
+            background-position-y: -80px;
+        }
+        a{
+            color: $d-a;
+            text-decoration: none;
+            margin: 5px 0 0;
+        }
+    } 
+}
+
+// RECOMMENDED 
+.recommended{
+    background-color: #ffeae4;
+    h2{
+        margin-bottom: 20px;
     }
-
-    /* RISTORANTI */
-    .restaurants{
-        flex-grow: 1;
-        h2{
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-
         .restaurants-container > div{
-                width: calc(100% / 5 - 20px);
+                width: calc(100% / 3 - 20px);
                 margin: 10px;
+            &:hover img{
+                transform: scale(1.1);
+            }
         }
         .restaurants-container{
             display: flex;
             flex-wrap:  wrap;
             padding:20px;
-            border-radius: 12px;
-
 
             .router-link{
                 display: block;
-                height: 150px;
+                height: 175px;
                 width: 100%;
                 position: relative;
                 border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0,0,0,.8);
                 overflow: hidden;
-
-                .layover{
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background-color:rgba(85, 83, 83, 0.2);
-                    transition: 0.4s;
-                    z-index: 10;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    h5{
-                        text-decoration: none;
-                        color: white;
-                        font-size: 20px;
-                        text-transform: capitalize;
-                    }
-                }
-
-                img{
-                    object-fit: cover;
-                    height: 100%;
-                    width: 100%;
-                    transition: 0.3s;
-                }
-
-                &:hover img{
-                    transform: scale(1.1);
-                }
             }
-        }    
-    }
-}
+            h5{
+                color: #2e3333;
+                font-size: 22px;
+                margin: 4px 0 4px;
+                text-transform: capitalize;
+            }
 
-.no-result{
-    padding-top: 150px;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-}
+            img{
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+                transition: 0.3s;
+            }
+        
+        }
+}    
 
-@media screen and (max-width:1903px){
-    #label-div{
-        width: calc((100% / 9) - 14px);
-    }
-
-    #restaurant-div > div{
-        width: calc((100% / 4) - 20px);
-    }
-}
-
-@media screen and (max-width:1263px){
-    #label-div{
-        width: calc((100% / 8) - 14px);
-        label{
-            font-size: 12px;
+// CATEGORIES
+.categories{
+    .my_container{
+        .label-div{
+            @include flex("flex");
+            flex-wrap: wrap;
+            label{
+                font-size: 28px;
+                font-weight: bold;
+                color: $d-black;
+                align-items: center;
+                text-transform: capitalize;
+                cursor: pointer;
+                padding: 5px 10px;
+                margin-right: 16px;
+            }
+            input{
+                display: none;
+            }
+            .checked{
+            color: $d-primary;
+            }
         }
     }
-
-    #restaurant-div > div{
-        width: calc((100% / 3) - 20px);
-    }
 }
-
-@media screen and (max-width:833px){
-    #label-div{
-        width: calc((100% / 7) - 14px);
-    }
-}
-
-@media screen and (max-width:705px){
-    #label-div{
-        width: calc((100% / 5) - 14px);
-    }
-    #restaurant-div > div{
-        width: calc((100% / 2) - 20px);
-    }
-}
-
-@media screen and (max-width:506px){
-    #label-div{
-        width: calc((100% / 3) - 14px);
-    }
-    #restaurant-div > div{
-        width: calc((100% / 2) - 20px);
-    }
-}
-
-@media screen and (max-width:506px){
-    #label-div{
-        width: calc((100% / 3) - 14px);
-    }
-    #restaurant-div > div{
-        width: calc((100% / 1) - 20px);
-    }
-}
-
 </style>
