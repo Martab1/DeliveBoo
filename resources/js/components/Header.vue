@@ -1,50 +1,27 @@
 <template>
-   <v-card>
-    <v-app-bar
-      absolute
-      dark
-      height="70"
-      :bottom='false'
-      shrink-on-scroll
-      prominent
-      src="https://ilfattoalimentare.it/wp-content/uploads/2017/06/junk-food-hamburger-patatine-fast-food-pizza-dolci-Fotolia_130389179_Subscription_Monthly_M.jpg"
-      fade-img-on-scroll
-      scroll-target="#scrolling-techniques-4"
-    >
-      <template v-slot:img="{ props }">
-        <v-img
-          v-bind="props"
-          gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
-        ></v-img>
-      </template>
-
-      <v-toolbar-title id="title">DELIVEBOO</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-menu
-        bottom
-        left
-      >
-      </v-menu>
-
-      <template v-slot:extension>
-        <v-tabs align-with-title>
-          
-          <v-tab><router-link class="c-white" :to="{name: 'home'}">home </router-link></v-tab>
-          <v-tab><a class="c-white" href="http://127.0.0.1:8000/admin">Area riservata</a></v-tab>
-          <!-- <v-tab>Consigliati</v-tab> -->
-        </v-tabs>
-      </template>
-    </v-app-bar>
-    <v-sheet
-      id="scrolling-techniques-4"
-      class="overflow-y-auto"
-      max-height="600"
-    >
-      <v-container style="height: 165px;"></v-container>
-    </v-sheet>
-  </v-card>
+  <header>
+    <div class="my_container">
+      <div class="logo">
+        <img src="/img/logow-notext.png" alt="logo">
+        <span>
+        Deliveboo
+        </span>
+      </div>
+      <div class="actions">
+        <div>
+          <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M4.88398 7.11612L3.11621 8.88389L12.0001 17.7678L20.884 8.88389L19.1162 7.11612L12.0001 14.2322L4.88398 7.11612Z"></path></svg>
+          Collabora con noi
+          </div>
+        <div>
+          <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M3 10L5 8.44444V5H9.42857L12 3L21 10V21H3V10ZM14 19H19V10.9782L12 5.53372L5 10.9782V19H10V14H14V19Z"></path></svg>
+          Registrati o accedi</div>
+        <div>
+          <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M2 13V11H22V13H2ZM2 19V17H22V19H2ZM2 7V5H22V7H2Z"></path></svg>
+          Menu
+          </div>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -57,35 +34,39 @@ export default {
 @import '../../sass/vars.scss';
 @import '../../sass/mixins.scss';
 
-#title{
-  font-weight: 800;
-  font-size: 50px;
-  color: $special-white;
-}
-.logo{
-  width:100px;
-  background:transparent;
-}
-
-.center{
-  @include flex("center");
-}
-
-.c-white{
-  padding-top:15px;
-  display:block;
-  width: 100%;
-  height: 100%;
-  color: $special-white;
-  text-decoration: none;
-}
-
-@media screen and (max-width:503px) {
-  *{
-    font-size: 0.7rem;
-  }
-  #title{
-    font-size: 2.7rem;
+header{
+  height: 66px;
+  background-color: $d-primary;
+  .my_container{
+    height: 100%;
+    @include flex("space-bet");
+    align-items: center;
+    .logo{
+      @include flex("center");
+      span{
+        font-weight: bold;
+        color: #fff;
+        margin-left: 8px;
+      }
+    }
+    .actions{
+      @include flex("flex");
+      div{
+        @include flex("center");
+        background-color: #fff;
+        margin: 16px 7px;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        svg{
+          width: 18px;
+          height: 18px;
+          margin-right: 8px;
+          color: $d-primary;
+          fill: currentColor;
+        }
+      }
+    }
   }
 }
 
