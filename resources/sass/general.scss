@@ -1,6 +1,10 @@
 @import "./vars.scss";
 @import "./mixins.scss";
 
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     min-height: 100vh;
     font-family: 'IBM Plex Sans', sans-serif;
