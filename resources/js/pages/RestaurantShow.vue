@@ -73,18 +73,64 @@
                     </div>
                 </div>
                 <div class="right">
+                    <!-- CART -->
                     <div class="cart">
-                        <span>
-                            <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-12dd3e73f2b804e2"><path d="M4.82843 13L11 19.1716L18 12.1716V6H11.8284L4.82843 13ZM11 4H20V13L11 22L2 13L11 4ZM14.5 11C15.3284 11 16 10.3284 16 9.5C16 8.67157 15.3284 8 14.5 8C13.6716 8 13 8.67157 13 9.5C13 10.3284 13.6716 11 14.5 11Z"></path></svg>
-                            Spesa minima 10,00 € con consegna gratuita
-                        </span>
-                        <div class="divider"></div>
-                        <!-- IF CART EMPTY -->
                         <div v-if="total === 0" class="empty">
-                            <button disabled="disabled">Vai alla cassa</button>
+                            <span>
+                                <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-12dd3e73f2b804e2"><path d="M4.82843 13L11 19.1716L18 12.1716V6H11.8284L4.82843 13ZM11 4H20V13L11 22L2 13L11 4ZM14.5 11C15.3284 11 16 10.3284 16 9.5C16 8.67157 15.3284 8 14.5 8C13.6716 8 13 8.67157 13 9.5C13 10.3284 13.6716 11 14.5 11Z"></path></svg>
+                                Inserisci almeno 1 articolo, consegna gratuita
+                            </span>
+                            <div class="divider"></div>
+                            <button>Vai alla cassa</button>
                             <div>
                                 Il tuo carrello è vuoto
                             </div>
+                        </div>
+                        <div v-else class="full">
+                            <div class="container-full">
+                                <span>
+                                    <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-b86ddb4586c18dbc"><path d="M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM8 10.8787L5.87868 13L10 17.1213L18.1213 9L16 6.87868L10 12.8787L8 10.8787Z"></path></svg>
+                                    <span>Congratulazioni! Ora <strong> la consegna è gratuita</strong></span>
+                                </span>
+                                <div class="divider"></div>
+                                
+                                <router-link class="pay" :to="{name: 'payment',
+                                    params: {
+                                        restaurantId: cart.key,
+                                        orderTotal: total
+                                    }}">
+                                    Vai alla cassa
+                                </router-link>
+                                <div class="recap" v-for="product in cart.products" :key="product.id">
+                                    <div class="qty">
+                                        <svg @click="cartDecrement(product.id)" height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"><path d="M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM7 13.5V10.5H17V13.5H7Z"></path></svg>
+                                        {{product.qty}}
+                                        <svg @click="cartIncrement(product.id)" height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"><path d="M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM13.5 7V10.4999H17V13.5H13.5V17H10.5V13.5H7V10.4999H10.5V7H13.5Z"></path></svg>
+                                    </div>
+                                    <div class="name">{{product.name}}</div>
+                                    <div class="single-total">{{product.total}} €</div>
+                                </div>
+                                <div class="subtotal">
+                                    <span>Subtotale</span>
+                                    <span>{{total}} €</span>
+                                </div>
+                                <div class="transportation-fee">
+                                    <span>Spese di trasporto</span>
+                                    <span>
+                                        <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-1e6f880f67285c2e"><path d="M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"></path></svg>
+                                        <span class="delete">1,49 € </span>
+                                        <span class="free">Gratuito</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="savings">
+                                Con la consegna gratuita risparmi 1,49 €
+                            </div>
+                            <div class="total">
+                                <span>Totale</span>
+                                <span>{{total}} €</span>
+                            </div>
+                            <div class="container-empty"><button @click="removeCart" class="empty-the-cart">Svuota il carrello</button></div>
                         </div>
                     </div>
                 </div>
@@ -291,6 +337,37 @@ export default {
                 this.qty --;
             }
         },
+        // CART INCREMENT
+        cartIncrement(id){
+            this.cart.products = this.cart.products.map(e => {
+                if (e.id == id) {
+                    e.qty += 1;
+                    e.total = e.price * e.qty;
+                    this.total += e.price;
+                    return e;
+                } else {
+                    return e;
+                }
+            });
+        },
+        // CART DECREMENT
+        cartDecrement(id){
+            this.cart.products.forEach(e => {
+                if (e.id == id) {
+                    e.qty -= 1;
+                    e.total = e.price * e.qty;
+                    this.total -= e.price;
+                    if (e.qty == 0) {
+                        this.cart.products.forEach((e, index) => {
+                            if (e.id == id) {
+                                this.cart.products.splice(index, 1);
+                                this.activeElements.splice(index, 1);
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 };
 </script>
@@ -479,33 +556,33 @@ export default {
             }
         }
         .cart{
-            @include flex("column");
             position: absolute;
             min-height: 248px;
             width: 369px;
-            padding: 16px;
             background-color: #fff;
-            & > span{
-                @include flex("vertical");
-                color: #e2484f;
-                fill: currentColor;
-                font-size: 14px;
-                margin-bottom: 5px;
-                svg{
-                    width: 18px;
-                    height: 18px;
-                    margin-right: 8px;
-                }
-            }
-            .divider{
-                background-color: #ebebeb;
-                border-radius: 2px;
-                height: 4px;
-                margin-bottom: 15px;
-            }
             .empty{
-                flex-grow: 1;
+                padding: 16px;
                 @include flex("column");
+                min-height: 216px;
+                span{
+                    @include flex("vertical");
+                    color: #e2484f;
+                    fill: currentColor;
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                    svg{
+                        width: 18px;
+                        height: 18px;
+                        margin-right: 8px;
+                    }
+                }
+                .divider{
+                    background-color: #ebebeb;
+                    border-radius: 2px;
+                    height: 4px;
+                    margin-bottom: 15px;
+                    flex-grow: 0;
+                }
                 button{
                     cursor: not-allowed;
                     width: 100%;
@@ -515,10 +592,131 @@ export default {
                     color: #abadad;
                 }
                 & > div{
-                    height: 100%;
                     flex-grow: 1;
                     color: #abadad;
                     @include flex("center");
+                }
+            }
+            .full{
+                .container-full{
+                    padding: 16px 16px 0;
+                    @include flex("column");
+                    min-height: 216px;
+                    & > span{
+                        @include flex("vertical");
+                        fill: #77bf2a;
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                        svg{
+                            width: 18px;
+                            height: 18px;
+                            margin-right: 8px;
+                        }
+                        strong{
+                            margin-left: 4px;
+                        }
+                    }
+                    .divider{
+                        background-color: #77bf2a;
+                        border-radius: 2px;
+                        height: 4px;
+                        margin-bottom: 15px;
+                        flex-grow: 0;
+                    }
+                    .pay{
+                        @include flex("center");
+                        text-decoration: none;
+                        width: 100%;
+                        height: 56px;
+                        background-color: $d-primary;
+                        border-radius: 2px;
+                        color: #fff;
+                    }
+                    .recap{
+                        margin-top: 20px;
+                        @include flex("flex");
+                        .qty{
+                            @include flex("vertical");
+                            justify-content: space-between;
+                            width: 20%;
+                            color: #828585;
+                            svg{
+                                fill: $d-primary;
+                                width: 18px;
+                                height: 18px;
+                            }
+                        }
+                        .name{
+                            padding-left: 8px;
+                            width: 55%;
+                            color: #828585;
+                        }
+                        .single-total{
+                            width: 25%;
+                            text-align: right;
+                        }
+                    }
+                    .subtotal{
+                        margin-top: 25px;
+                        @include flex("flex");
+                        & > span:first-child{
+                            color: #828585;
+                        };
+                        & > span:last-child{
+                            display: block;
+                            width: 100%;
+                            text-align: right;
+                        }
+                    }
+                    .transportation-fee{
+                        margin: 4px 0;
+                        @include flex("flex");
+                        color: #828585;
+                        & > span:last-child{
+                            @include flex("vertical");
+                            justify-content: flex-end;
+                            flex-grow: 1;
+                            svg{
+                                fill: currentColor;
+                                width: 18px;
+                                height: 18px;
+                                margin-right: 4px;
+                            }
+                            .delete{
+                                text-decoration: line-through;
+                                margin-right: 4px;
+                            }
+                            .free{
+                                color: #e2484f;
+                            }
+                        };
+                    }
+                }
+                .savings{
+                    @include flex("center");
+                    padding: 10px;
+                    background-color: #00a396;
+                    color: white;
+                }
+                .total{
+                    color: $d-text-grey;
+                    @include flex("flex");
+                    padding: 8px 16px;
+                    & >span:last-child{
+                        width: 100%;
+                        text-align: right;
+                        color: black;
+                    }
+                }
+                .container-empty{
+                    padding: 16px;
+                    .empty-the-cart{
+                        width: 100%;
+                        height: 56px;
+                        background-color: #e2484f;
+                        border-radius: 2px;
+                        color: #fff;
+                    }
                 }
             }
         }
@@ -576,8 +774,4 @@ export default {
         }
    }
 }
-
-// #flex{
-//     @include flex("flex");
-// }
 </style>
