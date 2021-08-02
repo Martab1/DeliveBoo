@@ -1,12 +1,12 @@
 <template>
   <header>
     <div class="my_container">
-      <div class="logo">
+      <router-link :to="{name: 'home'}" class="logo">
         <img src="/img/logow-notext.png" alt="logo">
         <span>
         Deliveboo
         </span>
-      </div>
+      </router-link>
       <div class="actions">
         <span class="relative">
           <div @click="openDropCollaborates()">
@@ -16,8 +16,10 @@
           </div>
           <div v-show="drop_collaborates" class="drop-collaborates">
             <div>
-              <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M15.55 11.8642L13.8012 13.6129L19.749 20.3375L18.2509 21.6625L12.3844 15.0298L5.70707 21.7071L4.29286 20.2929L11.0568 13.5289L9.67929 12.112L6.93679 14.8345L2.99365 8.15994L4.35279 2.93054L12.4737 12.112L14.1358 10.45L12.7929 9.1071L12.8008 7.68498L17.3008 3.28498L18.6991 4.715L14.9222 8.40798L15.55 9.03578L19.2929 5.29288L20.7071 6.7071L16.9642 10.45L17.5079 10.9937L21.3008 7.28498L22.6991 8.715L18.1991 13.115L16.7929 13.1071L15.55 11.8642ZM5.34352 7.06944L5.14324 7.84003L7.32097 11.6642L8.40646 10.6124L5.34352 7.06944Z"></path></svg>
-              Ristoranti
+              <a href="http://127.0.0.1:8000/admin">
+                <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M15.55 11.8642L13.8012 13.6129L19.749 20.3375L18.2509 21.6625L12.3844 15.0298L5.70707 21.7071L4.29286 20.2929L11.0568 13.5289L9.67929 12.112L6.93679 14.8345L2.99365 8.15994L4.35279 2.93054L12.4737 12.112L14.1358 10.45L12.7929 9.1071L12.8008 7.68498L17.3008 3.28498L18.6991 4.715L14.9222 8.40798L15.55 9.03578L19.2929 5.29288L20.7071 6.7071L16.9642 10.45L17.5079 10.9937L21.3008 7.28498L22.6991 8.715L18.1991 13.115L16.7929 13.1071L15.55 11.8642ZM5.34352 7.06944L5.14324 7.84003L7.32097 11.6642L8.40646 10.6124L5.34352 7.06944Z"></path></svg>
+                Ristoranti
+              </a>
             </div>
             <div>
               <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M17 3H7V6H2V20H22V6H17V3ZM15 6H9V5H15V6ZM4 8H20V11H4V8ZM20 12V18H4V12H9V14H15V12H20ZM10 12H14V13H10V12Z"></path></svg>
@@ -69,6 +71,10 @@ export default {
 
 
 header{
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
   height: 66px;
   background-color: $d-primary;
   .my_container{
@@ -76,7 +82,9 @@ header{
     @include flex("space-bet");
     align-items: center;
     .logo{
+      text-decoration: none;
       @include flex("center");
+      width: 120px;
       cursor: pointer;
       span{
         font-weight: bold;
@@ -115,6 +123,10 @@ header{
         left: 0;
         & > div{
           padding: 8px 0px 8px 16px;
+        }
+        a{
+          text-decoration: none;
+          color: black;
         }
       }
     }

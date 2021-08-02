@@ -337,10 +337,13 @@ section{
     }
 }
 
+.home{
+    padding-top: 66px;
+}
+
 // HERO
 .hero{
     height: 448px;
-    // background-image: url("/img/hero.png");
     background-image: url("https://media-exp1.licdn.com/dms/image/C561BAQHnh3Tsc_uBKQ/company-background_10000/0/1561589281326?e=2159024400&v=beta&t=3cfGYoRfVwt5-vQJL_x4W7MrP_uwZB-PRzqqpfBr5Gg");
     background-size: cover;
     .my_container{

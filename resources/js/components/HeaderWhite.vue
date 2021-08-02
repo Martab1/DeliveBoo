@@ -1,12 +1,12 @@
 <template>
   <header>
     <div class="my_container">
-      <div class="logo">
+      <router-link :to="{name:'home'}" class="logo">
         <img src="/img/deliveboo_white.png" alt="logo">
         <span>
         Deliveboo
         </span>
-      </div>
+      </router-link >
       <div class="actions">
         <div>
           <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M3 10L5 8.44444V5H9.42857L12 3L21 10V21H3V10ZM14 19H19V10.9782L12 5.53372L5 10.9782V19H10V14H14V19Z"></path></svg>
@@ -55,6 +55,7 @@ header{
     @include flex("space-bet");
     align-items: center;
     .logo{
+      text-decoration: none;
       width: 110px;
       @include flex("center");
       cursor: pointer;

@@ -3,6 +3,26 @@
         <HeaderWhite/>
         <!-- RESTAURANT DESCRIPTION -->
         <div class="restaurant_description" v-if="my_restaurant">
+
+            <div v-show="cardShow != null" class="selectQty">
+            <div class="sub-container-cards" v-for="product in my_restaurant.products" :key="product.id">
+                <div class="card-box" v-if="cardShow == product.id">
+                    <svg @click="closeCard" height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-c738ab1fde928049"><path d="M12.0001 10.2322L5.88398 4.11612L4.11621 5.88389L10.2323 12L4.11621 18.1161L5.88398 19.8839L12.0001 13.7678L18.1162 19.8839L19.884 18.1161L13.7679 12L19.884 5.88389L18.1162 4.11612L12.0001 10.2322Z"></path></svg>
+                    <h3>{{product.name}}</h3>
+                    <span class="description">{{product.description}}</span>
+                    <div class="qty">
+                        <svg @click="decQty" height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e"><path d="M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM7 13.5V10.5H17V13.5H7Z"></path></svg>
+                        <input disabled="disabled" v-model="qty">
+                        <svg @click="addQty" height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e"><path d="M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM13.5 7V10.4999H17V13.5H13.5V17H10.5V13.5H7V10.4999H10.5V7H13.5Z"></path></svg>
+                    </div>
+                    <div class="actions">
+                        <button @click="remove(product.id)" class="delete">Cancella</button>
+                        <button @click="add(product)" class="total">TOTALE {{product.price*qty}} €</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
             <div class="my_container">
                 <div class="left">
                     <div class="link">
@@ -52,6 +72,22 @@
                         </span>
                     </div>
                 </div>
+                <div class="right">
+                    <div class="cart">
+                        <span>
+                            <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-12dd3e73f2b804e2"><path d="M4.82843 13L11 19.1716L18 12.1716V6H11.8284L4.82843 13ZM11 4H20V13L11 22L2 13L11 4ZM14.5 11C15.3284 11 16 10.3284 16 9.5C16 8.67157 15.3284 8 14.5 8C13.6716 8 13 8.67157 13 9.5C13 10.3284 13.6716 11 14.5 11Z"></path></svg>
+                            Spesa minima 10,00 € con consegna gratuita
+                        </span>
+                        <div class="divider"></div>
+                        <!-- IF CART EMPTY -->
+                        <div v-if="total === 0" class="empty">
+                            <button disabled="disabled">Vai alla cassa</button>
+                            <div>
+                                Il tuo carrello è vuoto
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="menu-list">
@@ -59,14 +95,17 @@
                 <div class="left">
                     <div>
                         <div v-for="category in my_categories" :key="category.id">
-                            <h3 :id="category" >{{category}}</h3>
-                            
+                            <h3 :id="category" >{{category}}</h3>          
                             <div class="container-cards">
                                 <div class="sub-container-cards" v-for="product in my_restaurant.products" :key="product.id">
-                                    <span class="card" v-if="category == product.category.name">
+                                    <span @click="openCard(product)" class="card" :class="{active: activeElements.includes(product.id)}" v-if="category == product.category.name">
                                         <div class="description-card">
-                                            <span class="name">{{product.name}}</span>
-                                            <span class="description">{{product.description}}</span>
+                                            <span>
+                                                <span v-for="cartp in cart.products" :key="cartp.id" >
+                                                    <span class="cart-qty" v-if="cartp.id == product.id && cartp.qty != 0">{{cartp.qty}}× </span>
+                                                </span>
+                                                <span class="name">{{product.name}}</span>
+                                            </span>
                                             <span class="price">{{product.price}} €</span>
                                         </div>
                                         <div class="img">
@@ -104,9 +143,14 @@ export default {
             },
             total: 0,
             indexCategory : null,
+            cardShow : null,
+            qty: null,
+            activeElements : [],
+
         };
     },
     created() {
+        console.log(this.activeElements);
         this.getRestaurant();
     },
     methods: {
@@ -141,26 +185,28 @@ export default {
                     name: product.name,
                     id: product.id,
                     price: product.price,
-                    qty: 1,
-                    total: product.price
+                    qty: this.qty,
+                    total: product.price * this.qty,
                 };
+                this.activeElements.push(product.id);
                 this.cart.products.push(obj);
             }
-            this.total += product.price;
+            this.total += product.total;
             this.sync();
+            this.cardShow = null;
         },
 
         //RIMUOVI PRODOTTI
-        remove(product) {
-            if (this.find(product.id)) {
-                this.decrement(product.id);
-            }
+        remove(id) {
+             this.cart.products.forEach((e, index) => {
+                if (e.id == id) {
+                    this.total -= e.total;
+                    this.cart.products.splice(index, 1);
+                    this.activeElements.splice(index, 1);
+                }
+            });
             this.sync();
-            if (this.total != 0) {
-                this.total -= product.price;
-            } else {
-                this.total = 0;
-            }
+            this.cardShow = null;
         },
 
         //SINCRONIZZAZIONE DATI LOCAL STORAGE
@@ -184,7 +230,7 @@ export default {
         increment(id) {
             this.cart.products = this.cart.products.map(e => {
                 if (e.id == id) {
-                    e.qty += 1;
+                    e.qty = this.qty;
                     e.total = e.price * e.qty;
                     return e;
                 } else {
@@ -193,22 +239,6 @@ export default {
             });
         },
 
-        //DECREMENTO QTY
-        decrement(id) {
-            this.cart.products.forEach(e => {
-                if (e.id == id) {
-                    e.qty -= 1;
-                    e.total = e.price * e.qty;
-                    if (e.qty == 0) {
-                        this.cart.products.forEach((e, index) => {
-                            if (e.id == id) {
-                                this.cart.products.splice(index, 1);
-                            }
-                        });
-                    }
-                }
-            });
-        },
         // RIMUOVI TUTTO IL CARRELLO
         removeCart(cart) {
             if (cart != 0) {
@@ -230,12 +260,37 @@ export default {
             }
             this.cart.products.forEach(e => {
                 this.total += e.total;
+                this.activeElements.push(e.id);
             });
         },
         // SELECTED
         selected(index){
             this.indexCategory = index;
-        }
+        },
+        // OPENCARD
+        openCard(product){
+            this.cardShow = product.id;
+            this.qty = 1;
+            this.cart.products.forEach(e=>{
+                if(e.id == product.id){
+                    this.qty = e.qty;
+                }
+            })
+        },
+        // CLOSECARD    
+        closeCard(){
+            this.cardShow = null;
+        },
+        // ADDQTY
+        addQty(){
+            this.qty ++;
+        },
+        // DECQTY
+        decQty(){
+            if(this.qty >1){
+                this.qty --;
+            }
+        },
     }
 };
 </script>
@@ -309,32 +364,162 @@ export default {
             }
         }
     }
+    .selectQty{
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    opacity: 1;
+    @include flex("center");
+        .card-box{
+            @include flex("column");
+            opacity: 1;
+            width: 560px;
+            min-height: 268px;
+            padding: 24px;
+            background-color: white;
+            position: relative;
+            & > svg{
+                cursor: pointer;
+                position: absolute;
+                right: 19px;
+                top: 19px;
+                color: $d-primary;
+                fill:currentColor;
+            }
+            h3{
+                font-size: 28px;
+                color: $d-black;
+            }
+            .description{
+                font-size: 14px;
+                color: $d-text-grey;
+            }
+            .qty{
+                margin-top: 35px;
+                @include flex("center");
+                svg{
+                    cursor: pointer;
+                    color: $d-primary;
+                    fill:currentColor;
+                }
+                input{
+                    width: 30%;
+                    font-weight: bold;
+                    font-size: 28px;
+                    color: $d-black;
+                    text-align: center;
+                }
+            }
+            .actions{
+                flex-grow: 1;
+                height: 100%;
+                @include flex("flex");
+                align-items: flex-end;
+                .delete{
+                    border: 1px solid #e8ebeb;
+                    background-color: #fff;
+                    color: $d-primary;
+                    min-height: 48px;
+                    padding: 12px 24px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    &:hover{
+                        border-color: #d1d4d4;
+                        color: #00a698;
+                    }
+                }
+                .total{
+                    background-color: $d-primary;
+                    color: #fff;
+                    min-height: 48px;
+                    padding: 12px 24px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    margin-left: 13px;
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
   
 }
 
 .menu{
     top: 0;
     position: sticky;
-    padding: 10px 0;
+    
     background-color: white;
-    .left{
-        @include flex("space-bet");
-        div{
-            a{  
-                text-decoration: none;
-                color: $d-primary;
-                border: 3px solid white;
-                margin: 8px;
-                padding: 2px 16px;
-                border-radius: 20px;
-                &:focus,
-                &:active{
-                    border: 3px solid #b2f0eb;
+    .my_container{
+        display: flex;
+        .left{
+            @include flex("space-bet");
+            div{
+                padding: 10px 0;
+                a{  
+                    text-decoration: none;
+                    color: $d-primary;
+                    border: 3px solid white;
+                    margin: 8px;
+                    padding: 2px 16px;
+                    border-radius: 20px;
+                    &:focus,
+                    &:active{
+                        border: 3px solid #b2f0eb;
+                    }
+                }
+                .active{
+                    background-color: $d-primary;
+                    color: #fff;
                 }
             }
-            .active{
-                background-color: $d-primary;
-                color: #fff;
+        }
+        .cart{
+            @include flex("column");
+            position: absolute;
+            min-height: 248px;
+            width: 369px;
+            padding: 16px;
+            background-color: #fff;
+            & > span{
+                @include flex("vertical");
+                color: #e2484f;
+                fill: currentColor;
+                font-size: 14px;
+                margin-bottom: 5px;
+                svg{
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 8px;
+                }
+            }
+            .divider{
+                background-color: #ebebeb;
+                border-radius: 2px;
+                height: 4px;
+                margin-bottom: 15px;
+            }
+            .empty{
+                flex-grow: 1;
+                @include flex("column");
+                button{
+                    cursor: not-allowed;
+                    width: 100%;
+                    height: 56px;
+                    background-color: #ebebeb;
+                    border-radius: 2px;
+                    color: #abadad;
+                }
+                & > div{
+                    height: 100%;
+                    flex-grow: 1;
+                    color: #abadad;
+                    @include flex("center");
+                }
             }
         }
     }
@@ -352,6 +537,8 @@ export default {
         .sub-container-cards{
             @include flex("flex");
             .card{
+                border-left: 4px solid transparent;
+                cursor: pointer;
                 width: 354px;
                 height: 137px;
                 margin-right: 22px;
@@ -359,17 +546,15 @@ export default {
                 background-color: #fff;
                 padding: 20px;
                 @include flex("flex");
+                &:hover{
+                    box-shadow: 0px 22px 24px 0px rgba(0,0,0,0.08);
+                }
                 .description-card{
                     @include flex("column");
                     width:70%;
                     padding-right: 10px;
-                    .description{
-                        font-size: 11px;
-                        color: $d-text-grey;
-                        width: 100%; 
-                        height: 100%;
-                        text-overflow: ellipsis; 
-                        overflow: hidden;
+                    .cart-qty{
+                        color: #babbbb;
                     }
                     .price{
                         color: #e2484f;
@@ -385,11 +570,14 @@ export default {
                     }
                 }
             }
+            .active{
+                border-left: 4px solid $d-primary;
+            }
         }
    }
 }
 
-#flex{
-    @include flex("flex");
-}
+// #flex{
+//     @include flex("flex");
+// }
 </style>
