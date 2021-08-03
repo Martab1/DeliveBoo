@@ -35,7 +35,9 @@ class OrderController extends Controller
             "restaurantId" => "required",
             'payer_name' => "required|string|min:3|max:50",
             'payer_email' => "required",
-            'payer_address' => "required|min:3|max:200",
+            'payer_address' => "required|min:3|max:50",
+            'payer_city' => "required|min:3|max:50",
+            'payer_cap' => "required|digits:5",
         ],[
             'required'=> 'Questo campo è obbligatorio',
             'name.max'=> 'Massimo :max caratteri concessi',
@@ -64,7 +66,7 @@ class OrderController extends Controller
         $new_order->restaurant_id = $request->restaurantId;
         $new_order->payer_name = $request->payer_name;
         $new_order->payer_email = $request->payer_email;
-        $new_order->payer_address = $request->payer_address;
+        $new_order->payer_address = "$request->payer_city ($request->payer_cap) $request->payer_address";
         $new_order->total = $amount;
         $new_order->save();
 
