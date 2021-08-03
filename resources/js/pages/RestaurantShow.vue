@@ -192,6 +192,7 @@ export default {
             cardShow : null,
             qty: null,
             activeElements : [],
+            initialPrice : 0,
 
         };
     },
@@ -225,6 +226,7 @@ export default {
         //AGGIUNTA PRODOTTI NELL'ARRAY CHE POPOLERA IL CART DAL LOCALSTORAGE
         add(product) {
             if (this.find(product.id)) {
+                this.total -= this.initialPrice;
                 this.increment(product.id);
             } else {
                 let obj = {
@@ -237,7 +239,8 @@ export default {
                 this.activeElements.push(product.id);
                 this.cart.products.push(obj);
             }
-            this.total += product.total;
+            this.total += product.price * this.qty;
+            console.log(this.total);
             this.sync();
             this.cardShow = null;
         },
@@ -292,6 +295,7 @@ export default {
                 this.cart.products = [];
             }
             this.sync();
+            this.activeElements = [];
         },
         // INIZIALIZZAZIONE
         init() {
@@ -320,6 +324,7 @@ export default {
             this.cart.products.forEach(e=>{
                 if(e.id == product.id){
                     this.qty = e.qty;
+                    this.initialPrice = product.price * e.qty;
                 }
             })
         },
@@ -641,6 +646,7 @@ export default {
                             width: 20%;
                             color: #828585;
                             svg{
+                                cursor: pointer;
                                 fill: $d-primary;
                                 width: 18px;
                                 height: 18px;
