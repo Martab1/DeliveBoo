@@ -1,111 +1,176 @@
 <template>
-    <div v-if="loader" class="all-container container">
-        <div class="h-100">
-            <!-- <div class="payment"> -->
-                <div class="section-payment">
-                    <v-form class="sub-container">
-                        <h2>Completa il tuo acquisto</h2>
-                                <template>
-                                    <!-- INPUT NAME -->
-                                    <v-text-field
-                                    class="input"
-                                    label="nome"
-                                    v-model="form.payer_name"
-                                    :rules="[
-                                        v => !!v || 'Nome obbligatorio',
-                                        v => (v && v.length <= 50) || 'Il nome può contenere massimo 50 caratteri',
-                                        v => (v && v.length >= 3) || 'Il nome deve contenere minimo 3 caratteri'
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
-                                    <!-- ERROR -->
-                                    <div v-show="any_errors">
-                                        <v-alert class="alert" type="error" v-for="error in errors['payer_name']" :key="error">
-                                        {{error}}
-                                        </v-alert>
-                                    </div>
-                                    <!-- INPUT EMAIL -->
-                                    <v-text-field
-                                    class="input"
-                                    v-model="form.payer_email"
-                                    label="email"
-                                    :rules="[
-                                        v => !!v || 'Email obbligatoria',
-                                        v => /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Inserisci una mail valida',
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
-                                    <!-- ERROR -->
-                                    <div v-show="any_errors">
-                                        <v-alert class="alert" type="error" v-for="error in errors['payer_email']" :key="error">
-                                        {{error}}
-                                        </v-alert>
-                                    </div>
-                                    <!-- INPUT ADDRESS -->
-                                    <v-text-field
-                                    class="input"
-                                    v-model="form.payer_address"
-                                    label="indirizzo di consegna"
-                                    :rules="[
-                                        v => !!v || 'Indirizzo obbligatorio',
-                                        v => (v && v.length <= 200) || 'l\'indirizzo può contenere massimo 50 caratteri',
-                                        v => (v && v.length >= 3) || 'l\'indirizzo deve contenere minimo 3 caratteri'
-                                    ]"
-                                    hide-details="auto"
-                                    ></v-text-field>
-                                    <!-- ERROR -->
-                                    <div v-show="any_errors">
-                                        <v-alert class="alert" type="error" v-for="error in errors['payer_address']" :key="error">
-                                        {{error}}
-                                        </v-alert>
-                                    </div>
-                                </template>
-                            <h2 class="total-payment">Importo: {{this.$route.params.orderTotal}}
-                                <span v-if="!this.$route.params.orderTotal">0</span> €
-                            </h2>
-                            <v-braintree
-                                class="braintree"
-                                locale="it_IT"
-                                :vaultManager="true"
-                                :authorization=tokenApi
-                                @success="onSuccess"
-                                @error="onError"
-                                >
-                                <template v-slot:button="slotProps">
-                                    <v-btn @click="slotProps.submit" elevation="2" id="btn">Paga subito</v-btn>
-                                </template>
-                            </v-braintree>
-                    </v-form>
-                </div>
-            <!-- </div> -->
-            <div class="my_order">
-                <h2>Il tuo ordine</h2>
-                <div class="sub-container-my-order">
-                    <span v-for="article in my_order" :key="article.id">
-                        <div class="container-articles">
-                            <div class="article-name">{{article.name}}</div>
-                            <div class="article-qty">qtà: {{article.qty}}</div>
-                            <div class="article-total">€ {{article.total}}</div>
-                        </div>
-                            <v-divider></v-divider>
-                    </span>
-                </div>
-                <h4 class="slogan">Completa l'acquisto e ricevilo subito a casa!</h4>
+    <div v-if="loader" class="payment">
+        <HeaderGreen/>
+        <div class="my_container">
+            <h1>{{this.$route.params.restaurant.name}}</h1>
+            <div class="time">
+                <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-be253fe60aa767f4"><path d="M13 12L15.2025 15.8789L13.4704 16.8789L11 12.6V6H13V12ZM12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20Z"></path></svg>
+                Consegna fra 30 - 45 min
             </div>
+                <v-form class="form">
+                    <template>
+                        <div class="silverware">
+                            <label class="switch">
+                                <input @click="checked" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="text-silverware">
+                                <h4>Posate</h4>
+                                <span v-if="check">Il ristorante aggiungerà le posate per te, se disponibili.</span>
+                                <span v-else>Aiutaci a ridurre lo preco di plastica: richiedi le posate solo quando ne hai bisogno.</span>
+                            </div>
+                        </div>
+                        <h2>Indirizzo di consegna</h2>
+                        <!-- INPUT ADDRESS -->
+                        <label for="address">Indirizzo</label>
+                        <v-text-field
+                        class="input"
+                        id="address"
+                        placeholder="es.Via Ettore Ponti, 21"
+                        v-model="form.payer_address"
+                        color="#006d68"
+                        :rules="[
+                            v => !!v || 'Indirizzo obbligatorio',
+                            v => (v && v.length <= 50) || 'l\'indirizzo può contenere massimo 50 caratteri',
+                            v => (v && v.length >= 3) || 'l\'indirizzo deve contenere minimo 3 caratteri'
+                        ]"
+                        hide-details="auto"
+                        ></v-text-field>
+                        <!-- ERROR -->
+                        <div class="form-error" v-show="any_errors">
+                            <span v-for="error in errors['payer_address']" :key="error">
+                                {{error}}
+                            </span>
+                        </div>
+
+                        <!-- CAP AND CITY -->
+                        <div class="cap-and-city">
+                            <div class="cap">
+                                <label for="cap">Cap</label>
+                                <v-text-field
+                                class="input"
+                                id="cap"
+                                v-model="form.payer_cap"
+                                placeholder="es. 20143"
+                                color="#006d68"
+                                :rules="[
+                                    v => !!v || 'Cap obbligatorio',
+                                    v => (v && v.length == 5) || 'Il Cap deve contenere 5 numeri',
+                                    v => /^\d+$/.test(v) || 'Il Cap deve contenere solo numeri',
+                                ]"
+                                hide-details="auto"
+                                ></v-text-field>
+                                <!-- ERROR -->
+                                <div class="form-error" v-show="any_errors">
+                                    <span v-for="error in errors['payer_cap']" :key="error">
+                                    {{error}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="city">
+                                <label for="city">Città</label>
+                                <v-text-field
+                                class="input"
+                                id="city"
+                                v-model="form.payer_city"
+                                placeholder="es. Milano"
+                                color="#006d68"
+                                :rules="[
+                                    v => !!v || 'Città obbligatoria',
+                                    v => (v && v.length <= 50) || 'La città può contenere massimo 50 caratteri',
+                                    v => (v && v.length >= 3) || 'La città deve contenere minimo 3 caratteri'
+
+                                ]"
+                                hide-details="auto"
+                                ></v-text-field>
+                                <!-- ERROR -->
+                                <div class="form-error" v-show="any_errors">
+                                    <span v-for="error in errors['payer_city']" :key="error">
+                                    {{error}}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- NAME AND EMAIL -->
+                        <div class="name-and-email">
+                            <div class="name">
+                                <label for="nome">Nome</label>
+                                <v-text-field
+                                class="input"
+                                color="#006d68"
+                                placeholder="es. Luigi Verdi"
+                                v-model="form.payer_name"
+                                :rules="[
+                                    v => !!v || 'Nome obbligatorio',
+                                ]"
+                                hide-details="auto"
+                                ></v-text-field>
+                                <!-- ERROR -->
+                                <div class="form-error" v-show="any_errors">
+                                    <span v-for="error in errors['payer_name']" :key="error">
+                                    {{error}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="email">
+                                <label for="email">Email</label>
+                                <v-text-field
+                                class="input"
+                                color="#006d68"
+                                v-model="form.payer_email"
+                                placeholder="es. verdiluigi@gmail.com"
+                                :rules="[
+                                    v => !!v || 'Email obbligatoria',
+                                    v => /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Inserisci una mail valida',
+                                ]"
+                                hide-details="auto"
+                                ></v-text-field>
+                                <!-- ERROR -->
+                                <div class="form-error" v-show="any_errors">
+                                    <span v-for="error in errors['payer_email']" :key="error">
+                                    {{error}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                <h2 class="payment-method">Metodo di pagamento</h2>
+                <v-braintree
+                    class="braintree"
+                    locale="it_IT"
+                    :vaultManager="true"
+                    :authorization=tokenApi
+                    @success="onSuccess"
+                    @error="onError"
+                    >
+                    <template v-slot:button="slotProps">
+                        <v-btn class="submit" @click="slotProps.submit">
+                            <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205"><path d="M18 9H20V21H4V9H6C6 5.69158 8.69158 3 12 3C15.3084 3 18 5.69158 18 9ZM6 19H18V11H6V19ZM8 9H16C16 6.79442 14.2056 5 12 5C9.79442 5 8 6.79442 8 9ZM11.5 16V14H12.5V16H11.5Z"></path></svg>
+                            Ordina per la consegna
+                        </v-btn>
+                    </template>
+                </v-braintree>
+            </v-form>
         </div>
     </div>
     <div v-else class="loading">
         <v-progress-circular
         :size="70"
-        color="#ff8e3c"
+        color="#00ccbc"
         indeterminate
         ></v-progress-circular>
     </div>
 </template>
 
 <script>
+import HeaderGreen from "../components/HeaderGreen.vue";
 export default {
     name:"Payment",
+    components:{
+        HeaderGreen,
+    },
     data(){
         return{
             tokenApi: "",
@@ -117,10 +182,13 @@ export default {
                 payer_name : "",
                 payer_email : "",
                 payer_address : "",
+                payer_cap : "",
+                payer_city : "",
             },
             errors: {},
             any_errors: false,
             my_order : [],
+            check : false,
         }
     },
     mounted(){
@@ -183,6 +251,10 @@ export default {
                     });
             })
         },
+        checked(){
+            this.check =! this.check;
+            console.log("ciao");
+        }
     },
 }
 </script>
@@ -190,155 +262,171 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/vars.scss";
 @import "../../sass/mixins.scss";
-.all-container{
-    padding: 30px;
-    min-height: calc(100vh - 166px - 108px);
-}
 
-.section-payment{
-    flex-grow: 1;
-}
+.payment{   
+    background: rgb(0,109,104);
+    background: linear-gradient(176deg, rgba(0,109,104,1) 21.8%, rgba(244,246,245,1) 22%);
+    padding-bottom: 40px;
+    .my_container{
+        h1{
+            color: #fff;
+            font-size: 28px;
+        }
+        .time{
+            @include flex("vertical");
+            color: #fff;
+            fill: currentColor;
+            margin-bottom: 26px;
+            svg{
+                width: 20px;    
+                height: 20px;
+                margin-right: 4px;
+            }
+        }
+        .form{
+            padding: 41px;
+            background-color: #fff;
+            width: 709px;
+            .form-error{
+                color: #ff5252;
+            }
+            .silverware{
+                @include flex("vertical");
+                margin-bottom: 43px;
+                padding: 16px;
+                border-radius: 3px;
+                border: solid 1px $d-border;
+                .switch {
+                position: relative;
+                display: inline-block;
+                width: 42px;
+                height: 28px;
+                }
 
-img{
-    width: 7%;
-    margin-bottom: 8px;
-    margin-top: 8px;
-}
+                .switch input { 
+                opacity: 0;
+                width: 0;
+                height: 0;
+                }
 
-.input{
-    background-color: $special-white;
-    margin: 0;
-}
+                .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #a3afaf;
+                transition: .4s;
+                }
 
-.alert{
-    background-color: $special-white;
-    margin: 0;
-}
+                .slider:before {
+                position: absolute;
+                @include flex("center");
+                content: "✖";
+                color: #a3afaf;
+                height: 20px;
+                width: 20px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                }
 
-.braintree{
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: transparent;
-    background-color: $special-white;
-    text-align: center;
-}
+                input:checked + .slider {
+                background-color: #00ccbc;
+                }
 
-.sub-container{
-    background-color: $special-white;
-    min-height: 100%;
-    padding: 10px 80px;
-    margin: 0 auto;
-    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
-    & > h2:first-child{
-        text-align:center;
-        text-transform: uppercase;
+                input:focus + .slider {
+                box-shadow: 0 0 1px #00ccbc;
+                }
+
+                input:checked + .slider:before {
+                transform: translateX(15px);
+                @include flex("center");
+                content: "✔";
+                color: #00ccbc;;
+                }
+
+                .slider.round {
+                border-radius: 34px;
+                }
+
+                .slider.round:before {
+                border-radius: 50%;
+                }
+                .text-silverware{
+                    margin-left: 10px;
+                    color: $d-text-grey;
+                    font-size: 14px;
+                    h4{
+                        color: $d-black;
+                    }
+                    input:checked + span{
+                        content: "ciao"
+                    }
+                }
+            }
+            h2{
+                color: $d-black;
+                font-size: 22px;
+                margin-bottom: 19px;
+            }
+            & > label{
+                font-size: 14px;
+                color: $d-text-grey;
+            }
+            .input{
+                padding: 4px;
+                border-radius: 3px;
+                border: solid 1px $d-border;
+            }
+            .cap-and-city,
+            .name-and-email{
+                margin: 24px 0;
+                @include flex("flex");
+                & label{
+                    font-size: 14px;
+                    color: $d-text-grey;
+                }
+                .cap,
+                .name{
+                    width: 48%;
+                    margin-right: 4%;
+                }
+                .city,
+                .email{
+                    width: 48%;
+                }
+            }
+            .payment-method{
+                margin-bottom: 0;
+            }
+            .braintree{
+                background: none;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                .submit{
+                    text-transform: lowercase;
+                    @include flex("vertical");
+                    width: 100%;
+                    background-color: $d-primary;
+                    color: #fff;
+                    svg{
+                        fill:currentColor;
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
     }
-}
-
-.total-payment{
-    margin-top: 30px;
-    color: $special-black;
-}
-
-#btn{
-    margin-top: 5px;
-}
-
-#btn:hover{
-    background-color: $btn-color;
-    color: white;
 }
 
 .loading{
-    height: 100%;
+    height: 100vh;
     @include flex("center");
 }
-
-.my_order{
-    flex-basis: 25%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-left: 20px;
-    padding: 10px 20px;
-    max-height: 100%;
-    background-color: $special-white;
-    box-shadow: 0 12px 16px -20px rgb(0, 0, 0, 1);
-    h2{
-        text-align: center;
-        text-transform: uppercase;
-    }
-}
-
-.h-100{
-    height: 100%;
-    @include flex("flex");
-}
-
-.sub-container-my-order{
-    height: 75%;
-    margin-top: 30px;
-    padding: 20px;
-    overflow-y: auto;
-    text-transform: capitalize;
-}
-
-.container-articles{
-    @include flex("flex");
-    padding: 8px 0px;
-    margin: 8px 0px;
-    .article-name{
-        width: 60%;
-    };
-    .article-qty{
-        width: 20%;
-    };
-    .article-total{
-        width: 20%;
-        text-align: right;
-    }
-}
-
-.slogan{
-    margin:30px 0;
-    text-align: center;
-    font-size: $special-black2;
-}
-// PER I MEDIA QUERY FARE SPARIRE CARRELLO
-@media screen and (max-height:812px){
-    .all-container{
-    height: unset;
-    }
-}
-
-@media screen and (max-width:1903px){
-    .all-container{
-    padding: 30px 15px;
-    }
-    .my_order{
-        flex-basis: 40%;
-    }
-}
-
-@media screen and (max-width:1263px){
-    .my_order{
-        flex-basis: 60%;
-    }
-}
-
-@media screen and (max-width:896px){
-    .my_order{
-        display: none;
-    }
-}
-
-@media screen and (max-width:541px){
-    h2{
-        font-size: 1.1rem;
-    }
-    .sub-container{
-        padding: 15px;
-    }
-}
-
 </style>

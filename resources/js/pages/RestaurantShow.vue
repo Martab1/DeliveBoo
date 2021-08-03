@@ -96,6 +96,7 @@
                                 
                                 <router-link class="pay" :to="{name: 'payment',
                                     params: {
+                                        restaurant: my_restaurant.restaurant,
                                         restaurantId: cart.key,
                                         orderTotal: total
                                     }}">
