@@ -346,6 +346,7 @@ section{
     height: 448px;
     background-image: url("https://media-exp1.licdn.com/dms/image/C561BAQHnh3Tsc_uBKQ/company-background_10000/0/1561589281326?e=2159024400&v=beta&t=3cfGYoRfVwt5-vQJL_x4W7MrP_uwZB-PRzqqpfBr5Gg");
     background-size: cover;
+    background-position: center center;
     .my_container{
         height: 100%;
         @include flex("center");
@@ -353,6 +354,7 @@ section{
             background-color: rgba(0,0,0,0.15);
             padding: 8px;
             h1{
+                text-align: center;
                 text-shadow: 0.5px 0.5px black;
                 color: #fff;
                 letter-spacing: -.035em;
@@ -587,4 +589,115 @@ section{
         }
     }
 }
+
+//RESPONSIVE
+@media screen and (max-width: 979px){
+    
+    .selection{
+        .row1, 
+        .row2{
+            @include flex("vertical");
+            margin-bottom: 20px;
+            .small{
+                width: 50%;
+                cursor: pointer;
+                }
+            .large{
+                width: 50%;
+                cursor: pointer;
+            }
+            .img1,
+            .img2,
+            .img3,
+            .img4{
+                background-position: center center;
+            }
+        } 
+    }
+}
+
+@media screen and (max-width: 767px){
+// RECOMMENDED 
+.recommended,
+.categories{
+        .restaurants-container > div{
+                width: 100%;
+                margin: unset;
+                margin-bottom: 30px;
+        }
+        .restaurants-container{
+            .router-link{
+                height: 250px;
+            }
+        }
+    }
+
+    //CATEGORIES
+    .categories{
+        background-color: #fff;
+        .my_container{
+            .label-div{
+                label{
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+
+//NEWS
+.news{
+    font-size: .9rem;
+    .row1,
+    .row2{
+        height: unset;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        & > div{
+            height: 200px;
+        }
+        .w-55{
+            padding: 10px;
+        }
+    }
+    .container-img{
+        height: 200px;
+    }
+    .contattaci {
+        padding: 10px;
+
+        .btn-primary {
+            font-size: 0.95rem;
+            padding: 5px;
+            margin-top: 10px;
+        }
+    }
+}
+}
+
+
+
+@media screen and (max-width: 480px){
+    .selection{
+        padding-bottom: 20px;
+        .row1, 
+        .row2{
+            margin-bottom: unset;
+            flex-wrap: wrap;
+            height: unset;
+
+            .small,
+            .large{
+                width: 100%;
+                margin: unset;
+                margin-bottom: 20px;
+            }
+        } 
+    }
+
+    //NEWS
+    .news{
+        font-size: 0.8rem;
+    }
+}
+
 </style>
