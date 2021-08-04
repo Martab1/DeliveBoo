@@ -3303,6 +3303,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3315,6 +3394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      showCart: true,
       my_restaurant: null,
       my_categories: [],
       cart: {
@@ -3333,6 +3413,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.getRestaurant();
   },
   methods: {
+    products: function products(array, category) {
+      return array.filter(function (e) {
+        return e.category.name == category;
+      });
+    },
+    showContentCart: function showContentCart() {
+      this.showCart = !this.showCart;
+      console.log(this.showCart);
+    },
     getRestaurant: function getRestaurant() {
       var _this = this;
 
@@ -26632,7 +26721,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "html[data-v-240ac8a3] {\n  scroll-behavior: smooth;\n}\nbody[data-v-240ac8a3] {\n  min-height: 100vh;\n  font-family: \"IBM Plex Sans\", sans-serif;\n  display: flex;\n  flex-direction: column;\n}\nmain[data-v-240ac8a3] {\n  flex-grow: 1;\n  height: 100%;\n  background-color: #eff0f3;\n}\n.my_container[data-v-240ac8a3] {\n  max-width: 1270px;\n  margin: 0 auto;\n  padding: 0 15px;\n}\n.left[data-v-240ac8a3] {\n  width: 754px;\n}\n.restaurant_description[data-v-240ac8a3] {\n  background-color: #fff;\n  border-bottom: 1px solid #ebebeb;\n}\n.restaurant_description .my_container[data-v-240ac8a3] {\n  padding-top: 29px;\n  display: flex;\n  justify-content: space-between;\n}\n.restaurant_description .my_container .left .link[data-v-240ac8a3] {\n  padding-bottom: 29px;\n  color: #828585;\n  font-size: 14px;\n}\n.restaurant_description .my_container .left .link .router-link[data-v-240ac8a3] {\n  text-decoration: none;\n  color: #00ccbc;\n}\n.restaurant_description .my_container .left h1[data-v-240ac8a3] {\n  color: #2e3333;\n  font-size: 28px;\n}\n.restaurant_description .my_container .left .description[data-v-240ac8a3] {\n  display: flex;\n  flex-direction: column;\n}\n.restaurant_description .my_container .left .description[data-v-240ac8a3],\n.restaurant_description .my_container .left .slogan[data-v-240ac8a3] {\n  color: #828585;\n  font-size: 14px;\n}\n.restaurant_description .my_container .left .slogan[data-v-240ac8a3] {\n  margin-top: 5px;\n}\n.restaurant_description .my_container .left .information[data-v-240ac8a3] {\n  margin: 8px 0 16px 0;\n  display: flex;\n  align-items: center;\n}\n.restaurant_description .my_container .left .information svg[data-v-240ac8a3] {\n  margin-right: 8px;\n  color: #828585;\n  fill: currentColor;\n}\n.restaurant_description .my_container .right .container-img[data-v-240ac8a3] {\n  width: 370px;\n  height: 170px;\n}\n.restaurant_description .my_container .right .container-img img[data-v-240ac8a3] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant_description .my_container .right .rider[data-v-240ac8a3] {\n  margin-top: 10px;\n  display: flex;\n}\n.restaurant_description .my_container .right .rider svg[data-v-240ac8a3] {\n  margin-right: 10px;\n}\n.restaurant_description .selectQty[data-v-240ac8a3] {\n  z-index: 2;\n  position: fixed;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  opacity: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.restaurant_description .selectQty .card-box[data-v-240ac8a3] {\n  display: flex;\n  flex-direction: column;\n  opacity: 1;\n  width: 560px;\n  min-height: 268px;\n  padding: 24px;\n  background-color: white;\n  position: relative;\n}\n.restaurant_description .selectQty .card-box > svg[data-v-240ac8a3] {\n  cursor: pointer;\n  position: absolute;\n  right: 19px;\n  top: 19px;\n  color: #00ccbc;\n  fill: currentColor;\n}\n.restaurant_description .selectQty .card-box h3[data-v-240ac8a3] {\n  font-size: 28px;\n  color: #2e3333;\n}\n.restaurant_description .selectQty .card-box .description[data-v-240ac8a3] {\n  font-size: 14px;\n  color: #828585;\n}\n.restaurant_description .selectQty .card-box .qty[data-v-240ac8a3] {\n  margin-top: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.restaurant_description .selectQty .card-box .qty svg[data-v-240ac8a3] {\n  cursor: pointer;\n  color: #00ccbc;\n  fill: currentColor;\n}\n.restaurant_description .selectQty .card-box .qty input[data-v-240ac8a3] {\n  width: 30%;\n  font-weight: bold;\n  font-size: 28px;\n  color: #2e3333;\n  text-align: center;\n}\n.restaurant_description .selectQty .card-box .actions[data-v-240ac8a3] {\n  flex-grow: 1;\n  height: 100%;\n  display: flex;\n  align-items: flex-end;\n}\n.restaurant_description .selectQty .card-box .actions .delete[data-v-240ac8a3] {\n  border: 1px solid #e8ebeb;\n  background-color: #fff;\n  color: #00ccbc;\n  min-height: 48px;\n  padding: 12px 24px;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.restaurant_description .selectQty .card-box .actions .delete[data-v-240ac8a3]:hover {\n  border-color: #d1d4d4;\n  color: #00a698;\n}\n.restaurant_description .selectQty .card-box .actions .total[data-v-240ac8a3] {\n  background-color: #00ccbc;\n  color: #fff;\n  min-height: 48px;\n  padding: 12px 24px;\n  border-radius: 4px;\n  cursor: pointer;\n  margin-left: 13px;\n  flex-grow: 1;\n}\n.menu[data-v-240ac8a3] {\n  top: 0;\n  position: sticky;\n  background-color: white;\n}\n.menu .my_container[data-v-240ac8a3] {\n  display: flex;\n}\n.menu .my_container .left[data-v-240ac8a3] {\n  display: flex;\n  justify-content: space-between;\n}\n.menu .my_container .left div[data-v-240ac8a3] {\n  padding: 10px 0;\n}\n.menu .my_container .left div a[data-v-240ac8a3] {\n  text-decoration: none;\n  color: #00ccbc;\n  border: 3px solid white;\n  margin: 8px;\n  padding: 2px 16px;\n  border-radius: 20px;\n}\n.menu .my_container .left div a[data-v-240ac8a3]:focus, .menu .my_container .left div a[data-v-240ac8a3]:active {\n  border: 3px solid #b2f0eb;\n}\n.menu .my_container .left div .active[data-v-240ac8a3] {\n  background-color: #00ccbc;\n  color: #fff;\n}\n.menu .my_container .cart[data-v-240ac8a3] {\n  position: absolute;\n  min-height: 248px;\n  width: 369px;\n  background-color: #fff;\n}\n.menu .my_container .cart .empty[data-v-240ac8a3] {\n  padding: 16px;\n  display: flex;\n  flex-direction: column;\n  min-height: 216px;\n}\n.menu .my_container .cart .empty span[data-v-240ac8a3] {\n  display: flex;\n  align-items: center;\n  color: #e2484f;\n  fill: currentColor;\n  font-size: 14px;\n  margin-bottom: 5px;\n}\n.menu .my_container .cart .empty span svg[data-v-240ac8a3] {\n  width: 18px;\n  height: 18px;\n  margin-right: 8px;\n}\n.menu .my_container .cart .empty .divider[data-v-240ac8a3] {\n  background-color: #ebebeb;\n  border-radius: 2px;\n  height: 4px;\n  margin-bottom: 15px;\n  flex-grow: 0;\n}\n.menu .my_container .cart .empty button[data-v-240ac8a3] {\n  cursor: not-allowed;\n  width: 100%;\n  height: 56px;\n  background-color: #ebebeb;\n  border-radius: 2px;\n  color: #abadad;\n}\n.menu .my_container .cart .empty > div[data-v-240ac8a3] {\n  flex-grow: 1;\n  color: #abadad;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.menu .my_container .cart .full .container-full[data-v-240ac8a3] {\n  padding: 16px 16px 0;\n  display: flex;\n  flex-direction: column;\n  min-height: 216px;\n}\n.menu .my_container .cart .full .container-full > span[data-v-240ac8a3] {\n  display: flex;\n  align-items: center;\n  fill: #77bf2a;\n  font-size: 14px;\n  margin-bottom: 5px;\n}\n.menu .my_container .cart .full .container-full > span svg[data-v-240ac8a3] {\n  width: 18px;\n  height: 18px;\n  margin-right: 8px;\n}\n.menu .my_container .cart .full .container-full > span strong[data-v-240ac8a3] {\n  margin-left: 4px;\n}\n.menu .my_container .cart .full .container-full .divider[data-v-240ac8a3] {\n  background-color: #77bf2a;\n  border-radius: 2px;\n  height: 4px;\n  margin-bottom: 15px;\n  flex-grow: 0;\n}\n.menu .my_container .cart .full .container-full .pay[data-v-240ac8a3] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-decoration: none;\n  width: 100%;\n  height: 56px;\n  background-color: #00ccbc;\n  border-radius: 2px;\n  color: #fff;\n}\n.menu .my_container .cart .full .container-full .recap[data-v-240ac8a3] {\n  margin-top: 20px;\n  display: flex;\n}\n.menu .my_container .cart .full .container-full .recap .qty[data-v-240ac8a3] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 20%;\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .recap .qty svg[data-v-240ac8a3] {\n  fill: #00ccbc;\n  width: 18px;\n  height: 18px;\n}\n.menu .my_container .cart .full .container-full .recap .name[data-v-240ac8a3] {\n  padding-left: 8px;\n  width: 55%;\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .recap .single-total[data-v-240ac8a3] {\n  width: 25%;\n  text-align: right;\n}\n.menu .my_container .cart .full .container-full .subtotal[data-v-240ac8a3] {\n  margin-top: 25px;\n  display: flex;\n}\n.menu .my_container .cart .full .container-full .subtotal > span[data-v-240ac8a3]:first-child {\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .subtotal > span[data-v-240ac8a3]:last-child {\n  display: block;\n  width: 100%;\n  text-align: right;\n}\n.menu .my_container .cart .full .container-full .transportation-fee[data-v-240ac8a3] {\n  margin: 4px 0;\n  display: flex;\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span[data-v-240ac8a3]:last-child {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-grow: 1;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span:last-child svg[data-v-240ac8a3] {\n  fill: currentColor;\n  width: 18px;\n  height: 18px;\n  margin-right: 4px;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span:last-child .delete[data-v-240ac8a3] {\n  text-decoration: line-through;\n  margin-right: 4px;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span:last-child .free[data-v-240ac8a3] {\n  color: #e2484f;\n}\n.menu .my_container .cart .full .savings[data-v-240ac8a3] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 10px;\n  background-color: #00a396;\n  color: white;\n}\n.menu .my_container .cart .full .total[data-v-240ac8a3] {\n  color: #828585;\n  display: flex;\n  padding: 8px 16px;\n}\n.menu .my_container .cart .full .total > span[data-v-240ac8a3]:last-child {\n  width: 100%;\n  text-align: right;\n  color: black;\n}\n.menu .my_container .cart .full .container-empty[data-v-240ac8a3] {\n  padding: 16px;\n}\n.menu .my_container .cart .full .container-empty .empty-the-cart[data-v-240ac8a3] {\n  width: 100%;\n  height: 56px;\n  background-color: #e2484f;\n  border-radius: 2px;\n  color: #fff;\n}\n.menu-list[data-v-240ac8a3] {\n  background-color: #f4f5f5;\n}\n.menu-list h3[data-v-240ac8a3] {\n  color: #2e3333;\n  font-size: 28px;\n}\n.menu-list .container-cards[data-v-240ac8a3] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.menu-list .container-cards .sub-container-cards[data-v-240ac8a3] {\n  display: flex;\n}\n.menu-list .container-cards .sub-container-cards .card[data-v-240ac8a3] {\n  border-left: 4px solid transparent;\n  cursor: pointer;\n  width: 354px;\n  height: 137px;\n  margin-right: 22px;\n  margin-bottom: 19px;\n  background-color: #fff;\n  padding: 20px;\n  display: flex;\n}\n.menu-list .container-cards .sub-container-cards .card[data-v-240ac8a3]:hover {\n  box-shadow: 0px 22px 24px 0px rgba(0, 0, 0, 0.08);\n}\n.menu-list .container-cards .sub-container-cards .card .description-card[data-v-240ac8a3] {\n  display: flex;\n  flex-direction: column;\n  width: 70%;\n  padding-right: 10px;\n}\n.menu-list .container-cards .sub-container-cards .card .description-card .cart-qty[data-v-240ac8a3] {\n  color: #babbbb;\n}\n.menu-list .container-cards .sub-container-cards .card .description-card .price[data-v-240ac8a3] {\n  color: #e2484f;\n}\n.menu-list .container-cards .sub-container-cards .card .img[data-v-240ac8a3] {\n  width: 96px;\n}\n.menu-list .container-cards .sub-container-cards .card .img img[data-v-240ac8a3] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.menu-list .container-cards .sub-container-cards .active[data-v-240ac8a3] {\n  border-left: 4px solid #00ccbc;\n}", ""]);
+exports.push([module.i, "html[data-v-240ac8a3] {\n  scroll-behavior: smooth;\n}\nbody[data-v-240ac8a3] {\n  min-height: 100vh;\n  font-family: \"IBM Plex Sans\", sans-serif;\n  display: flex;\n  flex-direction: column;\n}\nmain[data-v-240ac8a3] {\n  flex-grow: 1;\n  height: 100%;\n  background-color: #eff0f3;\n}\n.my_container[data-v-240ac8a3] {\n  max-width: 1270px;\n  margin: 0 auto;\n  padding: 0 15px;\n}\n.m-cart[data-v-240ac8a3] {\n  display: none;\n}\n.m-rider[data-v-240ac8a3] {\n  display: none;\n}\n.restaurant_description[data-v-240ac8a3] {\n  background-color: #fff;\n  border-bottom: 1px solid #ebebeb;\n}\n.restaurant_description .my_container[data-v-240ac8a3] {\n  padding-top: 29px;\n  display: flex;\n  justify-content: space-between;\n}\n.restaurant_description .my_container .left .link[data-v-240ac8a3] {\n  padding-bottom: 20px;\n  color: #828585;\n  font-size: 14px;\n}\n.restaurant_description .my_container .left .link .router-link[data-v-240ac8a3] {\n  text-decoration: none;\n  color: #00ccbc;\n}\n.restaurant_description .my_container .left h1[data-v-240ac8a3] {\n  color: #2e3333;\n  font-size: 28px;\n}\n.restaurant_description .my_container .left .description[data-v-240ac8a3] {\n  display: flex;\n  flex-direction: column;\n}\n.restaurant_description .my_container .left .description[data-v-240ac8a3],\n.restaurant_description .my_container .left .slogan[data-v-240ac8a3] {\n  color: #828585;\n  font-size: 14px;\n}\n.restaurant_description .my_container .left .slogan[data-v-240ac8a3] {\n  margin-top: 5px;\n}\n.restaurant_description .my_container .left .information[data-v-240ac8a3] {\n  margin: 8px 0 16px 0;\n  display: flex;\n  align-items: center;\n}\n.restaurant_description .my_container .left .information svg[data-v-240ac8a3] {\n  margin-right: 8px;\n  color: #828585;\n  fill: currentColor;\n}\n.restaurant_description .my_container .right .container-img[data-v-240ac8a3] {\n  width: 370px;\n  height: 170px;\n}\n.restaurant_description .my_container .right .container-img img[data-v-240ac8a3] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant_description .my_container .right .rider[data-v-240ac8a3] {\n  margin-top: 10px;\n  display: flex;\n}\n.restaurant_description .my_container .right .rider svg[data-v-240ac8a3] {\n  margin-right: 10px;\n}\n.restaurant_description .selectQty[data-v-240ac8a3] {\n  z-index: 2;\n  position: fixed;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.5);\n  opacity: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.restaurant_description .selectQty .card-box[data-v-240ac8a3] {\n  display: flex;\n  flex-direction: column;\n  opacity: 1;\n  width: 560px;\n  min-height: 268px;\n  padding: 24px;\n  background-color: white;\n  position: relative;\n}\n.restaurant_description .selectQty .card-box > svg[data-v-240ac8a3] {\n  cursor: pointer;\n  position: absolute;\n  right: 19px;\n  top: 19px;\n  color: #00ccbc;\n  fill: currentColor;\n}\n.restaurant_description .selectQty .card-box h3[data-v-240ac8a3] {\n  font-size: 28px;\n  color: #2e3333;\n}\n.restaurant_description .selectQty .card-box .description[data-v-240ac8a3] {\n  font-size: 14px;\n  color: #828585;\n}\n.restaurant_description .selectQty .card-box .qty[data-v-240ac8a3] {\n  margin-top: 35px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.restaurant_description .selectQty .card-box .qty svg[data-v-240ac8a3] {\n  cursor: pointer;\n  color: #00ccbc;\n  fill: currentColor;\n}\n.restaurant_description .selectQty .card-box .qty input[data-v-240ac8a3] {\n  width: 30%;\n  font-weight: bold;\n  font-size: 28px;\n  color: #2e3333;\n  text-align: center;\n}\n.restaurant_description .selectQty .card-box .actions[data-v-240ac8a3] {\n  flex-grow: 1;\n  height: 100%;\n  display: flex;\n  align-items: flex-end;\n}\n.restaurant_description .selectQty .card-box .actions .delete[data-v-240ac8a3] {\n  border: 1px solid #e8ebeb;\n  background-color: #fff;\n  color: #00ccbc;\n  min-height: 48px;\n  padding: 12px 24px;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.restaurant_description .selectQty .card-box .actions .delete[data-v-240ac8a3]:hover {\n  border-color: #d1d4d4;\n  color: #00a698;\n}\n.restaurant_description .selectQty .card-box .actions .total[data-v-240ac8a3] {\n  background-color: #00ccbc;\n  color: #fff;\n  min-height: 48px;\n  padding: 12px 24px;\n  border-radius: 4px;\n  cursor: pointer;\n  margin-left: 13px;\n  flex-grow: 1;\n}\n.menu[data-v-240ac8a3] {\n  top: 0;\n  position: sticky;\n  background-color: white;\n}\n.menu .my_container[data-v-240ac8a3] {\n  display: flex;\n  position: relative;\n  padding-right: 380px;\n}\n.menu .my_container .left[data-v-240ac8a3] {\n  display: flex;\n  justify-content: space-between;\n}\n.menu .my_container .left div[data-v-240ac8a3] {\n  padding: 10px 0;\n}\n.menu .my_container .left div a[data-v-240ac8a3] {\n  text-decoration: none;\n  color: #00ccbc;\n  border: 3px solid white;\n  margin: 8px;\n  padding: 2px 16px;\n  border-radius: 20px;\n}\n.menu .my_container .left div a[data-v-240ac8a3]:focus, .menu .my_container .left div a[data-v-240ac8a3]:active {\n  border: 3px solid #b2f0eb;\n}\n.menu .my_container .left div .active[data-v-240ac8a3] {\n  background-color: #00ccbc;\n  color: #fff;\n}\n.menu .my_container .cart[data-v-240ac8a3] {\n  position: absolute;\n  right: 0;\n  top: 0;\n  min-height: 248px;\n  width: 369px;\n  background-color: #fff;\n}\n.menu .my_container .cart .empty[data-v-240ac8a3] {\n  padding: 16px;\n  display: flex;\n  flex-direction: column;\n  min-height: 216px;\n}\n.menu .my_container .cart .empty span[data-v-240ac8a3] {\n  display: flex;\n  align-items: center;\n  color: #e2484f;\n  fill: currentColor;\n  font-size: 14px;\n  margin-bottom: 5px;\n}\n.menu .my_container .cart .empty span svg[data-v-240ac8a3] {\n  width: 18px;\n  height: 18px;\n  margin-right: 8px;\n}\n.menu .my_container .cart .empty .divider[data-v-240ac8a3] {\n  background-color: #ebebeb;\n  border-radius: 2px;\n  height: 4px;\n  margin-bottom: 15px;\n  flex-grow: 0;\n}\n.menu .my_container .cart .empty button[data-v-240ac8a3] {\n  cursor: not-allowed;\n  width: 100%;\n  height: 56px;\n  background-color: #ebebeb;\n  border-radius: 2px;\n  color: #abadad;\n}\n.menu .my_container .cart .empty > div[data-v-240ac8a3] {\n  flex-grow: 1;\n  color: #abadad;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.menu .my_container .cart .full .container-full[data-v-240ac8a3] {\n  padding: 16px 16px 0;\n  display: flex;\n  flex-direction: column;\n  min-height: 216px;\n}\n.menu .my_container .cart .full .container-full > span[data-v-240ac8a3] {\n  display: flex;\n  align-items: center;\n  fill: #77bf2a;\n  font-size: 14px;\n  margin-bottom: 5px;\n}\n.menu .my_container .cart .full .container-full > span svg[data-v-240ac8a3] {\n  width: 18px;\n  height: 18px;\n  margin-right: 8px;\n}\n.menu .my_container .cart .full .container-full > span strong[data-v-240ac8a3] {\n  margin-left: 4px;\n}\n.menu .my_container .cart .full .container-full .divider[data-v-240ac8a3] {\n  background-color: #77bf2a;\n  border-radius: 2px;\n  height: 4px;\n  margin-bottom: 15px;\n  flex-grow: 0;\n}\n.menu .my_container .cart .full .container-full .pay[data-v-240ac8a3] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-decoration: none;\n  width: 100%;\n  height: 56px;\n  background-color: #00ccbc;\n  border-radius: 2px;\n  color: #fff;\n}\n.menu .my_container .cart .full .container-full .recap[data-v-240ac8a3] {\n  margin-top: 20px;\n  display: flex;\n}\n.menu .my_container .cart .full .container-full .recap .qty[data-v-240ac8a3] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 20%;\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .recap .qty svg[data-v-240ac8a3] {\n  fill: #00ccbc;\n  width: 18px;\n  height: 18px;\n}\n.menu .my_container .cart .full .container-full .recap .name[data-v-240ac8a3] {\n  padding-left: 8px;\n  width: 55%;\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .recap .single-total[data-v-240ac8a3] {\n  width: 25%;\n  text-align: right;\n}\n.menu .my_container .cart .full .container-full .subtotal[data-v-240ac8a3] {\n  margin-top: 25px;\n  display: flex;\n}\n.menu .my_container .cart .full .container-full .subtotal > span[data-v-240ac8a3]:first-child {\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .subtotal > span[data-v-240ac8a3]:last-child {\n  display: block;\n  width: 100%;\n  text-align: right;\n}\n.menu .my_container .cart .full .container-full .transportation-fee[data-v-240ac8a3] {\n  margin: 4px 0;\n  display: flex;\n  color: #828585;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span[data-v-240ac8a3]:last-child {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-grow: 1;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span:last-child svg[data-v-240ac8a3] {\n  fill: currentColor;\n  width: 18px;\n  height: 18px;\n  margin-right: 4px;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span:last-child .delete[data-v-240ac8a3] {\n  text-decoration: line-through;\n  margin-right: 4px;\n}\n.menu .my_container .cart .full .container-full .transportation-fee > span:last-child .free[data-v-240ac8a3] {\n  color: #e2484f;\n}\n.menu .my_container .cart .full .savings[data-v-240ac8a3] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 10px;\n  background-color: #00a396;\n  color: white;\n}\n.menu .my_container .cart .full .total[data-v-240ac8a3] {\n  color: #828585;\n  display: flex;\n  padding: 8px 16px;\n}\n.menu .my_container .cart .full .total > span[data-v-240ac8a3]:last-child {\n  width: 100%;\n  text-align: right;\n  color: black;\n}\n.menu .my_container .cart .full .container-empty[data-v-240ac8a3] {\n  padding: 16px;\n}\n.menu .my_container .cart .full .container-empty .empty-the-cart[data-v-240ac8a3] {\n  width: 100%;\n  height: 56px;\n  background-color: #e2484f;\n  border-radius: 2px;\n  color: #fff;\n}\n.menu-list[data-v-240ac8a3] {\n  background-color: #f4f5f5;\n}\n.menu-list .my_container[data-v-240ac8a3] {\n  padding-right: 380px;\n}\n.menu-list h3[data-v-240ac8a3] {\n  color: #2e3333;\n  font-size: 28px;\n}\n.menu-list .container-cards[data-v-240ac8a3] {\n  display: flex;\n  flex-wrap: wrap;\n  widows: 100%;\n}\n.menu-list .container-cards .sub-container-cards[data-v-240ac8a3] {\n  display: flex;\n  width: calc(100% / 2 - 20px);\n  margin: 10px;\n}\n.menu-list .container-cards .sub-container-cards .card[data-v-240ac8a3] {\n  display: flex;\n  justify-content: space-between;\n  border-left: 4px solid transparent;\n  cursor: pointer;\n  height: 137px;\n  width: 100%;\n  background-color: #fff;\n  padding: 20px;\n  display: flex;\n}\n.menu-list .container-cards .sub-container-cards .card[data-v-240ac8a3]:hover {\n  box-shadow: 0px 22px 24px 0px rgba(0, 0, 0, 0.08);\n}\n.menu-list .container-cards .sub-container-cards .card .description-card[data-v-240ac8a3] {\n  display: flex;\n  flex-direction: column;\n  width: 70%;\n  padding-right: 10px;\n}\n.menu-list .container-cards .sub-container-cards .card .description-card .cart-qty[data-v-240ac8a3] {\n  color: #babbbb;\n}\n.menu-list .container-cards .sub-container-cards .card .description-card .price[data-v-240ac8a3] {\n  color: #e2484f;\n}\n.menu-list .container-cards .sub-container-cards .card .img[data-v-240ac8a3] {\n  min-width: 96px;\n  max-width: 96px;\n  height: 96px;\n}\n.menu-list .container-cards .sub-container-cards .card .img img[data-v-240ac8a3] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.menu-list .container-cards .sub-container-cards .active[data-v-240ac8a3] {\n  border-left: 4px solid #00ccbc;\n}\n@media screen and (max-width: 979px) {\n.menu-list .my_container[data-v-240ac8a3] {\n    padding-right: 380px;\n}\n.menu-list .container-cards .sub-container-cards[data-v-240ac8a3] {\n    width: calc(100% - 20px);\n    margin: 10px;\n}\n}\n@media screen and (max-width: 870px) {\n.menu-list .my_container[data-v-240ac8a3] {\n    padding-right: 330px;\n}\n.menu .my_container[data-v-240ac8a3] {\n    padding-right: 320px;\n}\n.menu .my_container .cart[data-v-240ac8a3] {\n    width: 315px;\n}\n}\n@media screen and (max-width: 767px) {\n.restaurant_description .my_container[data-v-240ac8a3] {\n    display: flex;\n    flex-direction: column-reverse;\n    padding: 0;\n}\n.restaurant_description .my_container .left[data-v-240ac8a3] {\n    padding: 0 15px;\n}\n.restaurant_description .my_container .left .m-rider[data-v-240ac8a3] {\n    margin-top: 10px;\n    display: flex;\n}\n.restaurant_description .my_container .left .m-rider svg[data-v-240ac8a3] {\n    margin-right: 10px;\n}\n.restaurant_description .my_container .right[data-v-240ac8a3] {\n    margin-bottom: 10px;\n}\n.restaurant_description .my_container .right .container-img[data-v-240ac8a3] {\n    width: 100%;\n    height: 180px;\n}\n.restaurant_description .my_container .right .container-img img[data-v-240ac8a3] {\n    width: 100%;\n    height: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.restaurant_description .my_container .right .rider[data-v-240ac8a3] {\n    display: none;\n}\n.menu-list .my_container[data-v-240ac8a3] {\n    padding-right: 15px;\n}\n.menu-list .container-cards .sub-container-cards[data-v-240ac8a3] {\n    width: calc(100% - 20px);\n    margin: 10px;\n}\n.menu .my_container[data-v-240ac8a3] {\n    padding-right: unset;\n}\n.menu .my_container .cart[data-v-240ac8a3] {\n    display: none;\n}\n.h100[data-v-240ac8a3] {\n    height: 100%;\n}\n.m-cart[data-v-240ac8a3] {\n    display: block;\n    position: fixed;\n    bottom: 0px;\n    width: 100%;\n    background-color: #fff;\n}\n.m-cart .cart-container[data-v-240ac8a3] {\n    padding: 15px 10px;\n}\n.m-cart .cart-container.p0[data-v-240ac8a3] {\n    padding: 0;\n}\n.m-cart .empty[data-v-240ac8a3] {\n    font-size: 14px;\n}\n.m-cart .empty span[data-v-240ac8a3] {\n    display: flex;\n    align-items: center;\n    color: #e2484f;\n    fill: currentColor;\n}\n.m-cart .empty span svg[data-v-240ac8a3] {\n    margin-right: 5px;\n}\n.m-cart .empty .divider[data-v-240ac8a3] {\n    height: 4px;\n    border-radius: 2px;\n    background-color: #ebebeb;\n    margin-top: 5px;\n}\n.m-cart .something > span[data-v-240ac8a3] {\n    fill: #77bf2a;\n    font-size: 14px;\n    display: flex;\n    align-items: center;\n}\n.m-cart .something > span svg[data-v-240ac8a3] {\n    margin-right: 5px;\n}\n.m-cart .something .divider[data-v-240ac8a3] {\n    height: 4px;\n    border-radius: 2px;\n    background-color: #77bf2a;\n    margin-top: 5px;\n    margin-bottom: 10px;\n}\n.m-cart .something button[data-v-240ac8a3] {\n    width: 100%;\n    color: white;\n    background-color: #00ccbc;\n    border-radius: 4px;\n    padding: 12px 24px;\n}\n.m-cart .cart-content[data-v-240ac8a3] {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    height: 100%;\n}\n.m-cart .cart-content h3[data-v-240ac8a3] {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    fill: #828585;\n}\n.m-cart .cart-content .recap[data-v-240ac8a3] {\n    margin-top: 20px;\n    display: flex;\n    justify-content: space-between;\n}\n.m-cart .cart-content .recap .qty[data-v-240ac8a3] {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 65px;\n    color: #828585;\n}\n.m-cart .cart-content .recap .qty svg[data-v-240ac8a3] {\n    fill: #00ccbc;\n    width: 18px;\n    height: 18px;\n}\n.m-cart .cart-content .recap .name[data-v-240ac8a3] {\n    padding-left: 8px;\n    flex-grow: 1;\n    color: #828585;\n}\n.m-cart .cart-content .recap .single-total[data-v-240ac8a3] {\n    width: 25%;\n    text-align: right;\n}\n.m-cart .cart-content .subtotal[data-v-240ac8a3] {\n    margin-top: 25px;\n    display: flex;\n}\n.m-cart .cart-content .subtotal > span[data-v-240ac8a3]:first-child {\n    color: #828585;\n}\n.m-cart .cart-content .subtotal > span[data-v-240ac8a3]:last-child {\n    display: block;\n    width: 100%;\n    text-align: right;\n}\n.m-cart .cart-content .transportation-fee[data-v-240ac8a3] {\n    margin: 4px 0;\n    display: flex;\n    color: #828585;\n}\n.m-cart .cart-content .transportation-fee > span[data-v-240ac8a3]:last-child {\n    display: flex;\n    align-items: center;\n    justify-content: flex-end;\n    flex-grow: 1;\n}\n.m-cart .cart-content .transportation-fee > span:last-child svg[data-v-240ac8a3] {\n    fill: currentColor;\n    width: 18px;\n    height: 18px;\n    margin-right: 4px;\n}\n.m-cart .cart-content .transportation-fee > span:last-child .delete[data-v-240ac8a3] {\n    text-decoration: line-through;\n    margin-right: 4px;\n}\n.m-cart .cart-content .transportation-fee > span:last-child .free[data-v-240ac8a3] {\n    color: #e2484f;\n}\n.m-cart .cart-content .savings[data-v-240ac8a3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding: 10px;\n    background-color: #00a396;\n    color: white;\n}\n.m-cart .cart-content .buttons[data-v-240ac8a3] {\n    display: flex;\n    flex-direction: column;\n    padding: 15px 10px;\n    box-shadow: 0px -3px 6px -2px rgba(0, 0, 0, 0.07);\n    color: #fff;\n}\n.m-cart .cart-content .buttons .empty-the-cart[data-v-240ac8a3] {\n    width: 100%;\n    background-color: #e2484f;\n    border-radius: 3px;\n    padding: 12px 24px;\n    margin-bottom: 10px;\n}\n.m-cart .cart-content .buttons .pay[data-v-240ac8a3] {\n    text-decoration: none;\n    color: white;\n    text-align: center;\n    width: 100%;\n    background-color: #00ccbc;\n    border-radius: 3px;\n    padding: 12px 24px;\n}\n}", ""]);
 
 // exports
 
@@ -31157,6 +31246,125 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
+                _c("div", { staticClass: "m-rider" }, [
+                  _c(
+                    "svg",
+                    {
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 48 48",
+                        width: "24",
+                        height: "24"
+                      }
+                    },
+                    [
+                      _c("circle", {
+                        attrs: { cx: "24", cy: "24", r: "24", fill: "#EAEAEA" }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#F96",
+                          d:
+                            "M27.381 2.106c-1.098 0-2.032.388-2.808 1.164-.776.776-1.164 1.711-1.164 2.809 0 1.097.388 2.032 1.164 2.808.776.776 1.71 1.164 2.808 1.164 1.097 0 2.032-.388 2.808-1.164.776-.776 1.164-1.711 1.164-2.808 0-1.098-.388-2.033-1.164-2.809a3.831 3.831 0 0 0-2.808-1.164z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#98006C",
+                          d:
+                            "M28.582.203c-1.415-.321-2.734-.092-3.954.684-1.171.739-1.932 1.78-2.29 3.122L32.61 6.282c.259-1.367.018-2.631-.72-3.788-.791-1.22-1.893-1.98-3.308-2.29z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#440063",
+                          d:
+                            "M9.22 29.413H9.2c-2.538.015-4.714.92-6.521 2.716C.894 33.93 0 36.094 0 38.633c0 2.564.898 4.737 2.697 6.522 1.796 1.81 3.973 2.716 6.522 2.716 2.55 0 4.72-.902 6.504-2.698 1.81-1.8 2.716-3.972 2.716-6.522 0-2.55-.902-4.73-2.698-6.54-1.796-1.781-3.972-2.68-6.522-2.698zm-1.072 2.66c.343-.047.694-.07 1.053-.073h.018c.459.004.895.048 1.312.13a6.242 6.242 0 0 1 2.347.96c.373.24.724.525 1.053.85h-.019c1.293 1.304 1.94 2.875 1.94 4.711 0 1.837-.654 3.4-1.958 4.693-1.282 1.293-2.842 1.94-4.675 1.94-1.829 0-3.388-.647-4.674-1.94l-.018.019c-1.301-1.286-1.955-2.85-1.959-4.693-.011-1.848.628-3.426 1.922-4.73a6.728 6.728 0 0 1 1.552-1.145 6.236 6.236 0 0 1 1.755-.647c.118-.022.233-.048.35-.074z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#999",
+                          d:
+                            "M10.531 32.13a7.5 7.5 0 0 0-1.312-.111 8.463 8.463 0 0 0-1.071.055 9.574 9.574 0 0 1-.351.074c-.617.125-1.201.343-1.756.646A6.729 6.729 0 0 0 4.49 33.94c-1.293 1.304-1.932 2.882-1.921 4.73.004 1.844.658 3.407 1.958 4.693l.019-.019 1.792-1.829c-.79-.78-1.182-1.73-1.182-2.845v-.019c-.011-1.123.377-2.084 1.164-2.882.798-.787 1.758-1.175 2.882-1.164h.018c1.135 0 2.103.396 2.901 1.183l1.792-1.848h.019a6.513 6.513 0 0 0-1.053-.85 6.193 6.193 0 0 0-2.347-.96z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#440063",
+                          d:
+                            "M32.24 32.148c-1.785 1.8-2.679 3.965-2.679 6.503 0 2.565.898 4.737 2.697 6.522 1.796 1.81 3.973 2.716 6.522 2.716 2.55 0 4.72-.901 6.504-2.697 1.81-1.8 2.716-3.973 2.716-6.522 0-2.55-.902-4.73-2.698-6.54-1.795-1.782-3.968-2.683-6.522-2.698h-.018c-2.542.015-4.715.92-6.522 2.716zm5.118.018a9.74 9.74 0 0 0 .35-.074c.345-.048.696-.07 1.054-.073h.018c.459.003.895.047 1.312.129a6.24 6.24 0 0 1 2.347.96c.373.24.724.525 1.053.85h-.019c1.294 1.305 1.94 2.875 1.94 4.712 0 1.836-.654 3.4-1.958 4.693-1.282 1.293-2.842 1.94-4.675 1.94-1.829 0-3.388-.647-4.674-1.94l-.018.018c-1.301-1.286-1.955-2.849-1.959-4.693-.01-1.847.628-3.425 1.922-4.73a6.735 6.735 0 0 1 1.552-1.145 6.306 6.306 0 0 1 1.755-.647z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#999",
+                          d:
+                            "M37.71 32.092a9.786 9.786 0 0 1-.352.074 6.232 6.232 0 0 0-1.755.647 6.735 6.735 0 0 0-1.552 1.145c-1.293 1.305-1.933 2.883-1.922 4.73.004 1.844.658 3.407 1.959 4.693l.018-.018 1.793-1.83c-.791-.78-1.183-1.729-1.183-2.845v-.018c-.01-1.124.377-2.084 1.164-2.883.798-.786 1.759-1.175 2.882-1.163h.019c1.134 0 2.102.395 2.9 1.182l1.793-1.848h.018a6.508 6.508 0 0 0-1.053-.85 6.187 6.187 0 0 0-2.346-.96 7.509 7.509 0 0 0-1.312-.111c-.37 0-.728.018-1.072.055z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#F96",
+                          d:
+                            "M35.787 21.173l-1.034 1.035a1.404 1.404 0 0 0-.425 1.072c0 .417.14.775.425 1.071l1.034 1.035c.296.295.658.436 1.09.425a1.38 1.38 0 0 0 1.053-.425l1.035-1.035a1.48 1.48 0 0 0 .444-1.09c0-.406-.148-.758-.444-1.053l-1.035-1.035a1.421 1.421 0 0 0-1.071-.443c-.421 0-.776.148-1.072.443z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#999",
+                          d:
+                            "M23.26 15.483l11.308 7.704 2.494-2.734-10.31-9.423-3.491 4.453z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#440063",
+                          d:
+                            "M20.896 21.377a2.465 2.465 0 0 0-1.349-1.442 2.458 2.458 0 0 0-1.958-.092 2.569 2.569 0 0 0-1.46 1.349 2.506 2.506 0 0 0-.092 1.977l5.598 15.187c.255.672.706 1.16 1.349 1.46a2.458 2.458 0 0 0 1.977.073 2.488 2.488 0 0 0 1.46-1.349c.302-.642.325-1.3.073-1.977l-5.598-15.187z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#FA5058",
+                          d:
+                            "M32.794 21.986a1.1 1.1 0 0 0-.646.203 1.11 1.11 0 0 0-.37.555 1 1 0 0 0 .037.665l.85 2.217H17.59a.933.933 0 0 0-.203 0 1.116 1.116 0 0 0-.444.13l-.018.018c-.03.018-.06.037-.093.055-.033.03-.07.063-.11.093-.004.018-.019.029-.037.036a.942.942 0 0 1-.093.13v.018L8.203 38.56a1.09 1.09 0 0 0-.166.72c.04.27.159.492.351.666.203.173.44.258.702.258h13.321c.126.011.251 0 .37-.037a.217.217 0 0 0 .074-.018.07.07 0 0 0 .037-.019h.018a.867.867 0 0 0 .351-.24.527.527 0 0 0 .11-.11l10.31-11.4 4.084 10.771c.114.274.303.47.572.591a.976.976 0 0 0 .795.019c.277-.104.473-.288.59-.554a.961.961 0 0 0 .02-.795l-4.25-11.233c-.007-.03-.022-.06-.037-.093l-.24-.646v-.019a.502.502 0 0 0-.074-.203l-.037-.13a1.021 1.021 0 0 0-.074-.184l-.702-1.81h1.81c.293 0 .54-.104.74-.315.21-.2.314-.447.314-.739s-.104-.543-.314-.757c-.2-.2-.447-.296-.74-.296h-3.343zM11.067 38.097l6.17-9.182 3.715 9.182h-9.885zm11.806-.905l-3.824-9.46h12.378l-8.554 9.46z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#999",
+                          d:
+                            "M19.843 39.372c0 1.035.362 1.914 1.09 2.642.739.739 1.626 1.108 2.66 1.108 1.024 0 1.903-.37 2.642-1.108.74-.728 1.109-1.608 1.109-2.642 0-1.035-.37-1.922-1.109-2.66-.739-.729-1.618-1.09-2.642-1.09a3.655 3.655 0 0 0-2.66 1.09 3.655 3.655 0 0 0-1.09 2.66z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#007E89",
+                          d:
+                            "M18.088 40.277l3.288.407 6.134-11.178c.743-1.423.588-2.561-.461-3.418l-5.044-3.492 1.293-2.457H13.5c-1.689 3.203-.97 5.439 2.74 6.706l6.467 2.458-4.62 10.974z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#999",
+                          d:
+                            "M25.681 15.169l5.654-3.973-9.35-3.769-.11.185.259 2.494c-1.09-.266-2.077.2-2.956 1.404-.012.019-.023.037-.037.056l-5.931 8.573h10.088l2.383-4.97z"
+                        }
+                      }),
+                      _c("path", {
+                        attrs: {
+                          fill: "#007E89",
+                          d:
+                            "M18.217 41.367c.174.396.455.673.85.832l3.843 1.496c.395.16.787.155 1.182-.018a1.45 1.45 0 0 0 .813-.85l.019-.019a1.508 1.508 0 0 0-.037-1.182c-.174-.395-.492-.82-.96-1.275l-2.976-2.79c-.897.998-1.544 1.582-1.94 1.755-.38.16-.646.444-.794.85l-.018.019a1.56 1.56 0 0 0 .018 1.182zM12.804 20.915L20.97 8.96 9.016.794.85 12.748l11.954 8.167z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Consegna fra 50 - 75 min")])
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "information" }, [
                   _c(
                     "svg",
@@ -31348,57 +31556,187 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "right" }, [
-            _c("div", { staticClass: "cart" }, [
-              _vm.total === 0
-                ? _c("div", { staticClass: "empty" }, [
-                    _c("span", [
-                      _c(
-                        "svg",
-                        {
-                          staticClass:
-                            "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-12dd3e73f2b804e2",
+          _c("div", { staticClass: "cart" }, [
+            _vm.total === 0
+              ? _c("div", { staticClass: "empty" }, [
+                  _c("span", [
+                    _c(
+                      "svg",
+                      {
+                        staticClass:
+                          "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-12dd3e73f2b804e2",
+                        attrs: {
+                          height: "24",
+                          width: "24",
+                          viewBox: "0 0 24 24"
+                        }
+                      },
+                      [
+                        _c("path", {
                           attrs: {
-                            height: "24",
-                            width: "24",
-                            viewBox: "0 0 24 24"
+                            d:
+                              "M4.82843 13L11 19.1716L18 12.1716V6H11.8284L4.82843 13ZM11 4H20V13L11 22L2 13L11 4ZM14.5 11C15.3284 11 16 10.3284 16 9.5C16 8.67157 15.3284 8 14.5 8C13.6716 8 13 8.67157 13 9.5C13 10.3284 13.6716 11 14.5 11Z"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(
+                      "\n                            Inserisci almeno 1 articolo, consegna gratuita\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "divider" }),
+                  _vm._v(" "),
+                  _c("button", [_vm._v("Vai alla cassa")]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                            Il tuo carrello è vuoto\n                        "
+                    )
+                  ])
+                ])
+              : _c("div", { staticClass: "full" }, [
+                  _c(
+                    "div",
+                    { staticClass: "container-full" },
+                    [
+                      _c("span", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass:
+                              "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-b86ddb4586c18dbc",
+                            attrs: {
+                              height: "24",
+                              width: "24",
+                              viewBox: "0 0 24 24"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM8 10.8787L5.87868 13L10 17.1213L18.1213 9L16 6.87868L10 12.8787L8 10.8787Z"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "divider" }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "pay",
+                          attrs: {
+                            to: {
+                              name: "payment",
+                              params: {
+                                restaurantId: _vm.cart.key,
+                                orderTotal: _vm.total
+                              }
+                            }
                           }
                         },
                         [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M4.82843 13L11 19.1716L18 12.1716V6H11.8284L4.82843 13ZM11 4H20V13L11 22L2 13L11 4ZM14.5 11C15.3284 11 16 10.3284 16 9.5C16 8.67157 15.3284 8 14.5 8C13.6716 8 13 8.67157 13 9.5C13 10.3284 13.6716 11 14.5 11Z"
-                            }
-                          })
+                          _vm._v(
+                            "\n                                Vai alla cassa\n                            "
+                          )
                         ]
                       ),
-                      _vm._v(
-                        "\n                            Inserisci almeno 1 articolo, consegna gratuita\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "divider" }),
-                    _vm._v(" "),
-                    _c("button", [_vm._v("Vai alla cassa")]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n                            Il tuo carrello è vuoto\n                        "
-                      )
-                    ])
-                  ])
-                : _c("div", { staticClass: "full" }, [
-                    _c(
-                      "div",
-                      { staticClass: "container-full" },
-                      [
+                      _vm._v(" "),
+                      _vm._l(_vm.cart.products, function(product) {
+                        return _c(
+                          "div",
+                          { key: product.id, staticClass: "recap" },
+                          [
+                            _c("div", { staticClass: "qty" }, [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205",
+                                  attrs: {
+                                    height: "24",
+                                    width: "24",
+                                    viewBox: "0 0 24 24"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.cartDecrement(product.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM7 13.5V10.5H17V13.5H7Z"
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(product.qty) +
+                                  "\n                                    "
+                              ),
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205",
+                                  attrs: {
+                                    height: "24",
+                                    width: "24",
+                                    viewBox: "0 0 24 24"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.cartIncrement(product.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM13.5 7V10.4999H17V13.5H13.5V17H10.5V13.5H7V10.4999H10.5V7H13.5Z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [
+                              _vm._v(_vm._s(product.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "single-total" }, [
+                              _vm._v(_vm._s(product.total) + " €")
+                            ])
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "subtotal" }, [
+                        _c("span", [_vm._v("Subtotale")]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v(_vm._s(_vm.total) + " €")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "transportation-fee" }, [
+                        _c("span", [_vm._v("Spese di trasporto")]),
+                        _vm._v(" "),
                         _c("span", [
                           _c(
                             "svg",
                             {
                               staticClass:
-                                "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-b86ddb4586c18dbc",
+                                "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-1e6f880f67285c2e",
                               attrs: {
                                 height: "24",
                                 width: "24",
@@ -31409,180 +31747,48 @@ var render = function() {
                               _c("path", {
                                 attrs: {
                                   d:
-                                    "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM8 10.8787L5.87868 13L10 17.1213L18.1213 9L16 6.87868L10 12.8787L8 10.8787Z"
+                                    "M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"
                                 }
                               })
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(0)
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "divider" }),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "pay",
-                            attrs: {
-                              to: {
-                                name: "payment",
-                                params: {
-                                  restaurantId: _vm.cart.key,
-                                  orderTotal: _vm.total
-                                }
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                Vai alla cassa\n                            "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._l(_vm.cart.products, function(product) {
-                          return _c(
-                            "div",
-                            { key: product.id, staticClass: "recap" },
-                            [
-                              _c("div", { staticClass: "qty" }, [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass:
-                                      "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205",
-                                    attrs: {
-                                      height: "24",
-                                      width: "24",
-                                      viewBox: "0 0 24 24"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.cartDecrement(product.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM7 13.5V10.5H17V13.5H7Z"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(product.qty) +
-                                    "\n                                    "
-                                ),
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass:
-                                      "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205",
-                                    attrs: {
-                                      height: "24",
-                                      width: "24",
-                                      viewBox: "0 0 24 24"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.cartIncrement(product.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM13.5 7V10.4999H17V13.5H13.5V17H10.5V13.5H7V10.4999H10.5V7H13.5Z"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "name" }, [
-                                _vm._v(_vm._s(product.name))
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "single-total" }, [
-                                _vm._v(_vm._s(product.total) + " €")
-                              ])
-                            ]
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "subtotal" }, [
-                          _c("span", [_vm._v("Subtotale")]),
+                          _c("span", { staticClass: "delete" }, [
+                            _vm._v("1,49 € ")
+                          ]),
                           _vm._v(" "),
-                          _c("span", [_vm._v(_vm._s(_vm.total) + " €")])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "transportation-fee" }, [
-                          _c("span", [_vm._v("Spese di trasporto")]),
-                          _vm._v(" "),
-                          _c("span", [
-                            _c(
-                              "svg",
-                              {
-                                staticClass:
-                                  "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-1e6f880f67285c2e",
-                                attrs: {
-                                  height: "24",
-                                  width: "24",
-                                  viewBox: "0 0 24 24"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"
-                                  }
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "delete" }, [
-                              _vm._v("1,49 € ")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "free" }, [
-                              _vm._v("Gratuito")
-                            ])
+                          _c("span", { staticClass: "free" }, [
+                            _vm._v("Gratuito")
                           ])
                         ])
-                      ],
-                      2
-                    ),
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "savings" }, [
+                    _vm._v(
+                      "\n                            Con la consegna gratuita risparmi 1,49 €\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "total" }, [
+                    _c("span", [_vm._v("Totale")]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "savings" }, [
-                      _vm._v(
-                        "\n                            Con la consegna gratuita risparmi 1,49 €\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "total" }, [
-                      _c("span", [_vm._v("Totale")]),
-                      _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(_vm.total) + " €")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "container-empty" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "empty-the-cart",
-                          on: { click: _vm.removeCart }
-                        },
-                        [_vm._v("Svuota il carrello")]
-                      )
-                    ])
+                    _c("span", [_vm._v(_vm._s(_vm.total) + " €")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "container-empty" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "empty-the-cart",
+                        on: { click: _vm.removeCart }
+                      },
+                      [_vm._v("Svuota il carrello")]
+                    )
                   ])
-            ])
+                ])
           ])
         ])
       ]),
@@ -31601,88 +31807,81 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "container-cards" },
-                    _vm._l(_vm.my_restaurant.products, function(product) {
-                      return _c(
-                        "div",
-                        { key: product.id, staticClass: "sub-container-cards" },
-                        [
-                          category == product.category.name
-                            ? _c(
-                                "span",
-                                {
-                                  staticClass: "card",
-                                  class: {
-                                    active: _vm.activeElements.includes(
-                                      product.id
-                                    )
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.openCard(product)
-                                    }
-                                  }
+                    _vm._l(
+                      _vm.products(_vm.my_restaurant.products, category),
+                      function(product) {
+                        return _c(
+                          "div",
+                          {
+                            key: product.id,
+                            staticClass: "sub-container-cards"
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "card",
+                                class: {
+                                  active: _vm.activeElements.includes(
+                                    product.id
+                                  )
                                 },
-                                [
+                                on: {
+                                  click: function($event) {
+                                    return _vm.openCard(product)
+                                  }
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "description-card" }, [
                                   _c(
-                                    "div",
-                                    { staticClass: "description-card" },
+                                    "span",
                                     [
-                                      _c(
-                                        "span",
-                                        [
-                                          _vm._l(_vm.cart.products, function(
-                                            cartp
-                                          ) {
-                                            return _c(
-                                              "span",
-                                              { key: cartp.id },
-                                              [
-                                                cartp.id == product.id &&
-                                                cartp.qty != 0
-                                                  ? _c(
-                                                      "span",
-                                                      {
-                                                        staticClass: "cart-qty"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(cartp.qty) +
-                                                            "× "
-                                                        )
-                                                      ]
-                                                    )
-                                                  : _vm._e()
-                                              ]
-                                            )
-                                          }),
-                                          _vm._v(" "),
-                                          _c("span", { staticClass: "name" }, [
-                                            _vm._v(_vm._s(product.name))
-                                          ])
-                                        ],
-                                        2
-                                      ),
+                                      _vm._l(_vm.cart.products, function(
+                                        cartp
+                                      ) {
+                                        return _c("span", { key: cartp.id }, [
+                                          cartp.id == product.id &&
+                                          cartp.qty != 0
+                                            ? _c(
+                                                "span",
+                                                { staticClass: "cart-qty" },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(cartp.qty) + "× "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e()
+                                        ])
+                                      }),
                                       _vm._v(" "),
-                                      _c("span", { staticClass: "price" }, [
-                                        _vm._v(_vm._s(product.price) + " €")
+                                      _c("span", { staticClass: "name" }, [
+                                        _vm._v(_vm._s(product.name))
                                       ])
-                                    ]
+                                    ],
+                                    2
                                   ),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "img" }, [
-                                    _c("img", {
-                                      attrs: {
-                                        src: /storage/ + product.image,
-                                        alt: product.name
-                                      }
-                                    })
+                                  _c("span", { staticClass: "price" }, [
+                                    _vm._v(_vm._s(product.price) + " €")
                                   ])
-                                ]
-                              )
-                            : _vm._e()
-                        ]
-                      )
-                    }),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "img" }, [
+                                  _c("img", {
+                                    attrs: {
+                                      src: /storage/ + product.image,
+                                      alt: product.name
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      }
+                    ),
                     0
                   )
                 ])
@@ -31691,12 +31890,318 @@ var render = function() {
             )
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "m-cart", class: { h100: !_vm.showCart } }, [
+        _c(
+          "div",
+          { staticClass: "cart-container", class: { p0: !_vm.showCart } },
+          [
+            _vm.total === 0
+              ? _c("div", { staticClass: "empty" }, [
+                  _c("span", [
+                    _c(
+                      "svg",
+                      {
+                        staticClass:
+                          "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-12dd3e73f2b804e2",
+                        attrs: {
+                          height: "20",
+                          width: "20",
+                          viewBox: "0 0 24 24"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M4.82843 13L11 19.1716L18 12.1716V6H11.8284L4.82843 13ZM11 4H20V13L11 22L2 13L11 4ZM14.5 11C15.3284 11 16 10.3284 16 9.5C16 8.67157 15.3284 8 14.5 8C13.6716 8 13 8.67157 13 9.5C13 10.3284 13.6716 11 14.5 11Z"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(
+                      "\n                    Inserisci almeno 1 articolo, consegna gratuita\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "divider" })
+                ])
+              : _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.showCart,
+                        expression: "showCart"
+                      }
+                    ],
+                    staticClass: "something"
+                  },
+                  [
+                    _c("span", [
+                      _c(
+                        "svg",
+                        {
+                          staticClass:
+                            "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-b86ddb4586c18dbc",
+                          attrs: {
+                            height: "20",
+                            width: "20",
+                            viewBox: "0 0 24 24"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM8 10.8787L5.87868 13L10 17.1213L18.1213 9L16 6.87868L10 12.8787L8 10.8787Z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "divider" }),
+                    _vm._v(" "),
+                    _c("button", { on: { click: _vm.showContentCart } }, [
+                      _vm._v("Vedi il carrello")
+                    ])
+                  ]
+                )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.showCart,
+                expression: "!showCart"
+              }
+            ],
+            staticClass: "cart-content"
+          },
+          [
+            _c("div", { staticClass: "cart-container" }, [
+              _c("h3", [
+                _vm._v(
+                  "\n                    Il mio carrello\n                    "
+                ),
+                _c("button", { on: { click: _vm.showContentCart } }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-94235a1794a6d4be",
+                      attrs: { height: "20", width: "20", viewBox: "0 0 24 24" }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M12.0001 10.2322L5.88398 4.11612L4.11621 5.88389L10.2323 12L4.11621 18.1161L5.88398 19.8839L12.0001 13.7678L18.1162 19.8839L19.884 18.1161L13.7679 12L19.884 5.88389L18.1162 4.11612L12.0001 10.2322Z"
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _vm._l(_vm.cart.products, function(product) {
+                    return _c(
+                      "div",
+                      { key: product.id, staticClass: "recap" },
+                      [
+                        _c("div", { staticClass: "qty" }, [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205",
+                              attrs: {
+                                height: "20",
+                                width: "20",
+                                viewBox: "0 0 24 24"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.cartDecrement(product.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM7 13.5V10.5H17V13.5H7Z"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(product.qty) +
+                              "\n                            "
+                          ),
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205",
+                              attrs: {
+                                height: "20",
+                                width: "20",
+                                viewBox: "0 0 24 24"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.cartIncrement(product.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M12 2C17.5228 2 22 6.47725 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47725 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20ZM13.5 7V10.4999H17V13.5H13.5V17H10.5V13.5H7V10.4999H10.5V7H13.5Z"
+                                }
+                              })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "name" }, [
+                          _vm._v(_vm._s(product.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "single-total" }, [
+                          _vm._v(_vm._s(product.total) + " €")
+                        ])
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "subtotal" }, [
+                    _c("span", [_vm._v("Subtotale")]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.total) + " €")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "transportation-fee" }, [
+                    _c("span", [_vm._v("Spese di trasporto")]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _c(
+                        "svg",
+                        {
+                          staticClass:
+                            "ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-1e6f880f67285c2e",
+                          attrs: {
+                            height: "24",
+                            width: "24",
+                            viewBox: "0 0 24 24"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "delete" }, [
+                        _vm._v("1,49 € ")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "free" }, [_vm._v("Gratuito")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "savings" }, [
+                    _vm._v(
+                      "\n                        Con la consegna gratuita risparmi 1,49 €\n                    "
+                    )
+                  ])
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "buttons" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "empty-the-cart",
+                    on: {
+                      click: function($event) {
+                        _vm.removeCart(), _vm.showContentCart()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Svuota il carrello\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "pay",
+                    attrs: {
+                      to: {
+                        name: "payment",
+                        params: {
+                          restaurantId: _vm.cart.key,
+                          orderTotal: _vm.total
+                        }
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Vai alla cassa\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ]
+        )
       ])
     ],
     1
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _vm._v("Congratulazioni! Ora "),
+      _c("strong", [_vm._v(" la consegna è gratuita")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
