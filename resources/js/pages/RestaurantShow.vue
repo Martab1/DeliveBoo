@@ -198,7 +198,6 @@ export default {
         };
     },
     created() {
-        console.log(this.activeElements);
         this.getRestaurant();
     },
     methods: {
