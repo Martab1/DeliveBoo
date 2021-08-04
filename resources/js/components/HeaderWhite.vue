@@ -8,13 +8,13 @@
         </span>
       </router-link >
       <div class="actions">
-        <div>
+        <div id="hide">
           <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M3 10L5 8.44444V5H9.42857L12 3L21 10V21H3V10ZM14 19H19V10.9782L12 5.53372L5 10.9782V19H10V14H14V19Z"></path></svg>
           Registrati o accedi</div>
-        <div>
-          <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M2 13V11H22V13H2ZM2 19V17H22V19H2ZM2 7V5H22V7H2Z"></path></svg>
+        <div id="menu">
+          <svg height="22" width="22" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M2 13V11H22V13H2ZM2 19V17H22V19H2ZM2 7V5H22V7H2Z"></path></svg>
           Menu
-          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -103,6 +103,16 @@ header{
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 670px){
+  #hide{
+    display: none;
+  }
+
+  #menu{
+    font-size: 14px;
   }
 }
 
