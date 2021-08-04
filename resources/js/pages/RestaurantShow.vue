@@ -533,7 +533,6 @@ export default {
 .menu{
     top: 0;
     position: sticky;
-    
     background-color: white;
     .my_container{
         display: flex;

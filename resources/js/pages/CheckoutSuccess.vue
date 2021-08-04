@@ -1,17 +1,14 @@
 <template>
-  <div class="payment-success container">
-    <i class="icon far fa-check-circle"></i>
-    <h1>Pagamento avvenuto con successo!</h1>
-    <h2>Riceverai un email con la conferma d'ordine</h2>
-    <h2>Grazie</h2>
-      <router-link id="a" :to="{name:'home'}">
-          <v-btn
-          id="btn"
-          elevation="2"
-          >
-              Torna alla home
-          </v-btn>
-        </router-link>
+  <div class="payment-success">
+    <div class="content">
+        <img src="/img/logo_yellow.png" alt="logo">
+        <h1>Il pagamento è andato a buon fine.</h1>
+        <div>Riceverai presto una mail con i dati del tuo ordine.<br>
+        Grazie per aver scelto Deliveboo <span class="heart">&#10084;</span>
+        </div>
+        <router-link :to="{name:'home'}"><button>Vai alla home</button></router-link>
+      </div>
+        <div class="color"><img class="delivery" src="/img/delivery.png" alt="delivery"></div>
   </div>
 </template>
 
@@ -26,51 +23,53 @@ export default {
 @import "../../sass/mixins.scss";
 
 .payment-success{
-  text-align: center;
-  width: 50%;
-  color: $special-black2;
-  margin-top:20px;
-  margin-bottom:20px;
-  height: calc(100% - 40px);
-  background-color: $special-white;
-  @include flex("column-center");
-}
-
-.icon{
-  font-size: 5rem;
-  margin: 10px 0;
-  color: rgb(21, 175, 21);
-}
-
-#btn{
-  margin: 10px 0;
-  background-color: $btn-color;
-  color: white;
-}
-
-#a{
-  text-decoration: none;
-}
-
-@media screen and (max-width:1903px){
-     .payment-success{
-      width: 80%;
-    };
-}
-
-@media screen and (max-width:766px){
+  background: $d-primary;
+  background: linear-gradient(176deg, $d-primary  21.8%, rgba(244,246,245,1) 22%);
+  height: 100vh;
+  padding-top: 135px;
+  .content{
+    text-align: center;
+    max-width: 30%;
+    margin: 0 auto;
+    img{
+      width: 30%;
+      margin-bottom: 30px;
+    }
     h1{
-      font-size: 1.4rem;
+      font-size: 40px;
     }
-    h2{
-      font-size: 1.2rem;
+    & > div{
+      font-size: 16px;
+      margin-bottom: 30px;
+      .heart{
+        color:  #e2484f;
+      }
     }
+    button{
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      background-color: $d-primary;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+  .color{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    .delivery{
+      position: relative;
+      width: 10%;
+      animation-name: move;
+      animation-duration: 4s;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear;
+    }
+  }
+  @keyframes move {
+  0% {left:0px}
+  90% {left:80%}
+  100% {left:80%}
+  }
 }
-
-@media screen and (max-width:531px){
-    h2{
-      margin-top: 20px
-    }
-}
-
 </style>
