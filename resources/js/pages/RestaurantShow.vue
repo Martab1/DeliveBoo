@@ -1,5 +1,5 @@
 <template>
-    <div class="" >
+    <div>
         <HeaderWhite/>
         <!-- RESTAURANT DESCRIPTION -->
         <div class="restaurant_description" v-if="my_restaurant">
@@ -166,19 +166,18 @@
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
 import HeaderWhite from "../components/HeaderWhite.vue";
-import Cart from "../components/Cart.vue";
-import SingleRestaurant from "../components/SingleRestaurant.vue";
+import Footer from "../components/Footer.vue";
 export default {
     // name: "RestaurantShow",
     components: {
-        Cart,
-        SingleRestaurant,
         HeaderWhite,
+        Footer,
     },
     data() {
         return {
@@ -534,7 +533,6 @@ export default {
 .menu{
     top: 0;
     position: sticky;
-    
     background-color: white;
     .my_container{
         display: flex;

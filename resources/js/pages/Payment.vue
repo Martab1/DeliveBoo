@@ -164,29 +164,29 @@
                             <div class="single-total">{{product.total}} €</div>
                         </div>
                         <div class="subtotal">
-                                    <span>Subtotale</span>
-                                    <span>{{this.$route.params.orderTotal}}  €</span>
-                                </div>
-                                <div class="transportation-fee">
-                                    <span>Spese di trasporto</span>
-                                    <span>
-                                        <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-1e6f880f67285c2e"><path d="M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"></path></svg>
-                                        <span class="delete">1,49 € </span>
-                                        <span class="free">Gratuito</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="savings">
-                                Con la consegna gratuita risparmi 1,49 €
-                            </div>
-                            <div class="total">
-                                <span>Totale</span>
-                                <span>{{this.$route.params.orderTotal}}  €</span>
-                            </div>
+                            <span>Subtotale</span>
+                            <span>{{this.$route.params.orderTotal}}  €</span>
+                        </div>
+                        <div class="transportation-fee">
+                            <span>Spese di trasporto</span>
+                            <span>
+                                <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-1e6f880f67285c2e"><path d="M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"></path></svg>
+                                <span class="delete">1,49 € </span>
+                                <span class="free">Gratuito</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="savings">
+                        Con la consegna gratuita risparmi 1,49 €
+                    </div>
+                    <div class="total">
+                        <span>Totale</span>
+                        <span>{{this.$route.params.orderTotal}}  €</span>
                     </div>
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
     <div v-else class="loading">
         <v-progress-circular
@@ -199,10 +199,12 @@
 
 <script>
 import HeaderGreen from "../components/HeaderGreen.vue";
+import Footer from "../components/Footer.vue";
 export default {
     name:"Payment",
     components:{
         HeaderGreen,
+        Footer,
     },
     data(){
         return{
@@ -299,8 +301,8 @@ export default {
 .payment{   
     background: rgb(0,109,104);
     background: linear-gradient(176deg, rgba(0,109,104,1) 21.8%, rgba(244,246,245,1) 22%);
-    padding-bottom: 40px;
     .my_container{
+        padding-bottom: 40px;
         @include flex("flex");
         .left{
             flex-grow: 1;
