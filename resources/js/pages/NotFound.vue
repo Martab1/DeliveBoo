@@ -1,16 +1,14 @@
 <template>
-  <div class="payment-success container">
-    <i class="icon fas fa-times"></i>
-     <h1>Qualcosa è andato storto...</h1>
-      <router-link id="a" :to="{name:'home'}">
-          <v-btn
-          id="btn"
-          elevation="2"
-          >
-              Torna alla home
-          </v-btn>
-        </router-link>
-  </div>
+    <div class="error404">
+      <div class="content">
+        <img src="https://deliveroo.it/assets/images/error-pages/roo-5c784b3ea96399e6269af8a11ec6349c.svg" alt="">
+        <h1>Pagina non trovata</h1>
+        <div>Siamo spiacenti, la pagina che stai cercando non esiste. <br>
+          Ma c'è molto altro da vedere!
+        </div>
+        <router-link :to="{name:'home'}"><button>Vai alla home</button></router-link>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -22,53 +20,31 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/vars.scss";
 @import "../../sass/mixins.scss";
-
-.payment-success{
-  text-align: center;
-  width: 50%;
-  color: $special-black2;
-  margin-top:20px;
-  margin-bottom:20px;
-  height: calc(100% - 40px);
-  background-color: $special-white;
-  @include flex("column-center");
-}
-
-.icon{
-  font-size: 8rem;
-  margin: 10px 0;
-  color: rgb(224, 38, 38);
-}
-
-#btn{
-  margin-top: 50px;
-  background-color: $btn-color;
-  color: white;
-}
-
-#a{
-  text-decoration: none;
-}
-
-@media screen and (max-width:1903px){
-     .payment-success{
-      width: 80%;
-    };
-}
-
-@media screen and (max-width:766px){
-    h1{
-      font-size: 1.4rem;
+  .error404{
+    background: url("https://deliveroo.it/assets/images/error-pages/background-7edaa013aceff22965bdb7fbf274b4a2.svg") repeat-x 0 0;
+    height: 100vh;
+    padding-top: 135px;
+    .content{
+      text-align: center;
+      max-width: 30%;
+      margin: 0 auto;
+      img{
+        margin-bottom: 30px;
+      }
+      h1{
+        font-size: 40px;
+      }
+      & > div{
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      button{
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        background-color: $d-primary;
+        color: #fff;
+        font-weight: bold;
+      }
     }
-    h2{
-      font-size: 1.2rem;
-    }
-}
-
-@media screen and (max-width:531px){
-    h2{
-      margin-top: 20px
-    }
-}
-
+  }
 </style>
