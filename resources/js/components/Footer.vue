@@ -122,11 +122,20 @@ footer{
     color: white;
     display: flex;
     justify-content: space-between;
+    overflow: auto;
     .f-info{
       padding: 30px 20px;
       background-color: rgba(255,255,255, 0.1);
       width: calc(100% / 4 - 15px);
       border-radius: 3px;
+      margin: 10px;
+      min-width: 224px;
+      &:first-child{
+        margin-left: 0px;
+      }
+      &:last-child{
+        margin-right: 0px;
+      }
 
       img{
         max-width: 50%;
