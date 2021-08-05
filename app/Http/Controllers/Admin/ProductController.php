@@ -124,10 +124,9 @@ class ProductController extends Controller
             if($product->restaurant_id == $restaurant->id) {
                 $categories = Category::all();
                 return view('admin.product.edit', compact('product', 'categories'));  
-            }else{
-                abort(404);
             }
         }
+        abort(404);
     }
 
     /**
@@ -178,10 +177,9 @@ class ProductController extends Controller
                 $product->update($data);
 
                 return redirect()->route('admin.product.index', $product['restaurant_id']);
-            }else{
-                abort(404);
             }
         }
+        abort(404);
     }
 
     /**
@@ -201,11 +199,9 @@ class ProductController extends Controller
                 // remove
                 $product->delete();
                 return redirect()->route('admin.product.index', $product->restaurant->id)->with('deleted', $product->name);
-            }else{
-                abort(404);
             }
         }
-      
+        abort(404);
     }
 
 }
