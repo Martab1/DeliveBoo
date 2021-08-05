@@ -4,7 +4,18 @@
     <div class="text-center container show">
         <h1 class="my-5 text-uppercase">{{ $my_restaurant->name }}</h1>
 
-        <div class="d-flex">
+        <div class="d-flex container">
+
+              {{-- IMAGE --}}
+              <div class="w-50"><img class="img-fluid " 
+                @if ($my_restaurant->image)
+                src="{{ asset('storage/' . $my_restaurant->image) }}"
+                @else
+                {{-- src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/600px-No_immagine_disponibile.svg.png" --}}
+                src="{{asset('no_covers/no_cover_restaurant.png')}}"
+                @endif
+                    alt="{{ $my_restaurant->name }}">
+             </div>
 
             {{-- INFORMATIONS --}}
             <div class="informations w-50 d-flex flex-column justify-content-center  text-left">
@@ -16,21 +27,12 @@
                 {{-- TIPOLOGIES --}}
                 <div class="tipologies my-4">
                     @foreach ($my_restaurant->tipologies as $my_tipology)
-                        <span class="badge badge-info text-white p-2 mb-1">{{ $my_tipology->name }}</span>
+                        <span class=" badge bg-secondary text-white p-2 mb-1">{{ $my_tipology->name }}</span>
                     @endforeach
                 </div>
             </div>
 
-            {{-- IMAGE --}}
-            <div class="w-50"><img class="img-fluid" 
-                @if ($my_restaurant->image)
-                src="{{ asset('storage/' . $my_restaurant->image) }}"
-                @else
-                {{-- src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/600px-No_immagine_disponibile.svg.png" --}}
-                src="{{asset('no_covers/no_cover_restaurant.png')}}"
-                @endif
-                    alt="{{ $my_restaurant->name }}">
-            </div>
+          
         </div>
 
         {{-- BUTTONS --}}
