@@ -1,7 +1,9 @@
 @component('mail::message')
 # Deliveboo
-
-Buongiorno **{{$order['deliveboo_client']}}**
+<div class="container-img">
+    <img class="logo" src="{{asset('img/logo_yellow.png')}}" alt="logo">
+</div>
+Buongiorno {{$order['deliveboo_client']}}
 
 Hai appena ricevuto un ordine per la tua attività **{{$order['restaurant_name']}}** 
 da {{$order['payer_name']}}, <br>

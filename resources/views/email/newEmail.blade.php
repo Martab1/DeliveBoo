@@ -1,6 +1,8 @@
 @component('mail::message')
 # Deliveboo
-
+<div class="container-img">
+    <img class="logo" src="{{asset('img/logo_yellow.png')}}" alt="logo">
+</div>
 Grazie {{$order['payer_name']}}, 
 
 il tuo acquisto dall'importo totale di **{{$order['total']}} euro** è stato processato con successo!<br>

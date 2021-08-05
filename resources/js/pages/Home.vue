@@ -41,102 +41,6 @@
                     </div>
                 </div>
             </div>
-
-           
-            <!-- <aside>
-                <div class="kitchens">
-                    <div class="check-container">
-                        <div id="label-div" class="w-25" v-for="tipology in tipologies" :key="'tipology'+tipology.id"> 
-                            <label :class="{checked : checkedTipologies.includes(tipology.id)}" :for="tipology.id">{{tipology.name}}
-                                <input
-                                    type="checkbox" 
-                                    :name="tipology"
-                                    :id="tipology.id"
-                                    :value="tipology.id"
-                                    v-model="checkedTipologies"
-                                    @change="searching()">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <div v-if="checkedTipologies.length != 0" class="restaurants">
-                <div v-if="result.length != 0">
-                    <div class="restaurants-container" id="restaurant-div"> -->
-                        <!-- PAGE RESULTS -->
-                        <!-- <div v-for="restaurant in result" :key="restaurant.id">
-                            <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
-                                <div class="layover">
-                                    <h5>{{restaurant.name}}</h5>
-                                </div>
-                                <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
-                            </router-link>
-                        </div>
-                    </div> -->
-                    <!-- PNAV PAG -->
-                    <!-- <div class="pagination" v-if="pagination.maxPages != 1">
-                        <button
-                            @click="searching(pagination.current - 1)"
-                            :disabled="pagination.current === 1"
-                            :class="{disable : pagination.current === 1}">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button
-                            v-for="i in pagination.maxPages"
-                            :key="'pag'+i"
-                            @click="searching(i)"
-                            :class="{active : pagination.current == i}">
-                            {{i}}
-                        </button>
-                        <button
-                            @click="searching(pagination.current + 1)"
-                            :disabled="pagination.current === pagination.maxPages"
-                            :class="{disable : pagination.current === pagination.maxPages}">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div v-else class="no-result">Nessun risultato corrisponde alla ricerca</div>
-            </div>
-
-            <div v-else class="restaurants">
-                <div class="restaurants-container" id="restaurant-div">
-                    <div v-for="restaurant in firstRestaurants" :key="restaurant.id">
-                        <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
-                            <div class="layover">
-                                <h5>{{restaurant.name}}</h5>
-                            </div>
-                            <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
-                        </router-link>
-                    </div>
-                </div> -->
-
-                <!-- PNAV PAG -->
-                <!-- <div class="pagination" v-if="pagination.maxPages != 1"> 
-                    <button
-                        @click="getCategories(pagination.current - 1)"
-                        :disabled="pagination.current === 1"
-                        :class="{disable : pagination.current === 1}">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-
-                    <button
-                        v-for="i in pagination.maxPages"
-                        :key="'pag'+i"
-                        @click="getCategories(i)"
-                        :class="{active : pagination.current == i}">
-                        {{i}}
-                    </button>
-
-                    <button
-                        @click="getCategories(pagination.current + 1)"
-                        :disabled="pagination.current === pagination.maxPages"
-                        :class="{disable : pagination.current === pagination.maxPages}">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>-->
         </section>
 
         <!-- RECOMMENDED -->
@@ -146,7 +50,8 @@
                  <div class="restaurants-container">
                     <div v-for="restaurant in firstRestaurants" :key="restaurant.id">
                         <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
-                            <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                            <img v-if="restaurant.image" :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                            <img v-else src="/img/default.jpg" :alt="restaurant.name">
                         </router-link>
                         <h5>{{restaurant.name}}</h5>
                     </div>
@@ -178,7 +83,8 @@
                         <!-- PAGE RESULTS -->
                         <div v-for="restaurant in result" :key="restaurant.id">
                             <router-link class="router-link" :to="{name:'restaurantShow', params:{slug: restaurant.slug}}">
-                                <img :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                                <img v-if="restaurant.image" :src="/storage/ + restaurant.image" :alt="restaurant.name">
+                                <img v-else src="/img/default.jpg" :alt="restaurant.name">
                             </router-link>
                             <h5>{{restaurant.name}}</h5>
                         </div>
@@ -504,12 +410,12 @@ section{
         height: 35px;
         margin: 0 2px;
         background-color: transparent;
-        color: $special-black2;
+        color: $d-black;
         transition: 0.3s;
         box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 
         &:hover{
-            background-color: $special-white;
+            background-color: $d-grey;
             box-shadow: 0 2px 5px rgba(0,0,0,.2);
         }
     }
