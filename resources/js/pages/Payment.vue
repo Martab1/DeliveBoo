@@ -44,8 +44,8 @@
                                 </span>
                             </div>
                             <!-- CAP AND CITY -->
-                            <div class="cap-and-city">
-                                <div class="cap">
+                            <div class="cap-and-city" id="cap-and-city">
+                                <div class="cap" id="cap">
                                     <label for="cap">Cap</label>
                                     <v-text-field
                                     class="input"
@@ -67,7 +67,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="city">
+                                <div class="city" id="city">
                                     <label for="city">Città</label>
                                     <v-text-field
                                     class="input"
@@ -91,8 +91,8 @@
                                 </div>
                             </div>
                             <!-- NAME AND EMAIL -->
-                            <div class="name-and-email">
-                                <div class="name">
+                            <div class="name-and-email" id="name-and-email">
+                                <div class="name" id="name">
                                     <label for="nome">Nome</label>
                                     <v-text-field
                                     class="input"
@@ -111,7 +111,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="email">
+                                <div class="email" id="email">
                                     <label for="email">Email</label>
                                     <v-text-field
                                     class="input"
@@ -306,7 +306,6 @@ export default {
         @include flex("flex");
         .left{
             flex-grow: 1;
-            width: 709px;
             h1{
                 color: #fff;
                 font-size: 28px;
@@ -337,7 +336,7 @@ export default {
                     .switch {
                     position: relative;
                     display: inline-block;
-                    width: 42px;
+                    min-width: 42px;
                     height: 28px;
                     }
 
@@ -548,5 +547,44 @@ export default {
 .loading{
     height: 100vh;
     @include flex("center");
+}
+
+@media screen and (max-width: 892px) {
+    .payment{
+        .my_container{
+            .right{
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 580px){
+    #cap-and-city{
+        margin: unset;
+        margin-top: 24px;
+    }
+
+    #name-and-email{
+        margin: unset;
+    }
+
+    #cap-and-city,
+    #name-and-email{
+        @include flex("flex");
+        flex-wrap: wrap;
+        #cap,
+        #name{
+            width: 100%;
+            margin: unset;
+            margin-bottom: 20px;
+
+        }
+        #city,
+        #email{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
 }
 </style>

@@ -26586,7 +26586,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.payment[data-v-be3450e6] {\n  background: #006d68;\n  background: linear-gradient(176deg, #006d68 21.8%, #f4f6f5 22%);\n}\n.payment .my_container[data-v-be3450e6] {\n  padding-bottom: 40px;\n  display: flex;\n}\n.payment .my_container .left[data-v-be3450e6] {\n  flex-grow: 1;\n  width: 709px;\n}\n.payment .my_container .left h1[data-v-be3450e6] {\n  color: #fff;\n  font-size: 28px;\n}\n.payment .my_container .left .time[data-v-be3450e6] {\n  display: flex;\n  align-items: center;\n  color: #fff;\n  fill: currentColor;\n  margin-bottom: 26px;\n}\n.payment .my_container .left .time svg[data-v-be3450e6] {\n  width: 20px;\n  height: 20px;\n  margin-right: 4px;\n}\n.payment .my_container .left .form[data-v-be3450e6] {\n  padding: 41px;\n  background-color: #fff;\n}\n.payment .my_container .left .form .form-error[data-v-be3450e6] {\n  color: #ff5252;\n}\n.payment .my_container .left .form .silverware[data-v-be3450e6] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 43px;\n  padding: 16px;\n  border-radius: 3px;\n  border: solid 1px #d1d7d7;\n}\n.payment .my_container .left .form .silverware .switch[data-v-be3450e6] {\n  position: relative;\n  display: inline-block;\n  width: 42px;\n  height: 28px;\n}\n.payment .my_container .left .form .silverware .switch input[data-v-be3450e6] {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n.payment .my_container .left .form .silverware .slider[data-v-be3450e6] {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #a3afaf;\n  transition: 0.4s;\n}\n.payment .my_container .left .form .silverware .slider[data-v-be3450e6]:before {\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  content: \"\\2716\";\n  color: #a3afaf;\n  height: 20px;\n  width: 20px;\n  left: 4px;\n  bottom: 4px;\n  background-color: white;\n  transition: 0.4s;\n}\n.payment .my_container .left .form .silverware input:checked + .slider[data-v-be3450e6] {\n  background-color: #00ccbc;\n}\n.payment .my_container .left .form .silverware input:focus + .slider[data-v-be3450e6] {\n  box-shadow: 0 0 1px #00ccbc;\n}\n.payment .my_container .left .form .silverware input:checked + .slider[data-v-be3450e6]:before {\n  transform: translateX(15px);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  content: \"\\2714\";\n  color: #00ccbc;\n}\n.payment .my_container .left .form .silverware .slider.round[data-v-be3450e6] {\n  border-radius: 34px;\n}\n.payment .my_container .left .form .silverware .slider.round[data-v-be3450e6]:before {\n  border-radius: 50%;\n}\n.payment .my_container .left .form .silverware .text-silverware[data-v-be3450e6] {\n  margin-left: 10px;\n  color: #828585;\n  font-size: 14px;\n}\n.payment .my_container .left .form .silverware .text-silverware h4[data-v-be3450e6] {\n  color: #2e3333;\n}\n.payment .my_container .left .form .silverware .text-silverware input:checked + span[data-v-be3450e6] {\n  content: \"ciao\";\n}\n.payment .my_container .left .form h2[data-v-be3450e6] {\n  color: #2e3333;\n  font-size: 22px;\n  margin-bottom: 19px;\n}\n.payment .my_container .left .form > label[data-v-be3450e6] {\n  font-size: 14px;\n  color: #828585;\n}\n.payment .my_container .left .form .input[data-v-be3450e6] {\n  padding: 4px;\n  border-radius: 3px;\n  border: solid 1px #d1d7d7;\n}\n.payment .my_container .left .form .cap-and-city[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email[data-v-be3450e6] {\n  margin: 24px 0;\n  display: flex;\n}\n.payment .my_container .left .form .cap-and-city label[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email label[data-v-be3450e6] {\n  font-size: 14px;\n  color: #828585;\n}\n.payment .my_container .left .form .cap-and-city .cap[data-v-be3450e6],\n.payment .my_container .left .form .cap-and-city .name[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .cap[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .name[data-v-be3450e6] {\n  width: 48%;\n  margin-right: 4%;\n}\n.payment .my_container .left .form .cap-and-city .city[data-v-be3450e6],\n.payment .my_container .left .form .cap-and-city .email[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .city[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .email[data-v-be3450e6] {\n  width: 48%;\n}\n.payment .my_container .left .form .payment-method[data-v-be3450e6] {\n  margin-bottom: 0;\n}\n.payment .my_container .left .form .braintree[data-v-be3450e6] {\n  background: none;\n  margin: 0;\n  padding: 0;\n  text-align: center;\n}\n.payment .my_container .left .form .braintree .submit[data-v-be3450e6] {\n  text-transform: lowercase;\n  display: flex;\n  align-items: center;\n  width: 100%;\n  background-color: #00ccbc;\n  color: #fff;\n}\n.payment .my_container .left .form .braintree .submit svg[data-v-be3450e6] {\n  fill: currentColor;\n  width: 20px;\n  height: 20px;\n  margin-right: 8px;\n}\n.payment .my_container .right[data-v-be3450e6] {\n  width: 395px;\n  margin-left: 20px;\n}\n.payment .my_container .right .cart[data-v-be3450e6] {\n  min-height: 248px;\n  background-color: #fff;\n}\n.payment .my_container .right .cart .container-cart[data-v-be3450e6] {\n  padding: 16px;\n}\n.payment .my_container .right .cart .container-cart h4[data-v-be3450e6] {\n  color: #2e3333;\n  font-size: 18px;\n}\n.payment .my_container .right .cart .container-cart .recap[data-v-be3450e6] {\n  margin: 20px 0;\n  display: flex;\n  align-items: center;\n}\n.payment .my_container .right .cart .container-cart .recap .qty[data-v-be3450e6] {\n  width: 10%;\n  color: #828585;\n}\n.payment .my_container .right .cart .container-cart .recap .name[data-v-be3450e6] {\n  width: 65%;\n}\n.payment .my_container .right .cart .container-cart .recap .single-total[data-v-be3450e6] {\n  width: 25%;\n  text-align: right;\n}\n.payment .my_container .right .cart .container-cart .subtotal[data-v-be3450e6] {\n  margin-top: 25px;\n  display: flex;\n}\n.payment .my_container .right .cart .container-cart .subtotal > span[data-v-be3450e6]:first-child {\n  color: #828585;\n}\n.payment .my_container .right .cart .container-cart .subtotal > span[data-v-be3450e6]:last-child {\n  display: block;\n  width: 100%;\n  text-align: right;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee[data-v-be3450e6] {\n  margin: 4px 0;\n  display: flex;\n  color: #828585;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span[data-v-be3450e6]:last-child {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-grow: 1;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span:last-child svg[data-v-be3450e6] {\n  fill: currentColor;\n  width: 18px;\n  height: 18px;\n  margin-right: 4px;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span:last-child .delete[data-v-be3450e6] {\n  text-decoration: line-through;\n  margin-right: 4px;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span:last-child .free[data-v-be3450e6] {\n  color: #e2484f;\n}\n.payment .my_container .right .cart .savings[data-v-be3450e6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 10px;\n  background-color: #00a396;\n  color: white;\n}\n.payment .my_container .right .cart .total[data-v-be3450e6] {\n  color: #828585;\n  display: flex;\n  padding: 8px 16px;\n}\n.payment .my_container .right .cart .total > span[data-v-be3450e6]:last-child {\n  width: 100%;\n  text-align: right;\n  color: black;\n}\n.loading[data-v-be3450e6] {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.payment[data-v-be3450e6] {\n  background: #006d68;\n  background: linear-gradient(176deg, #006d68 21.8%, #f4f6f5 22%);\n}\n.payment .my_container[data-v-be3450e6] {\n  padding-bottom: 40px;\n  display: flex;\n}\n.payment .my_container .left[data-v-be3450e6] {\n  flex-grow: 1;\n}\n.payment .my_container .left h1[data-v-be3450e6] {\n  color: #fff;\n  font-size: 28px;\n}\n.payment .my_container .left .time[data-v-be3450e6] {\n  display: flex;\n  align-items: center;\n  color: #fff;\n  fill: currentColor;\n  margin-bottom: 26px;\n}\n.payment .my_container .left .time svg[data-v-be3450e6] {\n  width: 20px;\n  height: 20px;\n  margin-right: 4px;\n}\n.payment .my_container .left .form[data-v-be3450e6] {\n  padding: 41px;\n  background-color: #fff;\n}\n.payment .my_container .left .form .form-error[data-v-be3450e6] {\n  color: #ff5252;\n}\n.payment .my_container .left .form .silverware[data-v-be3450e6] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 43px;\n  padding: 16px;\n  border-radius: 3px;\n  border: solid 1px #d1d7d7;\n}\n.payment .my_container .left .form .silverware .switch[data-v-be3450e6] {\n  position: relative;\n  display: inline-block;\n  min-width: 42px;\n  height: 28px;\n}\n.payment .my_container .left .form .silverware .switch input[data-v-be3450e6] {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n.payment .my_container .left .form .silverware .slider[data-v-be3450e6] {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #a3afaf;\n  transition: 0.4s;\n}\n.payment .my_container .left .form .silverware .slider[data-v-be3450e6]:before {\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  content: \"\\2716\";\n  color: #a3afaf;\n  height: 20px;\n  width: 20px;\n  left: 4px;\n  bottom: 4px;\n  background-color: white;\n  transition: 0.4s;\n}\n.payment .my_container .left .form .silverware input:checked + .slider[data-v-be3450e6] {\n  background-color: #00ccbc;\n}\n.payment .my_container .left .form .silverware input:focus + .slider[data-v-be3450e6] {\n  box-shadow: 0 0 1px #00ccbc;\n}\n.payment .my_container .left .form .silverware input:checked + .slider[data-v-be3450e6]:before {\n  transform: translateX(15px);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  content: \"\\2714\";\n  color: #00ccbc;\n}\n.payment .my_container .left .form .silverware .slider.round[data-v-be3450e6] {\n  border-radius: 34px;\n}\n.payment .my_container .left .form .silverware .slider.round[data-v-be3450e6]:before {\n  border-radius: 50%;\n}\n.payment .my_container .left .form .silverware .text-silverware[data-v-be3450e6] {\n  margin-left: 10px;\n  color: #828585;\n  font-size: 14px;\n}\n.payment .my_container .left .form .silverware .text-silverware h4[data-v-be3450e6] {\n  color: #2e3333;\n}\n.payment .my_container .left .form .silverware .text-silverware input:checked + span[data-v-be3450e6] {\n  content: \"ciao\";\n}\n.payment .my_container .left .form h2[data-v-be3450e6] {\n  color: #2e3333;\n  font-size: 22px;\n  margin-bottom: 19px;\n}\n.payment .my_container .left .form > label[data-v-be3450e6] {\n  font-size: 14px;\n  color: #828585;\n}\n.payment .my_container .left .form .input[data-v-be3450e6] {\n  padding: 4px;\n  border-radius: 3px;\n  border: solid 1px #d1d7d7;\n}\n.payment .my_container .left .form .cap-and-city[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email[data-v-be3450e6] {\n  margin: 24px 0;\n  display: flex;\n}\n.payment .my_container .left .form .cap-and-city label[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email label[data-v-be3450e6] {\n  font-size: 14px;\n  color: #828585;\n}\n.payment .my_container .left .form .cap-and-city .cap[data-v-be3450e6],\n.payment .my_container .left .form .cap-and-city .name[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .cap[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .name[data-v-be3450e6] {\n  width: 48%;\n  margin-right: 4%;\n}\n.payment .my_container .left .form .cap-and-city .city[data-v-be3450e6],\n.payment .my_container .left .form .cap-and-city .email[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .city[data-v-be3450e6],\n.payment .my_container .left .form .name-and-email .email[data-v-be3450e6] {\n  width: 48%;\n}\n.payment .my_container .left .form .payment-method[data-v-be3450e6] {\n  margin-bottom: 0;\n}\n.payment .my_container .left .form .braintree[data-v-be3450e6] {\n  background: none;\n  margin: 0;\n  padding: 0;\n  text-align: center;\n}\n.payment .my_container .left .form .braintree .submit[data-v-be3450e6] {\n  text-transform: lowercase;\n  display: flex;\n  align-items: center;\n  width: 100%;\n  background-color: #00ccbc;\n  color: #fff;\n}\n.payment .my_container .left .form .braintree .submit svg[data-v-be3450e6] {\n  fill: currentColor;\n  width: 20px;\n  height: 20px;\n  margin-right: 8px;\n}\n.payment .my_container .right[data-v-be3450e6] {\n  width: 395px;\n  margin-left: 20px;\n}\n.payment .my_container .right .cart[data-v-be3450e6] {\n  min-height: 248px;\n  background-color: #fff;\n}\n.payment .my_container .right .cart .container-cart[data-v-be3450e6] {\n  padding: 16px;\n}\n.payment .my_container .right .cart .container-cart h4[data-v-be3450e6] {\n  color: #2e3333;\n  font-size: 18px;\n}\n.payment .my_container .right .cart .container-cart .recap[data-v-be3450e6] {\n  margin: 20px 0;\n  display: flex;\n  align-items: center;\n}\n.payment .my_container .right .cart .container-cart .recap .qty[data-v-be3450e6] {\n  width: 10%;\n  color: #828585;\n}\n.payment .my_container .right .cart .container-cart .recap .name[data-v-be3450e6] {\n  width: 65%;\n}\n.payment .my_container .right .cart .container-cart .recap .single-total[data-v-be3450e6] {\n  width: 25%;\n  text-align: right;\n}\n.payment .my_container .right .cart .container-cart .subtotal[data-v-be3450e6] {\n  margin-top: 25px;\n  display: flex;\n}\n.payment .my_container .right .cart .container-cart .subtotal > span[data-v-be3450e6]:first-child {\n  color: #828585;\n}\n.payment .my_container .right .cart .container-cart .subtotal > span[data-v-be3450e6]:last-child {\n  display: block;\n  width: 100%;\n  text-align: right;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee[data-v-be3450e6] {\n  margin: 4px 0;\n  display: flex;\n  color: #828585;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span[data-v-be3450e6]:last-child {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  flex-grow: 1;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span:last-child svg[data-v-be3450e6] {\n  fill: currentColor;\n  width: 18px;\n  height: 18px;\n  margin-right: 4px;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span:last-child .delete[data-v-be3450e6] {\n  text-decoration: line-through;\n  margin-right: 4px;\n}\n.payment .my_container .right .cart .container-cart .transportation-fee > span:last-child .free[data-v-be3450e6] {\n  color: #e2484f;\n}\n.payment .my_container .right .cart .savings[data-v-be3450e6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 10px;\n  background-color: #00a396;\n  color: white;\n}\n.payment .my_container .right .cart .total[data-v-be3450e6] {\n  color: #828585;\n  display: flex;\n  padding: 8px 16px;\n}\n.payment .my_container .right .cart .total > span[data-v-be3450e6]:last-child {\n  width: 100%;\n  text-align: right;\n  color: black;\n}\n.loading[data-v-be3450e6] {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (max-width: 892px) {\n.payment .my_container .right[data-v-be3450e6] {\n    display: none;\n}\n}\n@media screen and (max-width: 580px) {\n#cap-and-city[data-v-be3450e6] {\n    margin: unset;\n    margin-top: 24px;\n}\n#name-and-email[data-v-be3450e6] {\n    margin: unset;\n}\n#cap-and-city[data-v-be3450e6],\n#name-and-email[data-v-be3450e6] {\n    display: flex;\n    flex-wrap: wrap;\n}\n#cap-and-city #cap[data-v-be3450e6],\n#cap-and-city #name[data-v-be3450e6],\n#name-and-email #cap[data-v-be3450e6],\n#name-and-email #name[data-v-be3450e6] {\n    width: 100%;\n    margin: unset;\n    margin-bottom: 20px;\n}\n#cap-and-city #city[data-v-be3450e6],\n#cap-and-city #email[data-v-be3450e6],\n#name-and-email #city[data-v-be3450e6],\n#name-and-email #email[data-v-be3450e6] {\n    width: 100%;\n    margin-bottom: 20px;\n}\n}", ""]);
 
 // exports
 
@@ -30334,272 +30334,292 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "cap-and-city" }, [
-                        _c(
-                          "div",
-                          { staticClass: "cap" },
-                          [
-                            _c("label", { attrs: { for: "cap" } }, [
-                              _vm._v("Cap")
-                            ]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              staticClass: "input",
-                              attrs: {
-                                id: "cap",
-                                placeholder: "es. 20143",
-                                color: "#006d68",
-                                rules: [
-                                  function(v) {
-                                    return !!v || "Cap obbligatorio"
-                                  },
-                                  function(v) {
-                                    return (
-                                      (v && v.length == 5) ||
-                                      "Il Cap deve contenere 5 numeri"
-                                    )
-                                  },
-                                  function(v) {
-                                    return (
-                                      /^\d+$/.test(v) ||
-                                      "Il Cap deve contenere solo numeri"
-                                    )
-                                  }
-                                ],
-                                "hide-details": "auto"
-                              },
-                              model: {
-                                value: _vm.form.payer_cap,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "payer_cap", $$v)
+                      _c(
+                        "div",
+                        {
+                          staticClass: "cap-and-city",
+                          attrs: { id: "cap-and-city" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "cap", attrs: { id: "cap" } },
+                            [
+                              _c("label", { attrs: { for: "cap" } }, [
+                                _vm._v("Cap")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "input",
+                                attrs: {
+                                  id: "cap",
+                                  placeholder: "es. 20143",
+                                  color: "#006d68",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Cap obbligatorio"
+                                    },
+                                    function(v) {
+                                      return (
+                                        (v && v.length == 5) ||
+                                        "Il Cap deve contenere 5 numeri"
+                                      )
+                                    },
+                                    function(v) {
+                                      return (
+                                        /^\d+$/.test(v) ||
+                                        "Il Cap deve contenere solo numeri"
+                                      )
+                                    }
+                                  ],
+                                  "hide-details": "auto"
                                 },
-                                expression: "form.payer_cap"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.any_errors,
-                                    expression: "any_errors"
-                                  }
-                                ],
-                                staticClass: "form-error"
-                              },
-                              _vm._l(_vm.errors["payer_cap"], function(error) {
-                                return _c("span", { key: error }, [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(error) +
-                                      "\n                                    "
-                                  )
-                                ])
+                                model: {
+                                  value: _vm.form.payer_cap,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "payer_cap", $$v)
+                                  },
+                                  expression: "form.payer_cap"
+                                }
                               }),
-                              0
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "city" },
-                          [
-                            _c("label", { attrs: { for: "city" } }, [
-                              _vm._v("Città")
-                            ]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              staticClass: "input",
-                              attrs: {
-                                id: "city",
-                                placeholder: "es. Milano",
-                                color: "#006d68",
-                                rules: [
-                                  function(v) {
-                                    return !!v || "Città obbligatoria"
-                                  },
-                                  function(v) {
-                                    return (
-                                      (v && v.length <= 50) ||
-                                      "La città può contenere massimo 50 caratteri"
-                                    )
-                                  },
-                                  function(v) {
-                                    return (
-                                      (v && v.length >= 3) ||
-                                      "La città deve contenere minimo 3 caratteri"
-                                    )
-                                  }
-                                ],
-                                "hide-details": "auto"
-                              },
-                              model: {
-                                value: _vm.form.payer_city,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "payer_city", $$v)
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.any_errors,
+                                      expression: "any_errors"
+                                    }
+                                  ],
+                                  staticClass: "form-error"
                                 },
-                                expression: "form.payer_city"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.any_errors,
-                                    expression: "any_errors"
-                                  }
-                                ],
-                                staticClass: "form-error"
-                              },
-                              _vm._l(_vm.errors["payer_city"], function(error) {
-                                return _c("span", { key: error }, [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(error) +
-                                      "\n                                    "
-                                  )
-                                ])
+                                _vm._l(_vm.errors["payer_cap"], function(
+                                  error
+                                ) {
+                                  return _c("span", { key: error }, [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(error) +
+                                        "\n                                    "
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "city", attrs: { id: "city" } },
+                            [
+                              _c("label", { attrs: { for: "city" } }, [
+                                _vm._v("Città")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "input",
+                                attrs: {
+                                  id: "city",
+                                  placeholder: "es. Milano",
+                                  color: "#006d68",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Città obbligatoria"
+                                    },
+                                    function(v) {
+                                      return (
+                                        (v && v.length <= 50) ||
+                                        "La città può contenere massimo 50 caratteri"
+                                      )
+                                    },
+                                    function(v) {
+                                      return (
+                                        (v && v.length >= 3) ||
+                                        "La città deve contenere minimo 3 caratteri"
+                                      )
+                                    }
+                                  ],
+                                  "hide-details": "auto"
+                                },
+                                model: {
+                                  value: _vm.form.payer_city,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "payer_city", $$v)
+                                  },
+                                  expression: "form.payer_city"
+                                }
                               }),
-                              0
-                            )
-                          ],
-                          1
-                        )
-                      ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.any_errors,
+                                      expression: "any_errors"
+                                    }
+                                  ],
+                                  staticClass: "form-error"
+                                },
+                                _vm._l(_vm.errors["payer_city"], function(
+                                  error
+                                ) {
+                                  return _c("span", { key: error }, [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(error) +
+                                        "\n                                    "
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "name-and-email" }, [
-                        _c(
-                          "div",
-                          { staticClass: "name" },
-                          [
-                            _c("label", { attrs: { for: "nome" } }, [
-                              _vm._v("Nome")
-                            ]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              staticClass: "input",
-                              attrs: {
-                                color: "#006d68",
-                                placeholder: "es. Luigi Verdi",
-                                rules: [
-                                  function(v) {
-                                    return !!v || "Nome obbligatorio"
-                                  }
-                                ],
-                                "hide-details": "auto"
-                              },
-                              model: {
-                                value: _vm.form.payer_name,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "payer_name", $$v)
+                      _c(
+                        "div",
+                        {
+                          staticClass: "name-and-email",
+                          attrs: { id: "name-and-email" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "name", attrs: { id: "name" } },
+                            [
+                              _c("label", { attrs: { for: "nome" } }, [
+                                _vm._v("Nome")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "input",
+                                attrs: {
+                                  color: "#006d68",
+                                  placeholder: "es. Luigi Verdi",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Nome obbligatorio"
+                                    }
+                                  ],
+                                  "hide-details": "auto"
                                 },
-                                expression: "form.payer_name"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.any_errors,
-                                    expression: "any_errors"
-                                  }
-                                ],
-                                staticClass: "form-error"
-                              },
-                              _vm._l(_vm.errors["payer_name"], function(error) {
-                                return _c("span", { key: error }, [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(error) +
-                                      "\n                                    "
-                                  )
-                                ])
-                              }),
-                              0
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "email" },
-                          [
-                            _c("label", { attrs: { for: "email" } }, [
-                              _vm._v("Email")
-                            ]),
-                            _vm._v(" "),
-                            _c("v-text-field", {
-                              staticClass: "input",
-                              attrs: {
-                                color: "#006d68",
-                                placeholder: "es. verdiluigi@gmail.com",
-                                rules: [
-                                  function(v) {
-                                    return !!v || "Email obbligatoria"
+                                model: {
+                                  value: _vm.form.payer_name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "payer_name", $$v)
                                   },
-                                  function(v) {
-                                    return (
-                                      /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-                                        v
-                                      ) || "Inserisci una mail valida"
-                                    )
-                                  }
-                                ],
-                                "hide-details": "auto"
-                              },
-                              model: {
-                                value: _vm.form.payer_email,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "payer_email", $$v)
-                                },
-                                expression: "form.payer_email"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.any_errors,
-                                    expression: "any_errors"
-                                  }
-                                ],
-                                staticClass: "form-error"
-                              },
-                              _vm._l(_vm.errors["payer_email"], function(
-                                error
-                              ) {
-                                return _c("span", { key: error }, [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(error) +
-                                      "\n                                    "
-                                  )
-                                ])
+                                  expression: "form.payer_name"
+                                }
                               }),
-                              0
-                            )
-                          ],
-                          1
-                        )
-                      ])
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.any_errors,
+                                      expression: "any_errors"
+                                    }
+                                  ],
+                                  staticClass: "form-error"
+                                },
+                                _vm._l(_vm.errors["payer_name"], function(
+                                  error
+                                ) {
+                                  return _c("span", { key: error }, [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(error) +
+                                        "\n                                    "
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "email", attrs: { id: "email" } },
+                            [
+                              _c("label", { attrs: { for: "email" } }, [
+                                _vm._v("Email")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "input",
+                                attrs: {
+                                  color: "#006d68",
+                                  placeholder: "es. verdiluigi@gmail.com",
+                                  rules: [
+                                    function(v) {
+                                      return !!v || "Email obbligatoria"
+                                    },
+                                    function(v) {
+                                      return (
+                                        /^(([^<>()[\]\.,;:\s@']+(\.[^<>()\[\]\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                                          v
+                                        ) || "Inserisci una mail valida"
+                                      )
+                                    }
+                                  ],
+                                  "hide-details": "auto"
+                                },
+                                model: {
+                                  value: _vm.form.payer_email,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "payer_email", $$v)
+                                  },
+                                  expression: "form.payer_email"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.any_errors,
+                                      expression: "any_errors"
+                                    }
+                                  ],
+                                  staticClass: "form-error"
+                                },
+                                _vm._l(_vm.errors["payer_email"], function(
+                                  error
+                                ) {
+                                  return _c("span", { key: error }, [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(error) +
+                                        "\n                                    "
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
                     ],
                     _vm._v(" "),
                     _c("h2", { staticClass: "payment-method" }, [
