@@ -1,5 +1,5 @@
 <template>
-    <div class="" >
+    <div>
         <HeaderWhite/>
         <!-- RESTAURANT DESCRIPTION -->
         <div class="restaurant_description" v-if="my_restaurant">
@@ -102,6 +102,7 @@
                                 
                                 <router-link class="pay" :to="{name: 'payment',
                                     params: {
+                                        restaurant: my_restaurant.restaurant,
                                         restaurantId: cart.key,
                                         orderTotal: total
                                     }}">
@@ -171,6 +172,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- MOBILE CART -->
         <div class="m-cart" :class="{h100: !showCart}">
@@ -244,19 +246,20 @@
                 </div>
             </div>
         </div>
+
+        <Footer/>
+
     </div>
 </template>
 
 <script>
 import HeaderWhite from "../components/HeaderWhite.vue";
-import Cart from "../components/Cart.vue";
-import SingleRestaurant from "../components/SingleRestaurant.vue";
+import Footer from "../components/Footer.vue";
 export default {
     // name: "RestaurantShow",
     components: {
-        Cart,
-        SingleRestaurant,
         HeaderWhite,
+        Footer,
     },
     data() {
         return {
@@ -272,11 +275,11 @@ export default {
             cardShow : null,
             qty: null,
             activeElements : [],
+            initialPrice : 0,
 
         };
     },
     created() {
-        console.log(this.activeElements);
         this.getRestaurant();
     },
     methods: {
@@ -316,6 +319,7 @@ export default {
         //AGGIUNTA PRODOTTI NELL'ARRAY CHE POPOLERA IL CART DAL LOCALSTORAGE
         add(product) {
             if (this.find(product.id)) {
+                this.total -= this.initialPrice;
                 this.increment(product.id);
             } else {
                 let obj = {
@@ -328,7 +332,8 @@ export default {
                 this.activeElements.push(product.id);
                 this.cart.products.push(obj);
             }
-            this.total += product.total;
+            this.total += product.price * this.qty;
+            console.log(this.total);
             this.sync();
             this.cardShow = null;
         },
@@ -383,6 +388,7 @@ export default {
                 this.cart.products = [];
             }
             this.sync();
+            this.activeElements = [];
         },
         // INIZIALIZZAZIONE
         init() {
@@ -411,6 +417,7 @@ export default {
             this.cart.products.forEach(e=>{
                 if(e.id == product.id){
                     this.qty = e.qty;
+                    this.initialPrice = product.price * e.qty;
                 }
             })
         },
@@ -623,7 +630,6 @@ export default {
 .menu{
     top: 0;
     position: sticky;
-    
     background-color: white;
     .my_container{
         display: flex;
@@ -739,6 +745,7 @@ export default {
                             width: 20%;
                             color: #828585;
                             svg{
+                                cursor: pointer;
                                 fill: $d-primary;
                                 width: 18px;
                                 height: 18px;
