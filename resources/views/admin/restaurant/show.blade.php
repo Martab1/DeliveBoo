@@ -34,7 +34,6 @@
 
           
         </div>
-
         {{-- BUTTONS --}}
         <div class="m-4 d-flex justify-content-center">
                 <a class="btn btn-primary m-3 " id="my-btn" href="{{ route('admin.product.index', $my_restaurant->id) }}">Guarda i prodotti</a>
