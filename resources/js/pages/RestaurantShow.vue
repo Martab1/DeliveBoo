@@ -892,11 +892,15 @@ export default {
     .menu-list{
         .my_container{
             padding-right: 380px;
+            h3{
+                margin-top: 20px;
+            }
         }
     .container-cards{
             .sub-container-cards{
-                width: calc(100% - 20px);
-                margin: 10px;
+                width: calc(100% - 15px);
+                margin: unset;
+                border: 1px solid #e8ebeb;
             }
         }
     }
@@ -959,14 +963,7 @@ export default {
 
     .menu-list{
         .my_container{
-            padding-right: 15px;
-        }
-
-        .container-cards{
-            .sub-container-cards{
-                width: calc(100% - 20px);
-                margin: 10px;
-            }
+            padding-right: unset;
         }
     }
 
@@ -1055,7 +1052,18 @@ export default {
                 justify-content: space-between;
                 align-items: center;
                 fill: $d-text-grey;
+                height: 28px;
             }
+
+            .cart-container{
+                height: calc( 100% - 140px);
+            }
+
+            .cart-container > div{
+                height: calc(100% - 28px);
+                overflow-y: auto;
+            }
+
             .recap{
                 margin-top: 20px;
                 @include flex("flex");
@@ -1154,5 +1162,15 @@ export default {
         }
     }
     
+}
+
+@media screen and (max-width: 580px) {
+    .restaurant_description{
+        .selectQty{
+            .card-box{
+                width: unset;
+            }
+        }
+    }
 }
 </style>
