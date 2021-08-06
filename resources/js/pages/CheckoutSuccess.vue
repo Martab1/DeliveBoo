@@ -72,4 +72,38 @@ export default {
   100% {left:80%}
   }
 }
+
+@media screen and (max-width: 822px){
+  .payment-success{
+    padding-top: 90px;
+    .content{
+      max-width: 60%;
+
+      h1{
+        font-size: 36px;
+      }
+
+      img{
+        width: 20%;
+      }
+    }
+  }
+}
+ 
+@media screen and (max-width: 548px){
+  .payment-success{
+    .content{
+
+      h1{
+        font-size: 34px
+      }
+
+      img{
+        width: 30%;
+      }
+    }
+  }
+}
+
+
 </style>

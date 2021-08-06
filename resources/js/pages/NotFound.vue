@@ -44,7 +44,20 @@ export default {
         background-color: $d-primary;
         color: #fff;
         font-weight: bold;
+        margin-bottom: 20px;
       }
     }
   }
+
+  @media screen and (max-width: 851px){
+  .error404{
+    .content{
+      max-width: 60%;
+
+      h1{
+        font-size: 36px;
+      }
+    }
+  }
+}
 </style>
