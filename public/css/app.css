@@ -5,21 +5,27 @@ html {
 }
 
 body {
-  min-height: 100vh;
   font-family: "IBM Plex Sans", sans-serif;
+}
+
+.pad {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 main {
   flex-grow: 1;
-  height: 100%;
-  background-color: #eff0f3;
+}
+
+main .my_form {
+  margin-bottom: 100px;
 }
 
 .my_container {
   max-width: 1270px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 /*!
@@ -10966,14 +10972,6 @@ a.text-dark:focus {
 
 /* general colors */
 
-body {
-  min-height: 100vh;
-}
-
-main {
-  min-height: 100vh;
-}
-
 .w-33 {
   flex-basis: calc(100% / 3);
 }
@@ -11110,6 +11108,27 @@ header .my_container .actions .drop-collaborates > div {
   text-decoration: none;
 }
 
+.product-card {
+  margin: 10px;
+  width: calc(100% / 3 - 20px);
+}
+
+@media screen and (max-width: 1199px) {
+  .product-card {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .product-card {
+    width: calc(100% / 1 - 20px);
+  }
+
+  .product-card img {
+    display: none;
+  }
+}
+
 footer {
   background-color: #2e3333;
   padding: 20px;
@@ -11119,6 +11138,7 @@ footer .top {
   color: white;
   display: flex;
   justify-content: space-between;
+  overflow: auto;
 }
 
 footer .top .f-info {
@@ -11126,6 +11146,16 @@ footer .top .f-info {
   background-color: rgba(255, 255, 255, 0.1);
   width: calc(100% / 4 - 15px);
   border-radius: 3px;
+  margin: 10px;
+  min-width: 224px;
+}
+
+footer .top .f-info:first-child {
+  margin-left: 0px;
+}
+
+footer .top .f-info:last-child {
+  margin-right: 0px;
 }
 
 footer .top .f-info img {
@@ -11243,9 +11273,39 @@ footer .bot span {
   width: 145px;
 }
 
-/* 
-    RESTAURANT SHOW
-*/
+.show .container-img {
+  width: 50%;
+  height: 300px;
+  padding: 20px;
+}
+
+.show .container-img .content-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.show .container-img .informations {
+  width: 50%;
+}
+
+@media screen and (max-width: 943px) {
+  .r-column {
+    flex-direction: column;
+  }
+
+  .r-column .container-img {
+    width: 100%;
+    height: 200px;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .r-column .informations {
+    width: 100%;
+  }
+}
 
 #my-card {
   width: calc(100% / 4 - 20px);
@@ -11269,18 +11329,19 @@ footer .bot span {
 }
 
 .links .page-link {
-  color: #ff8e3c;
+  color: #00ccbc;
 }
 
 .links .active .page-link {
-  background-color: #ff8e3c;
+  color: #fff;
+  background-color: #00ccbc;
   border: 1px solid transparent;
 }
 
 .error {
   height: calc(100vh - 250px);
   width: 100%;
-  color: #ff8e3c;
+  color: #00ccbc;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11322,6 +11383,12 @@ footer .bot span {
 @media screen and (max-width: 475px) {
   #my-card {
     width: calc(100% - 20px);
+  }
+}
+
+@media screen and (max-width: 595px) {
+  #r_none {
+    display: none;
   }
 }
 

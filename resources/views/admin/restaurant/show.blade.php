@@ -4,21 +4,20 @@
     <div class="text-center container show">
         <h1 class="my-5 text-uppercase">{{ $my_restaurant->name }}</h1>
 
-        <div class="d-flex container">
+        <div class="d-flex container r-column">
 
               {{-- IMAGE --}}
-              <div class="w-50"><img class="img-fluid " 
+              <div class="container-img"><img class="content-img" 
                 @if ($my_restaurant->image)
                 src="{{ asset('storage/' . $my_restaurant->image) }}"
                 @else
-                {{-- src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/600px-No_immagine_disponibile.svg.png" --}}
-                src="{{asset('no_covers/no_cover_restaurant.png')}}"
+                src="{{asset('img/default.jpg')}}"
                 @endif
                     alt="{{ $my_restaurant->name }}">
              </div>
 
             {{-- INFORMATIONS --}}
-            <div class="informations w-50 d-flex flex-column justify-content-center  text-left">
+            <div class="informations d-flex flex-column justify-content-center  text-left">
                 <h3>Proprietario: {{ $user_auth->name }} {{ $user_auth->surname }}</h3>
                 <h3>P.iva: {{ $user_auth->vat_number }}</h3>
                 <hr>

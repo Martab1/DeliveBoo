@@ -6,14 +6,19 @@ html {
 }
 
 body{
-    min-height: 100vh;
     font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.pad{
+    min-height: 100vh;
     @include flex("column");
 }
 
 main{
     flex-grow:1;
-    height: 100%;
+    .my_form{
+        margin-bottom: 100px
+    }
 }
 
 .my_container{
@@ -21,3 +26,4 @@ main{
     margin: 0 auto;
     padding: 0 15px;
 }
+

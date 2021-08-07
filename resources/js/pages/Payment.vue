@@ -2,7 +2,7 @@
     <div v-if="loader" class="payment">
         <HeaderGreen/>
         <div class="my_container">
-            <div class="left">
+            <div class="left" v-if="this.$route.params.restaurant">
                 <h1>{{this.$route.params.restaurant.name}}</h1>
                 <div class="time">
                     <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-be253fe60aa767f4"><path d="M13 12L15.2025 15.8789L13.4704 16.8789L11 12.6V6H13V12ZM12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20Z"></path></svg>

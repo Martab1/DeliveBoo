@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="restaurant-show">
         <HeaderWhite/>
         <!-- RESTAURANT DESCRIPTION -->
         <div class="restaurant_description" v-if="my_restaurant">
@@ -176,7 +176,7 @@
 
 
         <!-- MOBILE CART -->
-        <div class="m-cart" :class="{h100: !showCart}">
+        <div v-if="my_restaurant" class="m-cart" :class="{h100: !showCart}">
             <div class="cart-container" :class="{p0 : !showCart}">
                 <div v-if="total === 0" class="empty">
                     <span>
@@ -239,6 +239,7 @@
                     </button>
                     <router-link class="pay" :to="{name: 'payment',
                         params: {
+                            restaurant: my_restaurant.restaurant,
                             restaurantId: cart.key,
                             orderTotal: total
                         }}">
@@ -478,6 +479,11 @@ export default {
 @import '../../sass/general.scss';
 @import '../../sass/mixins.scss';
 
+.restaurant-show{
+    @include flex("column");
+    height: 100%;
+}
+
 .m-cart{
     display: none;
 }
@@ -639,20 +645,21 @@ export default {
         position: relative;
         padding-right: 380px;
         .left{
-            @include flex("space-bet");
+            width: 100%;
             div{
+                @include flex("flex");
+                flex-wrap: wrap;
                 padding: 10px 0;
                 a{  
+                    display: block;
+                    text-align: center;
+                    width: 125px;
                     text-decoration: none;
                     color: $d-primary;
-                    border: 3px solid white;
+                    border: 3px solid #b2f0eb;
                     margin: 8px;
                     padding: 2px 16px;
                     border-radius: 20px;
-                    &:focus,
-                    &:active{
-                        border: 3px solid #b2f0eb;
-                    }
                 }
                 .active{
                     background-color: $d-primary;
@@ -832,6 +839,7 @@ export default {
 }
 
 .menu-list{
+    flex-grow: 1;
     .my_container{
         padding-right: 380px;
     }

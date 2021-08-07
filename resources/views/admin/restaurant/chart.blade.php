@@ -43,7 +43,7 @@
                 {
                     label: 'Incasso',
                     // backgroundColor: {!! json_encode($chart->colours)!!} ,
-                    backgroundColor: "#ff8e3c",
+                    backgroundColor: "#00ccbc",
                     data:  {!! json_encode($chart->dataset)!!} ,
                 },
             ]

@@ -13,27 +13,6 @@
 /* general colors */
 @import "./vars.scss";
 
-// body{
-//    height: 70vh;
-// }
-//     .pad{
-//         position: relative;
-//         min-height: 100vh;
-//     }
-// }
-body{
-    min-height: 100vh;
-}
-// .pad{
-//     display:flex;
-//     flex-direction: column;
-//     justify-content: center;
-// }
-
-main{
-   min-height: 100vh;
-}
-
 .w-33{
     flex-basis: calc(100% / 3);
 }
@@ -41,9 +20,6 @@ main{
 .my-description{
     height: 50px;
     overflow-y: auto;
-    // border: .4px groove rgba(248, 248, 248, 0.849);
-    // padding: 2px;
-    // border-radius: 2px;
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -155,8 +131,26 @@ header{
       }
   } 
 
+// CARD{
+.product-card{
+  margin: 10px;
+  width: calc(100% / 3 - 20px);
+}
 
+@media screen and (max-width: 1199px){
+  .product-card{
+    width: calc(100% / 2 - 20px);
+  }
+}
 
+@media screen and (max-width: 991px){
+  .product-card{
+    width: calc(100% / 1 - 20px);
+    img{
+      display:none;
+    }
+  }
+}
 
   footer{
     background-color: $d-black;
@@ -165,12 +159,20 @@ header{
       color: white;
       display: flex;
       justify-content: space-between;
+      overflow: auto;
       .f-info{
         padding: 30px 20px;
         background-color: rgba(255,255,255, 0.1);
         width: calc(100% / 4 - 15px);
         border-radius: 3px;
-  
+        margin: 10px;
+        min-width: 224px;
+        &:first-child{
+          margin-left: 0px;
+        }
+        &:last-child{
+          margin-right: 0px;
+        }
         img{
           max-width: 50%;
           margin-bottom: 5px;
@@ -287,11 +289,35 @@ header{
             width: 145px;
         }
     } 
+    .container-img{
+      width: 50%;
+      height: 300px;
+      padding: 20px;
+      .content-img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+      }
+      .informations{
+        width: 50%;
+      }
+    }
+}
+@media screen and (max-width: 943px){
+  .r-column{
+    flex-direction: column;
+    .container-img{
+      width: 100%;
+      height: 200px;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .informations{
+      width: 100%;
+    }
+  }
 }
 
-/* 
-    RESTAURANT SHOW
-*/
 #my-card{
     width: calc(100% / 4 - 20px);
     margin: 10px;
@@ -312,12 +338,13 @@ header{
         border: 1px solid transparent;
     }
     .page-link{
-        color: $btn-color;
+        color: $d-primary;
     }
     .active{
         .page-link{
-            background-color: $btn-color;
-            border: 1px solid transparent;
+          color: #fff;
+          background-color: $d-primary;
+          border: 1px solid transparent;
         }
     }
 }
@@ -326,7 +353,7 @@ header{
 .error{
     height: calc(100vh - 250px);
     width: 100%;
-    color: $btn-color;
+    color: $d-primary;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -372,4 +399,11 @@ header{
     #my-card{
         width: calc(100% - 20px);
     }
+}
+
+
+@media screen and (max-width: 595px){
+  #r_none{
+      display: none;
+  }
 }
